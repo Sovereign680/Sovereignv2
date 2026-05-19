@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Citation Sovereign — Tools</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#07090d;--panel:#0c1018;--border:#182030;--acc:#00c8ff;--text:#bccdd8;--muted:#47637a}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Exo 2',sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:30px 20px}
+.back{position:fixed;top:20px;left:20px;font-family:'Orbitron',sans-serif;font-size:9px;padding:8px 14px;border:1px solid var(--muted);color:var(--muted);text-decoration:none;border-radius:3px;letter-spacing:1px;transition:all .2s}
+.back:hover{border-color:var(--acc);color:var(--acc)}
+.mfr{font-family:'Orbitron',sans-serif;font-size:10px;letter-spacing:4px;color:var(--muted);margin-bottom:8px}
+h1{font-family:'Orbitron',sans-serif;font-size:26px;font-weight:900;color:var(--acc);letter-spacing:3px;margin-bottom:6px}
+.sub{color:var(--muted);font-size:12px;margin-bottom:48px}
+.tools{display:flex;flex-direction:column;gap:16px;width:100%;max-width:400px}
+.tool{background:var(--panel);border:2px solid var(--border);border-radius:8px;padding:24px;text-decoration:none;display:flex;align-items:center;gap:18px;transition:all .3s}
+.tool:hover{border-color:var(--acc);transform:translateX(6px)}
+.tool.soon{opacity:.5;cursor:not-allowed;pointer-events:none}
+.tool-icon{font-size:36px;flex-shrink:0}
+.tool-title{font-family:'Orbitron',sans-serif;font-size:13px;color:#fff;margin-bottom:4px;display:flex;align-items:center;gap:8px}
+.badge{font-family:'Orbitron',sans-serif;font-size:8px;padding:2px 6px;border-radius:2px;background:rgba(255,107,53,.2);border:1px solid #ff6b35;color:#ff6b35;letter-spacing:.5px}
+.tool-desc{font-size:12px;color:var(--muted);line-height:1.6}
+.foot{margin-top:48px;font-size:11px;color:var(--muted);text-align:center;line-height:2}
+</style>
+</head>
+<body>
+<a href="index.html" class="back">← BACK</a>
+<div class="mfr">CESSNA</div>
+<h1>CITATION SOVEREIGN</h1>
+<p class="sub">Twinjet · PW306C</p>
+<div class="tools">
+  <a href="KingAir_C90_Pocket_Guide.html" class="tool">
+    <div class="tool-icon">📖</div>
+    <div>
+      <div class="tool-title">POCKET GUIDE</div>
+      <div class="tool-desc">Systems study guide · All chapters · Quiz · Annunciators · Glossary</div>
+    </div>
+  </a>
+  <div class="tool soon">
+    <div class="tool-icon">📊</div>
+    <div>
+      <div class="tool-title">PERFORMANCE CALCULATOR <span class="badge">COMING SOON</span></div>
+      <div class="tool-desc">Takeoff · Landing · Climb · Cruise · Descent · Mission Planning</div>
+    </div>
+  </div>
+</div>
+<div class="foot">For training purposes only · Created by Leonardo Maia</div>
+</body>
+</html>
