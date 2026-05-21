@@ -1,0 +1,1915 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Citation Sovereign — Complete PTM Study Guide</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&family=Exo+2:wght@300;400;600;700&display=swap');
+:root{--bg:#07090d;--panel:#0c1018;--border:#182030;--accent:#00c8ff;--a2:#ff6b35;--a3:#39ff6e;--warn:#ffcc00;--danger:#ff3b3b;--purple:#b06aff;--text:#bccdd8;--muted:#47637a;--glow:0 0 18px rgba(0,200,255,.28);--glow2:0 0 18px rgba(255,107,53,.28)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Exo 2',sans-serif;font-size:14px;line-height:1.65;padding:14px;max-width:1020px;margin:0 auto}
+/* HEADER */
+.hdr{text-align:center;padding:28px 0 18px;border-bottom:1px solid var(--border);margin-bottom:18px;position:relative}
+.hdr::after{content:'';position:absolute;bottom:-1px;left:50%;transform:translateX(-50%);width:320px;height:2px;background:linear-gradient(90deg,transparent,var(--accent),transparent)}
+.badge{font-family:'Share Tech Mono';font-size:10px;color:var(--accent);letter-spacing:4px;margin-bottom:6px}
+h1{font-family:'Orbitron';font-size:clamp(16px,3.5vw,30px);font-weight:900;color:#fff;text-shadow:var(--glow);letter-spacing:2px;line-height:1.2}
+.ver{font-size:11px;color:var(--muted);font-family:'Share Tech Mono';margin-top:5px}
+/* NAV */
+.nav{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:18px;padding:10px;background:var(--panel);border:1px solid var(--border);border-radius:4px}
+.nb{padding:5px 9px;background:transparent;border:1px solid var(--border);color:var(--muted);font-family:'Orbitron';font-size:9px;letter-spacing:.8px;cursor:pointer;border-radius:2px;transition:all .15s;text-transform:uppercase}
+.nb:hover{border-color:var(--accent);color:var(--accent)}
+.nb.active{background:rgba(0,200,255,.1);border-color:var(--accent);color:var(--accent);box-shadow:0 0 8px rgba(0,200,255,.18)}
+/* CHAPTER */
+.ch{display:none}
+.ch.active{display:block}
+.ch-hdr{display:flex;align-items:center;gap:14px;margin-bottom:18px;padding:14px 18px;background:var(--panel);border:1px solid var(--border);border-radius:4px;position:relative;overflow:hidden}
+.ch-hdr::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--a3),transparent)}
+.ch-n{font-family:'Orbitron';font-size:26px;font-weight:900;color:var(--accent);opacity:.35;min-width:44px;text-shadow:var(--glow)}
+.ch-t{font-family:'Orbitron';font-size:clamp(13px,2.2vw,18px);font-weight:700;color:#fff;letter-spacing:1px}
+.ch-s{font-size:12px;color:var(--muted);margin-top:2px}
+/* GRIDS */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+@media(max-width:580px){.g2,.g3{grid-template-columns:1fr}}
+/* CARDS */
+.card{background:var(--panel);border:1px solid var(--border);border-radius:3px;padding:15px;margin-bottom:11px;position:relative;overflow:hidden}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px}
+.card.b::before{background:linear-gradient(90deg,var(--accent),transparent)}
+.card.o::before{background:linear-gradient(90deg,var(--a2),transparent)}
+.card.g::before{background:linear-gradient(90deg,var(--a3),transparent)}
+.card.y::before{background:linear-gradient(90deg,var(--warn),transparent)}
+.card.r::before{background:linear-gradient(90deg,var(--danger),transparent)}
+.card.p::before{background:linear-gradient(90deg,var(--purple),transparent)}
+.ct{font-family:'Orbitron';font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:11px;display:flex;align-items:center;gap:7px}
+.ct.b{color:var(--accent)}.ct.o{color:var(--a2)}.ct.g{color:var(--a3)}.ct.y{color:var(--warn)}.ct.r{color:var(--danger)}.ct.p{color:var(--purple)}
+/* STATS */
+.sr{display:flex;gap:9px;margin-bottom:12px;flex-wrap:wrap}
+.sb{background:rgba(0,200,255,.05);border:1px solid rgba(0,200,255,.2);border-radius:3px;padding:9px 12px;text-align:center;flex:1;min-width:75px}
+.sb.o{background:rgba(255,107,53,.05);border-color:rgba(255,107,53,.2)}
+.sb.g{background:rgba(57,255,110,.05);border-color:rgba(57,255,110,.2)}
+.sb.r{background:rgba(255,59,59,.05);border-color:rgba(255,59,59,.2)}
+.sv{font-family:'Orbitron';font-size:17px;font-weight:900;color:var(--accent);line-height:1}
+.sb.o .sv{color:var(--a2)}.sb.g .sv{color:var(--a3)}.sb.r .sv{color:var(--danger)}
+.sl{font-size:10px;color:var(--muted);margin-top:3px;letter-spacing:.4px}
+/* LISTS */
+ul.s{list-style:none;padding:0}
+ul.s li{padding:4px 0 4px 17px;position:relative;font-size:13px;border-bottom:1px solid rgba(24,32,48,.6);color:var(--text)}
+ul.s li::before{content:'▸';position:absolute;left:0;color:var(--accent);font-size:9px;top:7px}
+ul.s li:last-child{border-bottom:none}
+ul.s li strong{color:#e0eaf0}
+/* BOXES */
+.hi{background:rgba(255,204,0,.07);border-left:3px solid var(--warn);padding:9px 13px;margin:9px 0;font-size:12px;border-radius:0 3px 3px 0}
+.hi strong{color:var(--warn)}
+.info{background:rgba(0,200,255,.05);border-left:3px solid var(--accent);padding:9px 13px;margin:9px 0;font-size:12px;border-radius:0 3px 3px 0}
+.info strong{color:var(--accent)}
+.dng{background:rgba(255,59,59,.07);border-left:3px solid var(--danger);padding:9px 13px;margin:9px 0;font-size:12px;border-radius:0 3px 3px 0}
+.dng strong{color:var(--danger)}
+/* FLOW */
+.flow{display:flex;flex-wrap:wrap;align-items:center;gap:5px;margin:9px 0;font-family:'Share Tech Mono';font-size:11px}
+.fb{background:rgba(0,200,255,.08);border:1px solid rgba(0,200,255,.25);padding:4px 9px;border-radius:3px;color:var(--accent)}
+.fb.o{background:rgba(255,107,53,.08);border-color:rgba(255,107,53,.25);color:var(--a2)}
+.fb.g{background:rgba(57,255,110,.08);border-color:rgba(57,255,110,.25);color:var(--a3)}
+.fb.r{background:rgba(255,59,59,.08);border-color:rgba(255,59,59,.25);color:var(--danger)}
+.ar{color:var(--muted)}
+/* MNEMONIC */
+.mn{background:rgba(57,255,110,.05);border:1px solid rgba(57,255,110,.2);border-radius:3px;padding:13px;margin:9px 0}
+.mn-t{font-family:'Orbitron';font-size:9px;color:var(--a3);letter-spacing:2px;margin-bottom:7px}
+.mn-r{display:flex;gap:8px;align-items:baseline;margin-bottom:3px}
+.mn-c{font-family:'Orbitron';font-size:15px;font-weight:900;color:var(--a3);min-width:30px}
+.mn-x{font-size:13px;color:var(--text)}
+/* PILLS */
+.pl{display:inline-block;padding:2px 7px;border-radius:20px;font-size:10px;font-family:'Share Tech Mono';margin:2px}
+.pl.b{background:rgba(0,200,255,.12);color:var(--accent);border:1px solid rgba(0,200,255,.3)}
+.pl.o{background:rgba(255,107,53,.12);color:var(--a2);border:1px solid rgba(255,107,53,.3)}
+.pl.g{background:rgba(57,255,110,.12);color:var(--a3);border:1px solid rgba(57,255,110,.3)}
+.pl.r{background:rgba(255,59,59,.12);color:#ff6e6e;border:1px solid rgba(255,59,59,.3)}
+.pl.y{background:rgba(255,204,0,.12);color:var(--warn);border:1px solid rgba(255,204,0,.3)}
+.pl.p{background:rgba(176,106,255,.12);color:var(--purple);border:1px solid rgba(176,106,255,.3)}
+/* TABLE */
+.tb{width:100%;border-collapse:collapse;font-size:12px}
+.tb th{background:rgba(0,200,255,.08);color:var(--accent);font-family:'Orbitron';font-size:9px;letter-spacing:1px;padding:6px 9px;text-align:left;border-bottom:1px solid var(--border)}
+.tb td{padding:6px 9px;border-bottom:1px solid rgba(24,32,48,.5);vertical-align:top}
+.tb tr:hover td{background:rgba(0,200,255,.03)}
+.tk{font-family:'Orbitron';color:var(--accent);font-size:10px;font-weight:700;white-space:nowrap}
+.td{color:var(--text);font-size:12px}
+/* CAS ROW */
+.cas{display:flex;align-items:flex-start;gap:10px;padding:8px 10px;border-bottom:1px solid var(--border);transition:background .12s}
+.cas:hover{background:rgba(255,255,255,.02)}
+.cas:last-child{border-bottom:none}
+.cb{font-family:'Share Tech Mono';font-size:10px;padding:3px 7px;border-radius:2px;white-space:nowrap;min-width:175px;text-align:center;font-weight:bold;flex-shrink:0}
+.cb.r{background:rgba(255,59,59,.2);color:#ff6e6e;border:1px solid #ff3b3b44}
+.cb.a{background:rgba(255,204,0,.14);color:#ffd740;border:1px solid #ffcc0044}
+.cb.c{background:rgba(0,200,255,.1);color:var(--accent);border:1px solid rgba(0,200,255,.25)}
+.cb.w{background:rgba(200,216,232,.08);color:#c8d8e8;border:1px solid #c8d8e830}
+.cd{font-size:12px;color:var(--text);line-height:1.5}
+.cn{font-size:11px;color:var(--a3);margin-top:2px;font-style:italic}
+/* DESC */
+p.d{font-size:13px;color:var(--text);margin-bottom:9px;line-height:1.65}
+/* ALERT LEVELS */
+.al-row{display:flex;gap:8px;margin-bottom:7px;align-items:stretch}
+.al-box{flex:1;padding:10px 12px;border-radius:3px;font-size:12px}
+/* FOOTER */
+.foot{text-align:center;margin-top:30px;padding:14px;border-top:1px solid var(--border);font-family:'Share Tech Mono';font-size:10px;color:var(--muted)}
+</style>
+</head>
+<body>
+
+<div class="hdr">
+  <div class="badge">✈ CESSNA CITATION SOVEREIGN · PTM REV 5.0 · CE-680</div>
+  <h1>SOVEREIGN POCKET GUIDE</h1>
+  <div class="ver">Version 2.0 · Created by Leonardo Maia · FOR TRAINING PURPOSES ONLY</div>
+</div>
+
+<div class="nav">
+  <button class="nb active" onclick="show(1,this)">01 GENERAL</button>
+  <button class="nb" onclick="show(2,this)">02 ELECTRICAL</button>
+  <button class="nb" onclick="show(3,this)">03 LIGHTING</button>
+  <button class="nb" onclick="show(4,this)">04 MWS / CAS</button>
+  <button class="nb" onclick="show(5,this)">05 FUEL</button>
+  <button class="nb" onclick="show(6,this)">06 APU</button>
+  <button class="nb" onclick="show(7,this)">07 POWERPLANT</button>
+  <button class="nb" onclick="show(8,this)">08 FIRE PROT.</button>
+  <button class="nb" onclick="show(9,this)">09 PNEUMATICS</button>
+  <button class="nb" onclick="show(10,this)">10 ICE &amp; RAIN</button>
+  <button class="nb" onclick="show(11,this)">11 AIR COND.</button>
+  <button class="nb" onclick="show(12,this)">12 PRESSURIZATION</button>
+  <button class="nb" onclick="show(13,this)">13 HYDRAULICS</button>
+  <button class="nb" onclick="show(14,this)">14 GEAR &amp; BRAKES</button>
+  <button class="nb" onclick="show(15,this)">15 FLT CONTROLS</button>
+  <button class="nb" onclick="show(16,this)">16 AVIONICS</button>
+  <button class="nb" onclick="show(17,this)">17 OXYGEN</button>
+  <button class="nb" onclick="show(18,this)">18 W&amp;B</button>
+  <button class="nb" onclick="show(19,this)">19 PERFORMANCE</button>
+  <button class="nb" onclick="show('quiz',this)" style="border-color:#39ff6e;color:#39ff6e">🎯 QUIZ</button>
+  <button class="nb" onclick="show('cas',this)" style="border-color:#ffcc00;color:#ffcc00">⚠️ CAS INDEX</button>
+  <button class="nb" onclick="show('gloss',this)" style="border-color:#b06aff;color:#b06aff">📖 GLOSSARY</button>
+</div>
+
+<div id="prog-bar" style="background:var(--panel);border:1px solid var(--border);border-radius:3px;padding:10px 14px;margin-bottom:14px;font-family:'Share Tech Mono';font-size:11px">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+    <span style="color:var(--muted)">STUDY PROGRESS</span>
+    <span id="prog-pct" style="color:var(--accent)">0 / 19 chapters studied</span>
+  </div>
+  <div style="background:var(--border);border-radius:2px;height:4px;overflow:hidden">
+    <div id="prog-fill" style="height:100%;background:linear-gradient(90deg,var(--accent),var(--a3));width:0%;transition:width .4s"></div>
+  </div>
+  <div id="prog-dots" style="display:flex;flex-wrap:wrap;gap:4px;margin-top:8px"></div>
+</div>
+
+
+<!-- ============================================================ CH 01 ============================================================ -->
+<div class="ch active" id="ch-1">
+<div class="ch-hdr"><div class="ch-n">01</div><div><div class="ch-t">AIRCRAFT GENERAL</div><div class="ch-s">Certification · Structure · Systems Overview · Access Doors</div></div></div>
+<div style="display:flex;justify-content:flex-end;margin-bottom:14px"><button id="sbtn-1" onclick="markStudied(1)" style="font-family:'Orbitron';font-size:9px;padding:5px 12px;background:transparent;border:1px solid var(--border);color:var(--muted);border-radius:2px;cursor:pointer;letter-spacing:1px">☐ MARK AS STUDIED</button></div>
+<div class="sr">
+  <div class="sb"><div class="sv">Part 25</div><div class="sl">FAR / JAR Certification</div></div>
+  <div class="sb o"><div class="sv">2</div><div class="sl">Minimum crew (PIC + SIC)</div></div>
+  <div class="sb g"><div class="sv">FL470</div><div class="sl">Maximum operating altitude</div></div>
+  <div class="sb r"><div class="sv">Cat I/II</div><div class="sl">ILS approach category</div></div>
+</div>
+<div class="g2">
+<div class="card b">
+  <div class="ct b">🏗️ Aircraft Structure</div>
+  <ul class="s">
+    <li>Pressurized, low-wing monoplane — transport category</li>
+    <li>Two PW306C turbofans pylon-mounted on rear fuselage</li>
+    <li>Tricycle trailing-link landing gear — dual wheels on all three legs</li>
+    <li>Moveable horizontal stabilizer for pitch trim</li>
+    <li>Vortex generators on wing upper surface for stall characteristics</li>
+    <li>Approved: day/night, VFR/IFR, known icing, Cat I and optional Cat II</li>
+    <li>PIC must hold a Sovereign type rating; both pilots need multi-engine land rating</li>
+  </ul>
+</div>
+<div class="card o">
+  <div class="ct o">📦 Compartments &amp; Access</div>
+  <ul class="s">
+    <li><strong>Nose compartment (unpressurized):</strong> MAU 1 &amp; 2, avionics, pneumatic emergency bottles (gear blowdown + brakes), NWS accumulator, standby battery, avionics cooling fan, pitot-static drains</li>
+    <li><strong>Cabin/cockpit:</strong> forward bulkhead to aft pressure bulkhead</li>
+    <li><strong>Tail cone baggage compartment:</strong> unpressurized — fire/smoke detection system</li>
+    <li><strong>APU compartment:</strong> below vertical stabilizer — titanium firebox</li>
+    <li><strong>MAU 3 &amp; 4:</strong> above baggage compartment (tail cone)</li>
+    <li><strong>Batteries (2):</strong> rear fuselage in stainless steel containers</li>
+    <li><strong>Engine fire bottles (2):</strong> tail cone — cross-feed capable</li>
+  </ul>
+</div>
+</div>
+<div class="card g">
+  <div class="ct g">⚠️ Engine Danger Areas</div>
+  <p class="d">Inlet suction hazard zones and exhaust blast zones extend significantly around each engine during operation. Personnel and FOD must be kept clear. Tire chines on the nose gear deflect standing water away from engine inlets.</p>
+  <div class="hi"><strong>💡 Doors monitored by CAS:</strong> NOSE DOOR OPEN L/R — each door has 2 mechanical latches + 1 safety latch; individual microswitch on each latch. CABIN DOOR OPEN, TAILCONE DOOR OPEN, BAGGAGE DOOR OPEN also monitored.</div>
+</div>
+</div>
+
+<!-- ============================================================ CH 02 ============================================================ -->
+<div class="ch" id="ch-2">
+<div class="ch-hdr"><div class="ch-n">02</div><div><div class="ch-t">ELECTRICAL POWER SYSTEMS</div><div class="ch-s">DC Split-Bus · Generators · Batteries · Bus Tie · EPU · APU Generator</div></div></div>
+<div style="display:flex;justify-content:flex-end;margin-bottom:14px"><button id="sbtn-2" onclick="markStudied(2)" style="font-family:'Orbitron';font-size:9px;padding:5px 12px;background:transparent;border:1px solid var(--border);color:var(--muted);border-radius:2px;cursor:pointer;letter-spacing:1px">☐ MARK AS STUDIED</button></div>
+<div class="sr">
+  <div class="sb"><div class="sv">28 VDC</div><div class="sl">Nominal system voltage</div></div>
+  <div class="sb o"><div class="sv">300A</div><div class="sl">Continuous per engine generator</div></div>
+  <div class="sb g"><div class="sv">44 Ah</div><div class="sl">Main battery capacity (NiCad 25V)</div></div>
+  <div class="sb r"><div class="sv">35±0.5V</div><div class="sl">Generator overvoltage protection</div></div>
+</div>
+<div class="card b">
+  <div class="ct b">⚡ Split-Bus Architecture</div>
+  <p class="d">The Sovereign uses a DC split-bus configuration. Under normal operations the left and right bus systems are <strong>completely isolated</strong>. Left side: L engine generator + L battery. Right side: R engine generator + R battery. The Bus Tie Relay connects both systems at the Emergency Buses.</p>
+  <div class="flow">
+    <div class="fb">L/R Engine Generator (300A)</div><div class="ar">→</div>
+    <div class="fb">L/R Gen Bus</div><div class="ar">→</div>
+    <div class="fb">Avn + Interior Bus</div><div class="ar">→</div>
+    <div class="fb o">Elec Bus</div><div class="ar">→</div>
+    <div class="fb r">Emergency Bus</div><div class="ar">→</div>
+    <div class="fb g">Critical systems</div>
+  </div>
+  <div class="hi"><strong>EICAS Bus:</strong> powered from the R Emergency Bus via a DC/DC converter — ensures stable power for EICAS during engine starts. If main DC power is lost, EICAS button must be selected OFF (indications become unreliable).</div>
+</div>
+<div class="g2">
+<div class="card o">
+  <div class="ct o">🔋 Power Sources — Complete List</div>
+  <ul class="s">
+    <li><strong>Engine generators (2):</strong> 28 VDC / 300A constant. Up to 450A during starts (transient, max 2 min post-start completion). Air-cooled, mounted on AGB. Controlled by GCU.</li>
+    <li><strong>APU generator:</strong> 28.5 VDC / 275A normal. Up to 450A during engine starts. Cannot be online simultaneously with L engine generator — priority logic prefers engine generator.</li>
+    <li><strong>EPU (External Power Unit):</strong> 28 VDC / max 1,500A. EXT PWR button: AVAIL (connected, voltage OK) → ON.</li>
+    <li><strong>Main batteries (2):</strong> 25V / 44 Ah NiCad — tail cone stainless containers. Manual quick-disconnect on each case. All systems: 20 min. Emergency buses only: 60 min.</li>
+    <li><strong>Standby battery:</strong> nose compartment — dedicated to standby instruments.</li>
+    <li><strong>4 cabin emergency lighting packs:</strong> independent, for evacuation.</li>
+    <li><strong>PMA (×2):</strong> permanent magnet alternators on AGB — power FADECs above 25% N2.</li>
+    <li><strong>AC alternators (×2):</strong> on each engine — power windshield heat system only.</li>
+  </ul>
+</div>
+<div class="card g">
+  <div class="ct g">🔄 Bus Tie Relay Logic</div>
+  <ul class="s">
+    <li><strong>ON GROUND — Auto CLOSE when:</strong> START button pressed (L or R engine or APU) · EXT PWR selected ON · Single generator comes online</li>
+    <li><strong>ON GROUND — Auto OPEN when:</strong> Engine start complete (57–59% N2) · APU start complete (50% RPM) · Both bus systems have primary power · Major overcurrent</li>
+    <li><strong>IN FLIGHT:</strong> Bus tie does NOT auto-open or close — must be activated MANUALLY by crew (generator loss or in-flight start)</li>
+    <li><strong>Exception:</strong> Once manually closed in flight, will only auto-open on major overcurrent. Cannot be re-closed until total aircraft electrical power-down.</li>
+    <li>CAS <span class="pl b">BUS TIE CLOSED</span> (cyan) when relay is closed on ground.</li>
+  </ul>
+</div>
+</div>
+<div class="card y">
+  <div class="ct y">🎛️ Electrical Panel — Controls</div>
+  <div class="g2">
+  <ul class="s">
+    <li><strong>L/R GEN (3-position):</strong> ON · OFF · RESET — RESET attempts fault clear via GCU</li>
+    <li><strong>L/R BATT:</strong> ON closes relay, connects battery bus to emergency bus. OFF = CAS BATTERY OFF L/R</li>
+    <li><strong>L/R AVN:</strong> ON/OFF — controls avionics relay. EICAS independent of AVN buttons.</li>
+    <li><strong>ELEC NORM/EMER:</strong> NORM = generators power buses. EMER = manually opens electrical relay → CAS DC EMER BUS L/R</li>
+  </ul>
+  <ul class="s">
+    <li><strong>INTERIOR button:</strong> NORM = powers cabin J-box (all cabin equip except emergency lights). AUTO SHED on generator loss. OFF = deactivates cabin equipment (EMER LTS and ENTRY lights unaffected).</li>
+    <li><strong>EICAS button:</strong> ON supplies emergency bus power to EICAS bus (DU2). Select OFF during electrical emergency.</li>
+    <li><strong>BUS TIE button (guarded):</strong> Status indicator OPEN/CLOSED. No effect on ground — ground tie is automatic only.</li>
+    <li><strong>DC/DC Converter:</strong> Maintains 24 VDC min for FADECs and EICAS during voltage sag on starts. Located next to aft J-box.</li>
+  </ul>
+  </div>
+</div>
+<div class="mn">
+  <div class="mn-t">BATTERY LIMITS — MEMORIZE</div>
+  <div class="mn-r"><span class="mn-c">24V</span><span class="mn-x">Minimum battery voltage for engine / APU start</span></div>
+  <div class="mn-r"><span class="mn-c">20 min</span><span class="mn-x">Battery endurance — all systems powered</span></div>
+  <div class="mn-r"><span class="mn-c">60 min</span><span class="mn-x">Battery endurance — emergency buses only</span></div>
+</div>
+<div class="dng"><strong>IMPORTANT:</strong> Batteries must be ON (or generators operating) prior to and during ALL APU operations — required to power the fire protection system.</div>
+</div>
+
+<!-- ============================================================ CH 03 ============================================================ -->
+<div class="ch" id="ch-3">
+<div class="ch-hdr"><div class="ch-n">03</div><div><div class="ch-t">LIGHTING</div><div class="ch-s">Interior · Emergency · Exterior · Tail Cone</div></div></div>
+<div style="display:flex;justify-content:flex-end;margin-bottom:14px"><button id="sbtn-3" onclick="markStudied(3)" style="font-family:'Orbitron';font-size:9px;padding:5px 12px;background:transparent;border:1px solid var(--border);color:var(--muted);border-radius:2px;cursor:pointer;letter-spacing:1px">☐ MARK AS STUDIED</button></div>
+<div class="g2">
+<div class="card b">
+  <div class="ct b">🔆 Cockpit Lighting Controls</div>
+  <ul class="s">
+    <li><strong>PANEL rheostat:</strong> all glass-gauge panel and control panel lighting intensity</li>
+    <li><strong>EL PANEL rheostat:</strong> electroluminescent panel lighting (alphanumeric characters). Powered via small AC inverter (EL INVERTER CB).</li>
+    <li><strong>FLOOD rheostat:</strong> overhead floodlights</li>
+    <li><strong>AUX rheostat:</strong> LED indirect lighting under glareshield — powered by <strong>emergency DC</strong> (AUX PNL LIGHT CB)</li>
+    <li><strong>DAY/NIGHT button:</strong> DAY = all buttons at max intensity, bypasses rheostats. NIGHT = buttons dimmed, rheostats active, ice detection lights activate.</li>
+    <li>Map lights: powered from R CB panel</li>
+  </ul>
+</div>
+<div class="card o">
+  <div class="ct o">🚨 Emergency Lighting</div>
+  <ul class="s">
+    <li>Independent battery packs (4) in cabin sidewalls — independent of main DC</li>
+    <li>Illuminates for nighttime/low-visibility evacuation</li>
+    <li><strong>ENTRY lights:</strong> powered by battery bus — 5 cabin overhead lights + 6 stair step lights + 1 external first-step light + 2 threshold lights. AUTO timer: 10 min if main DC is lost with lights ON.</li>
+    <li>Cabin emergency lights unaffected by INTERIOR button OFF selection</li>
+  </ul>
+</div>
+</div>
+<div class="card g">
+  <div class="ct g">✈️ Exterior Lighting</div>
+  <div class="g2">
+  <ul class="s">
+    <li><strong>Position/navigation:</strong> wing tips and tail</li>
+    <li><strong>Anti-collision (strobe):</strong> upper and lower fuselage</li>
+    <li><strong>Landing/recognition:</strong> nose area</li>
+    <li><strong>Taxi lights:</strong> on nose gear lower barrel (turn with NWS)</li>
+  </ul>
+  <ul class="s">
+    <li><strong>Wing inspection lights:</strong> 2 per side, forward of wing root — illuminate leading edge for night ice detection</li>
+    <li><strong>Windshield ice detection lights (2 LEDs):</strong> on glareshield — aimed at unprotected inboard windshield area. Active in NIGHT mode.</li>
+    <li><strong>Tail cone lighting:</strong> interior lights for maintenance area and baggage compartment</li>
+  </ul>
+  </div>
+</div>
+</div>
+
+<!-- ============================================================ CH 04 ============================================================ -->
+<div class="ch" id="ch-4">
+<div class="ch-hdr"><div class="ch-n">04</div><div><div class="ch-t">MASTER WARNING SYSTEM</div><div class="ch-s">MAU Architecture · CAS Message Logic · EICAS · Aural Priority</div></div></div>
+<div style="display:flex;justify-content:flex-end;margin-bottom:14px"><button id="sbtn-4" onclick="markStudied(4)" style="font-family:'Orbitron';font-size:9px;padding:5px 12px;background:transparent;border:1px solid var(--border);color:var(--muted);border-radius:2px;cursor:pointer;letter-spacing:1px">☐ MARK AS STUDIED</button></div>
+<div class="card b">
+  <div class="ct b">🧠 MAU Architecture — 4 Units</div>
+  <div class="g2">
+  <div>
+    <ul class="s">
+      <li><strong>MAU 1 &amp; 4:</strong> Monitor Warning System (MWS) — process, prioritize, and display CAS messages. First to power = controlling display MAU.</li>
+      <li><strong>MAU 2 &amp; 3:</strong> Activate MASTER WARNING/CAUTION lights and aural warnings as commanded by MAUs 1 &amp; 4.</li>
+      <li>MAUs 1 &amp; 2 in nose avionics compartment. MAUs 3 &amp; 4 above baggage compartment.</li>
+      <li>Each MAU has independent power supply + independent cooling fans.</li>
+    </ul>
+  </div>
+  <div>
+    <ul class="s">
+      <li><strong>MWS comparison:</strong> MWS 1 (MAU1) vs MWS 2 (MAU4) continuously cross-check CAS computations.</li>
+      <li><strong>MW1/MW2 amber CAS:</strong> miscompare between MWSs. Crew can switch via MCDU (Menu/Display Setup) to determine which stack is correct — only available when miscompare occurs.</li>
+      <li><strong>ASCB (Avionics Standard Communications Bus):</strong> bidirectional network linking all MAUs, displays, and avionics units.</li>
+    </ul>
+  </div>
+  </div>
+  <div class="hi"><strong>EICAS MISCOMPARE:</strong> Wraparound test compares values sent to EICAS vs. values displayed. If they differ → amber EICAS MISCOMPARE flashes on both PFDs, right of HSI. Cross-check with standby engine instruments (direct from FADEC — more accurate).</div>
+</div>
+<div class="card o">
+  <div class="ct o">📊 CAS Message Colors — Characteristics</div>
+  <div class="g2">
+  <div>
+    <div style="background:rgba(255,59,59,.1);border:1px solid var(--danger);padding:10px;border-radius:3px;margin-bottom:8px">
+      <div style="color:#ff6e6e;font-family:'Orbitron';font-size:10px;margin-bottom:6px">🔴 RED — WARNING</div>
+      <ul class="s" style="font-size:11px">
+        <li>Immediate action required</li>
+        <li>MASTER WARNING buttons FLASH</li>
+        <li>Double chime (or voice message)</li>
+        <li>Appears top of stack — cannot be scrolled out of view</li>
+        <li>Flashing white-on-red (inverse video) until MASTER WARNING pressed</li>
+        <li>Continues flashing even if condition clears — MUST be reset</li>
+      </ul>
+    </div>
+    <div style="background:rgba(255,204,0,.08);border:1px solid var(--warn);padding:10px;border-radius:3px">
+      <div style="color:var(--warn);font-family:'Orbitron';font-size:10px;margin-bottom:6px">🟡 AMBER — CAUTION</div>
+      <ul class="s" style="font-size:11px">
+        <li>Immediate awareness + crew action</li>
+        <li>MASTER CAUTION buttons illuminate steady</li>
+        <li>Single aural chime</li>
+        <li>Flashing black-on-amber (inverse video)</li>
+        <li>Auto-extinguishes if condition clears (before reset)</li>
+        <li>Newest message appears at top of amber block</li>
+      </ul>
+    </div>
+  </div>
+  <div>
+    <div style="background:rgba(0,200,255,.07);border:1px solid rgba(0,200,255,.3);padding:10px;border-radius:3px;margin-bottom:8px">
+      <div style="color:var(--accent);font-family:'Orbitron';font-size:10px;margin-bottom:6px">🔵 CYAN — ADVISORY</div>
+      <ul class="s" style="font-size:11px">
+        <li>System status information; some require action</li>
+        <li>No MASTER WARNING/CAUTION</li>
+        <li>Flashing black-on-cyan for 5 seconds → self-acknowledges</li>
+        <li>Phone/doorbell sounds for calls/SELCAL only</li>
+        <li>No aural warning</li>
+      </ul>
+    </div>
+    <div style="background:rgba(200,216,232,.04);border:1px solid var(--border);padding:10px;border-radius:3px">
+      <div style="color:#c8d8e8;font-family:'Orbitron';font-size:10px;margin-bottom:6px">⚪ WHITE — INVALID DATA</div>
+      <ul class="s" style="font-size:11px">
+        <li>Amber dashes replace numeric values on sensor failure</li>
+        <li>Does NOT trigger warnings, cautions, or CAS messages</li>
+        <li>Does NOT trigger any inhibits</li>
+        <li>EICAS colors: Green=normal, Amber=caution, Red=exceedance</li>
+      </ul>
+    </div>
+  </div>
+  </div>
+</div>
+<div class="card r">
+  <div class="ct r">🔊 Aural Warning Priority (Highest → Lowest)</div>
+  <div class="g2">
+  <ul class="s" style="font-size:12px">
+    <li>1. EGPWS "Windshear"</li>
+    <li>2. EGPWS "Pull up"</li>
+    <li>3. Red CAS messages (voice or double chime)</li>
+    <li>4. Abnormal AP disconnect</li>
+    <li>5. Remaining EGPWS aurals</li>
+    <li>6. TCAS Resolution Advisory</li>
+    <li>7. TCAS Traffic Alert</li>
+    <li>8. Amber CAS messages (single chime)</li>
+  </ul>
+  <ul class="s" style="font-size:12px">
+    <li>9. Trim clacker</li>
+    <li>10. Normal AP disconnect</li>
+    <li>11. Altitude alert</li>
+    <li>12. Decision height</li>
+    <li>13. Vertical track alert</li>
+    <li>14. ATS message aural</li>
+    <li>15. Cyan messages (none)</li>
+    <li>16. Repeating aurals</li>
+  </ul>
+  </div>
+  <div class="hi"><strong>Voice messages available for (red):</strong> "Cabin Altitude" · "Left/Right Engine Failed" · "APU Fire" · "Baggage Fire" · "Battery Overtemperature" · "Generators Off" · "No Takeoff" · "Left and Right Engine Fire" · "Emergency Descent" — all other red messages use double chimes.</div>
+</div>
+</div>
+
+<!-- ============================================================ CH 05 ============================================================ -->
+<div class="ch" id="ch-5">
+<div class="ch-hdr"><div class="ch-n">05</div><div><div class="ch-t">FUEL SYSTEM</div><div class="ch-s">Integral Wing Tanks · Boost Pumps · Ejectors · Crossfeed · SPR</div></div></div>
+<div style="display:flex;justify-content:flex-end;margin-bottom:14px"><button id="sbtn-5" onclick="markStudied(5)" style="font-family:'Orbitron';font-size:9px;padding:5px 12px;background:transparent;border:1px solid var(--border);color:var(--muted);border-radius:2px;cursor:pointer;letter-spacing:1px">☐ MARK AS STUDIED</button></div>
+<div class="sr">
+  <div class="sb"><div class="sv">11,223 lbs</div><div class="sl">Max fuel capacity (full SPR or overwing)</div></div>
+  <div class="sb o"><div class="sv">540 lbs</div><div class="sl">FUEL LEVEL LOW trigger (per tank)</div></div>
+  <div class="sb g"><div class="sv">500 lbs</div><div class="sl">EICAS fuel qty digits turn amber (per tank)</div></div>
+  <div class="sb r"><div class="sv">1,000 lbs</div><div class="sl">EICAS total fuel digits turn amber</div></div>
+</div>
+<div class="card b">
+  <div class="ct b">⛽ System Architecture</div>
+  <div class="flow">
+    <div class="fb">Wing Tank (wet wing)</div><div class="ar">→</div>
+    <div class="fb">Hopper Tank (inboard)</div><div class="ar">→</div>
+    <div class="fb o">Electric Boost Pump</div><div class="ar">+</div>
+    <div class="fb">Primary Ejector Pump (motive flow)</div><div class="ar">→</div>
+    <div class="fb g">Engine HFCU → 24 nozzles</div>
+  </div>
+  <p class="d" style="margin-top:8px">Each tank feeds its respective engine. APU feeds from the <strong>right wing tank</strong>. Crossfeed is available to either engine or APU. Both tanks are separated by a rib at the wing centerline — can be fueled individually or together via SPR.</p>
+</div>
+<div class="g2">
+<div class="card o">
+  <div class="ct o">🔧 Key Components</div>
+  <ul class="s">
+    <li><strong>Engine Feed Hopper:</strong> integral inboard section of each wing. Houses boost pump + primary ejector.</li>
+    <li><strong>Boost Pump (×1 per side):</strong> electric (DC), 25A CB in aft J-box. Supplies engine-driven fuel pump. Activates automatically during: engine start sequence · crossfeed · low fuel pressure. R boost pump also activates during APU operations.</li>
+    <li><strong>Primary Ejector Pump:</strong> powered by motive flow from the engine-driven pump. No moving parts, no electricity required. Continuous fuel supply to engine-driven pump.</li>
+    <li><strong>3 Scavenge Ejector Pumps:</strong> forward, mid, aft per wing. Motive flow powered. Collect fuel from all wing areas into hopper — no electricity. Operate even without boost pump.</li>
+    <li><strong>Crossfeed Valve:</strong> DC-powered motorized ball valve. If main DC fails → valve fails IN CURRENT POSITION.</li>
+    <li><strong>Firewall Shutoff Valves:</strong> close when ENG FIRE button pressed. CAS: FUEL FW SHUTOFF L/R (white, valve fully closed); FUEL FW S/O TRANSIT (amber, valve in transit).</li>
+    <li><strong>Fuel Quantity:</strong> 7 capacitance probes per wing + dual-channel FQSC. Fault = amber dashes on EICAS (invalid data, no CAS).</li>
+  </ul>
+</div>
+<div class="card g">
+  <div class="ct g">💡 Fuel System Logic</div>
+  <ul class="s">
+    <li><strong>Boost pump AUTO logic:</strong> Activates automatically for engine start, crossfeed, and low fuel pressure (with BOOST buttons in NORM). Does NOT auto-activate in CUTOFF.</li>
+    <li><strong>During engine start:</strong> FADEC activates boost pump → CAS FUEL BOOST ON L/R displayed. Pump deactivates at 57% N2.</li>
+    <li><strong>Crossfeed flow logic:</strong> fuel flows from the <em>heavier</em> tank. CAS FUEL CROSSFEED = white (normal crossfeed). AMBER = fuel flowing from the <em>lighter</em> tank (reversed).</li>
+    <li><strong>Motive flow valve fail:</strong> CAS FUEL MOTIVE VLV FAIL L/R — crossfeed from opposite tank may not occur; affected tank continues to feed.</li>
+    <li><strong>Surge tank:</strong> near wingtip — collects overflow, vented via NACA flush scoop. Standpipe prevents siphoning.</li>
+    <li><strong>SPR system:</strong> pressure refueling from single point. High-level float valve auto-shutoff. Precheck levers must be tested prior to fueling completion.</li>
+    <li><strong>Waste fuel ejector:</strong> at engine shutdown, collects residual fuel from manifold. Reintroduced on next operation via ejector pump.</li>
+  </ul>
+</div>
+</div>
+<div class="card r">
+  <div class="ct r">⚠️ Key CAS Messages — Fuel</div>
+  <div class="cas"><span class="cb a">FUEL LEVEL LOW L/R</span><div class="cd">Tank qty below 540±60 lbs. EICAS individual tank digits amber &lt;500 lbs; total fuel amber &lt;1,000 lbs. Debounce: 90 sec.</div></div>
+  <div class="cas"><span class="cb a">FUEL PRESSURE LOW L/R</span><div class="cd">Low fuel pressure to engine. Boost pump auto-activates → CAS FUEL BOOST ON L/R. Clears when pressure restored.</div></div>
+  <div class="cas"><span class="cb a">FUEL FILTER BYPASS L/R</span><div class="cd">Impending fuel filter bypass due to contamination. Inspect filter before next flight.</div></div>
+  <div class="cas"><span class="cb a">FUEL CROSSFEED</span><div class="cd">White = normal crossfeed (heavier tank). Amber = reversed flow (lighter tank).</div></div>
+  <div class="cas"><span class="cb w">FUEL BOOST ON L/R</span><div class="cd">Boost pump operating (normal start sequence or crew selected).</div></div>
+  <div class="cas"><span class="cb w">FUEL FW SHUTOFF L/R</span><div class="cd">Fuel firewall shutoff valve fully closed (post ENG FIRE action).</div></div>
+</div>
+</div>
+
+<!-- ============================================================ CH 06 ============================================================ -->
+<div class="ch" id="ch-6">
+<div class="ch-hdr"><div class="ch-n">06</div><div><div class="ch-t">AUXILIARY POWER UNIT</div><div class="ch-s">Honeywell RE100(CS) · ECU · Bleed Air · Generator · Fire Protection</div></div></div>
+<div style="display:flex;justify-content:flex-end;margin-bottom:14px"><button id="sbtn-6" onclick="markStudied(6)" style="font-family:'Orbitron';font-size:9px;padding:5px 12px;background:transparent;border:1px solid var(--border);color:var(--muted);border-radius:2px;cursor:pointer;letter-spacing:1px">☐ MARK AS STUDIED</button></div>
+<div class="g2">
+<div class="card b">
+  <div class="ct b">⚙️ APU Capabilities</div>
+  <ul class="s">
+    <li><strong>Electrical:</strong> 28.5 VDC / 275A normal. Up to 450A assisting batteries during engine starts. Powers entire aircraft electrical system.</li>
+    <li><strong>Bleed air:</strong> available for pressurization, air conditioning, and service air. <strong>NOT available</strong> for anti-icing systems (wing, engine).</li>
+    <li><strong>APU bleed air:</strong> cooler than engine bleed — no precooler required (below 475°F/246°C).</li>
+    <li><strong>Location:</strong> tail cone below vertical stabilizer — titanium firebox enclosure.</li>
+    <li><strong>APU bleed vs engine bleed:</strong> APU supplies all bleed on ground and in flight up to ~FL200; above FL200, engine bleed pressure exceeds APU and takes over.</li>
+    <li><strong>APU generator priority:</strong> cannot be online simultaneously with L engine generator. L engine gen has priority → APU auto-comes online if L gen fails (with APU GEN button ON).</li>
+  </ul>
+</div>
+<div class="card o">
+  <div class="ct o">🔄 Bleed-Air Control Valve (BCV)</div>
+  <ul class="s">
+    <li>Closed during APU start sequence.</li>
+    <li>Opens automatically or manually after <strong>READY TO LOAD</strong> illuminates.</li>
+    <li><strong>MAX COOL operation:</strong> if RPM drops or EGT exceeds limit, PCB logic closes BCV to intermediate position. Temp selectors MUST be in AUTO — manual control risks EGT exceedance and automatic APU shutdown.</li>
+    <li><strong>Service air</strong> does NOT pass through BCV — available anytime APU is running.</li>
+    <li>APU fuel: from R wing tank via electric motor valve. Opens when MASTER ON, closes on MASTER OFF, EMERGENCY SHUTOFF, or ECU command. If R engine motive flow available → no need for boost pump.</li>
+  </ul>
+</div>
+</div>
+<div class="card g">
+  <div class="ct g">📊 APU Panel Annunciators</div>
+  <table class="tb">
+    <tr><th>Annunciator</th><th>Meaning</th></tr>
+    <tr><td class="tk">READY TO LOAD (cyan)</td><td class="td">APU at operating speed (≥95% RPM + 4 sec). Electrical and bleed air available for selection. A start cycle is counted when this illuminates.</td></tr>
+    <tr><td class="tk">APU RELAY ENGAGED (cyan)</td><td class="td">Starter-generator receiving start power. Extinguishes at starter cutoff (~50% RPM). Re-illuminates when APU relay closes again.</td></tr>
+    <tr><td class="tk">BLEED VALVE OPEN (cyan)</td><td class="td">APU BCV is open — normal when BLEED AIR button is ON.</td></tr>
+    <tr><td class="tk">APU SYS FAIL (amber)</td><td class="td">System malfunction — APU will not start, or has automatically shut down (failed self-test or protective shutdown).</td></tr>
+  </table>
+</div>
+<div class="card r">
+  <div class="ct r">🔥 APU Fire Protection</div>
+  <ul class="s">
+    <li>Fire detection loop continuously monitored for integrity when APU MASTER is ON.</li>
+    <li>On fire detection: ECU initiates abnormal shutdown + prevents restart.</li>
+    <li>Aural "APU fire" available only <strong>30–60 seconds after batteries ON</strong> (MAU 3 initialization time).</li>
+    <li>APU FIRE button (red): discharges shared Bag/APU Halon bottle in tail cone.</li>
+    <li><strong>If APU FIRE button not pressed within 8 seconds:</strong> fire bottle discharges automatically.</li>
+    <li>CAS <span class="pl r">APU FIRE DETECT FAIL</span>: fire detection loop faulty → APU will not start and auto-shuts down if running.</li>
+    <li>CAS <span class="pl y">FIRE BOTTLE LOW BAG-APU</span>: bottle discharged → baggage heat valve closes, APU shut down, APU inhibited from starting.</li>
+  </ul>
+  <div class="dng"><strong>APU ON (amber CAS):</strong> APU running above FL300 — monitor EGT and consider shutdown.</div>
+</div>
+</div>
+
+<!-- ============================================================ CH 07 ============================================================ -->
+<div class="ch" id="ch-7">
+<div class="ch-hdr"><div class="ch-n">07</div><div><div class="ch-t">POWERPLANT</div><div class="ch-s">PW306C · FADEC · Oil · Fuel · Ignition · Start Sequence · Thrust Reversers</div></div></div>
+<div style="display:flex;justify-content:flex-end;margin-bottom:14px"><button id="sbtn-7" onclick="markStudied(7)" style="font-family:'Orbitron';font-size:9px;padding:5px 12px;background:transparent;border:1px solid var(--border);color:var(--muted);border-radius:2px;cursor:pointer;letter-spacing:1px">☐ MARK AS STUDIED</button></div>
+<div class="sr">
+  <div class="sb"><div class="sv">5,770 lbs</div><div class="sl">Max thrust — S/L to 30°C</div></div>
+  <div class="sb o"><div class="sv">110%</div><div class="sl">N1 or N2 → overspeed shutoff valve</div></div>
+  <div class="sb g"><div class="sv">2 channels</div><div class="sl">FADEC — A and B, per engine</div></div>
+  <div class="sb r"><div class="sv">20 PSI</div><div class="sl">Oil pressure low CAS trigger</div></div>
+</div>
+
+<div class="card b">
+  <div class="ct b">🔩 Engine Architecture — Twin-Spool Turbofan</div>
+  <div class="flow" style="margin-bottom:8px">
+    <div class="fb" style="background:rgba(122,180,255,.08);border-color:rgba(122,180,255,.3);color:#7ab4ff">N1 SPOOL (inner shaft)</div>
+    <div class="ar">=</div>
+    <div class="fb" style="background:rgba(122,180,255,.08);border-color:rgba(122,180,255,.3);color:#7ab4ff">Fan (Ti blades)</div>
+    <div class="ar">+</div>
+    <div class="fb" style="background:rgba(122,180,255,.08);border-color:rgba(122,180,255,.3);color:#7ab4ff">3-Stage LP Turbine</div>
+  </div>
+  <div class="flow" style="margin-bottom:10px">
+    <div class="fb o">N2 SPOOL (outer shaft)</div>
+    <div class="ar">=</div>
+    <div class="fb o">4 Axial + 1 Centrifugal Compressor stages</div>
+    <div class="ar">+</div>
+    <div class="fb o">2-Stage HP Turbine</div>
+    <div class="ar">→</div>
+    <div class="fb g">Tower Shaft → AGB</div>
+  </div>
+  <ul class="s">
+    <li><strong>Bypass air path:</strong> Fan → single-stage stators → full-length bypass duct → forced mixing nozzle (reduces noise + increases performance)</li>
+    <li><strong>Core air path:</strong> Variable Inlet Guide Vanes (VGV) → Variable 1st-stage stator vanes → HP compressor → combustion chamber → HP turbine → LP turbine → exhaust mixed with bypass at nozzle</li>
+    <li><strong>VGV control:</strong> FADEC-controlled for optimum flow at all power settings</li>
+    <li><strong>AGB accessories driven by N2 tower shaft:</strong> Starter-generator · Oil pumps (pressure + 2 scavenge) · Alternator · PMA · Fuel pump · Hydraulic pump</li>
+    <li><strong>4 Compressor Bleed-Off Valves:</strong> FADEC-controlled solenoids — prevent compressor surge/stall during start, low RPM ops, and power transients. Route compressor air to bypass duct.</li>
+  </ul>
+</div>
+
+<div class="g2">
+<div class="card o">
+  <div class="ct o">🛢️ Engine Oil System</div>
+  <ul class="s">
+    <li><strong>Functions:</strong> lubricates, cools, and cleans bearings #1, #2, #3, #4 and N2 tower shaft bushing. Also lubricates AGB gears and starter-generator gear shaft.</li>
+    <li><strong>Oil level check:</strong> via sight glass on filler tube. CAS OIL LEVEL LOW = only on ground with engines stopped, level too low for start.</li>
+    <li><strong>Oil pump:</strong> on AGB — 1 pressure pump + 2 scavenge pumps.</li>
+    <li><strong>Oil filter:</strong> 10-micron cartridge. Check valve allows replacement without draining tank.</li>
+    <li><strong>Filter bypass valve:</strong> opens if filter contaminated. CAS OIL FILTER BYPASS. Inhibited at oil temp &lt; –38°C.</li>
+    <li><strong>Chip detector:</strong> on AGB — detects metal particles → CAS ENGINE CHIP DETECT L/R.</li>
+    <li><strong>FOHE (Fuel/Oil Heat Exchanger):</strong> fuel cools engine oil AND oil warms fuel (prevents ice crystals in fuel lines).</li>
+    <li><strong>Oil pressure transducer:</strong> analog indication on EICAS. Differential pressure switch: CAS OIL PRESSURE LOW L/R if pressure drops below 20 PSI. Standby OIL PRESS annunciator operates from emergency bus (survives electrical emergency).</li>
+  </ul>
+</div>
+<div class="card g">
+  <div class="ct g">🔥 Ignition System</div>
+  <ul class="s">
+    <li><strong>2 exciter boxes + 2 spark igniters per engine</strong> — combustion chamber. Engine can start with only 1 exciter + 1 igniter.</li>
+    <li><strong>Power source:</strong> Emergency buses via two 3-position ignition switches.</li>
+    <li><strong>3-position ignition switch:</strong><br>— <strong>ON:</strong> continuous ignition (both exciter boxes powered at all times)<br>— <strong>OFF:</strong> removes all power from exciter boxes<br>— <strong>NORM:</strong> FADEC controls ignition operation (normal position)</li>
+    <li><strong>FADEC ignition logic:</strong> applies ignition at 5.2% N2 during start; removes ignition at 40% N2. Reapplies as required in flight (turbulence, precip).</li>
+    <li><strong>Green IGN indicator on EICAS:</strong> power received by at least one of the two exciter boxes.</li>
+    <li><strong>CAS ENGINE CONTROL FAULT:</strong> displayed if ignition switch is NOT in NORM position.</li>
+  </ul>
+</div>
+</div>
+
+<div class="card p">
+  <div class="ct p">⚡ FADEC — Full Authority Digital Electronic Control</div>
+  <div class="g2">
+  <div>
+    <ul class="s">
+      <li><strong>Architecture:</strong> Two-channel EEC (A and B) + EDU per engine. Both channels in constant communication — only one controls at a time.</li>
+      <li><strong>Channel alternation:</strong> channels alternate after each engine shutdown. After shutdown → FADEC automatically selects opposite channel for next start.</li>
+      <li><strong>Power:</strong> Start Bus (28 VDC) until 25% N2 → PMA (self-sustaining). If PMA fault: reverts to start bus power.</li>
+      <li><strong>N1 target calculation:</strong> non-controlling channel computes N1 target bug. If non-controlling channel fails → controlling channel computes bug → <strong>N1 target digits appear AMBER</strong>.</li>
+      <li><strong>FADEC inputs:</strong> throttle position · ambient conditions (RAT) · WOW logic · anti-ice status · engine parameters (N1, N2, ITT)</li>
+    </ul>
+  </div>
+  <div>
+    <ul class="s">
+      <li><strong>Fault management:</strong> FADEC monitors inputs, hardware, and external driver circuits continuously. Fault in active channel → shifts to other channel automatically. Common/multiple faults → backup control loops, alternative input sources. Always selects most capable channel.</li>
+      <li><strong>FADEC Channel Select buttons:</strong> display active channel (A or B). Can manually switch to non-controlling channel with engines running.</li>
+      <li><strong>FADEC RESET buttons:</strong> attempt reset of a faulted FADEC channel.</li>
+      <li><strong>EDU:</strong> stores pilot-recorded events, fault codes, engine exceedances, uncommanded shutdowns. Downloaded via remote maintenance port. Data transferred EEC → EDU <strong>after shutdown</strong> — keep batteries ON for <strong>30 seconds post-shutdown</strong>.</li>
+      <li><strong>Pilot Event Marker:</strong> button near pilot's PASS OXY knob — records 5-minute engine parameter trace in EDU (4 min prior + 1 min after activation).</li>
+    </ul>
+  </div>
+  </div>
+</div>
+
+<div class="card b">
+  <div class="ct b">⛽ Engine Fuel System</div>
+  <div class="flow">
+    <div class="fb">From wing tank</div><div class="ar">→</div>
+    <div class="fb">Firewall Shutoff Valve</div><div class="ar">→</div>
+    <div class="fb">Emergency Shutoff Valve</div><div class="ar">→</div>
+    <div class="fb o">LP Boost Pump → FOHE → Fuel Filter</div><div class="ar">→</div>
+    <div class="fb o">HP Boost Pump</div><div class="ar">→</div>
+    <div class="fb g">HFCU → 24 fuel nozzles</div>
+  </div>
+  <ul class="s" style="margin-top:8px">
+    <li><strong>HFCU (Hydro-mechanical Fuel Control Unit):</strong> FADEC-controlled — meters fuel flow, controls thrust/idle/acceleration/deceleration, positions VGVs, provides HP fuel for motive flow, starting, and shutdown.</li>
+    <li><strong>24 fuel nozzle adapters:</strong> equally spaced around combustion chamber — 2 primary nozzles + 22 secondary nozzles.</li>
+    <li><strong>Fuel filter bypass valve:</strong> opens on contamination — CAS FUEL FILTER BYPASS L/R. Inspect before next flight if activated.</li>
+    <li><strong>Emergency fuel shutoff valve (mechanical):</strong> automatically shuts off fuel if N1 shaft fails — plunger at rear of N1 shaft senses movement and closes valve.</li>
+    <li><strong>Start dump valve:</strong> bleeds off residual fuel at shutdown into waste fuel ejector.</li>
+    <li><strong>Fuel flow transmitter:</strong> sends flow data to MAUs and FMS for fuel flow monitoring.</li>
+  </ul>
+</div>
+
+<div class="card g">
+  <div class="ct g">🎚️ Throttle Positions — 4 Selectable</div>
+  <div style="display:flex;flex-direction:column;gap:7px;margin-top:4px">
+    <div style="display:flex;align-items:center;gap:11px;padding:7px 11px;background:rgba(255,59,59,.08);border:1px solid rgba(255,59,59,.22);border-radius:3px">
+      <span style="font-family:'Orbitron';color:#ff6e6e;min-width:75px;font-size:11px">CUTOFF</span>
+      <span style="font-size:12px">Engine shutdown position. Trigger under handle releases latch to enter/exit — prevents inadvertent shutdowns or starts.</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:11px;padding:7px 11px;background:rgba(0,200,255,.05);border:1px solid var(--border);border-radius:3px">
+      <span style="font-family:'Orbitron';color:var(--accent);min-width:75px;font-size:11px">IDLE</span>
+      <span style="font-size:12px">Ground idle (WOW valid) or flight idle (airborne). FADEC regulates N2.</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:11px;padding:7px 11px;background:rgba(0,200,255,.05);border:1px solid var(--border);border-radius:3px">
+      <span style="font-family:'Orbitron';color:var(--accent);min-width:75px;font-size:11px">CRU</span>
+      <span style="font-size:12px">Infinitely variable from cruise stop (high RPM) to IDLE. Pilot commands N1 directly.</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:11px;padding:7px 11px;background:rgba(255,204,0,.07);border:1px solid rgba(255,204,0,.25);border-radius:3px">
+      <span style="font-family:'Orbitron';color:var(--warn);min-width:75px;font-size:11px">MCT ✦</span>
+      <span style="font-size:12px"><strong>Detent</strong> — Maximum Continuous Thrust. FADEC determines N1 target for MCT power setting.</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:11px;padding:7px 11px;background:rgba(57,255,110,.07);border:1px solid rgba(57,255,110,.25);border-radius:3px">
+      <span style="font-family:'Orbitron';color:var(--a3);min-width:75px;font-size:11px">T/O ✦</span>
+      <span style="font-size:12px"><strong>Detent</strong> — Takeoff power. FADEC determines N1 target for maximum T/O thrust. N1 target indicator displays T/O, MCT, CRU values at top of N1 tape.</span>
+    </div>
+  </div>
+  <div style="font-size:10px;color:var(--muted);margin-top:6px">✦ Detented positions — FADEC automatically delivers the rated power setting</div>
+</div>
+
+<div class="card o">
+  <div class="ct o">🚀 Start Sequence — Ground</div>
+  <table class="tb">
+    <tr><th>Event</th><th>What Happens</th><th>Key Note</th></tr>
+    <tr><td class="tk">START pressed</td><td class="td">Starter engages, button light illuminates, boost pump auto-ON</td><td style="color:var(--a3);font-size:11px">CAS FUEL BOOST ON L/R</td></tr>
+    <tr><td class="tk">3% N2</td><td class="td">FADEC checks VGV tracking</td><td style="color:var(--muted);font-size:11px">Variable guide vane check</td></tr>
+    <tr><td class="tk">5.2% N2</td><td class="td">Ignition and fuel flow enabled — engine "lights off"</td><td style="color:var(--a3);font-size:11px">Green IGN on EICAS</td></tr>
+    <tr><td class="tk">9% N2</td><td class="td">Advance throttle from CUTOFF toward idle</td><td style="color:var(--warn);font-size:11px">Crew action</td></tr>
+    <tr><td class="tk">300°C ITT</td><td class="td">Start valve energizes fuel manifold</td><td style="color:var(--muted);font-size:11px">Combustion progressing</td></tr>
+    <tr><td class="tk">25% N2</td><td class="td">PMA takes over FADEC power from start bus</td><td style="color:var(--a3);font-size:11px">FADEC self-sustaining</td></tr>
+    <tr><td class="tk">40% N2</td><td class="td">Ignition deactivated — IGN extinguishes on EICAS</td><td style="color:var(--muted);font-size:11px">Self-sustaining combustion</td></tr>
+    <tr><td class="tk">44% N2</td><td class="td">Starter disengages — START button light extinguishes</td><td style="color:var(--muted);font-size:11px">Start relay opens</td></tr>
+    <tr><td class="tk">46% N2</td><td class="td">FADEC switches to non-controlling channel (redundancy test)</td><td style="color:var(--muted);font-size:11px">Ground only</td></tr>
+    <tr><td class="tk">50% N2</td><td class="td">FADEC returns to controlling channel; start valve de-energizes</td><td style="color:var(--muted);font-size:11px">—</td></tr>
+    <tr><td class="tk">54% N2</td><td class="td">Motive flow activated</td><td style="color:var(--muted);font-size:11px">Ejector pump active</td></tr>
+    <tr><td class="tk">57% N2</td><td class="td">Boost pump OFF; Ground Idle established</td><td style="color:var(--a3);font-size:11px">CAS ENGINE SHUTDOWN clears</td></tr>
+    <tr><td class="tk">100°C ITT over trend</td><td class="td">FADEC-initiated abort (ground only)</td><td style="color:var(--danger);font-size:11px">Auto-abort trigger</td></tr>
+  </table>
+</div>
+
+<div class="g2">
+<div class="card r">
+  <div class="ct r">⛔ Automatic Abort — Ground Only (VIT)</div>
+  <div class="mn" style="margin:0">
+    <div class="mn-t">FADEC AUTO-ABORT TRIGGERS</div>
+    <div class="mn-r"><span class="mn-c">V</span><span class="mn-x">VGV tracking fault detected (at 3% N2)</span></div>
+    <div class="mn-r"><span class="mn-c">I</span><span class="mn-x">Insufficient ITT rise — less than 15°C in 15 seconds after fuel introduction</span></div>
+    <div class="mn-r"><span class="mn-c">T</span><span class="mn-x">Temperature 100°C deviation above the start trend line</span></div>
+  </div>
+  <div class="hi" style="margin-top:8px"><strong>Manual abort:</strong> pilot can override FADEC at any time by moving throttle to CUTOFF.</div>
+  <div class="dng"><strong>In-flight starts:</strong> auto-abort logic is NOT active. FADEC redundancy channel switchover test is NOT performed. Batteries are the only power source for the starter.</div>
+</div>
+<div class="card g">
+  <div class="ct g">🔄 FADEC Governing Logic (Engine Running)</div>
+  <ul class="s">
+    <li><strong>Ground Idle:</strong> lower N2 RPM to reduce acceleration during taxi. Active: throttle IDLE + WOW valid. After landing: FADEC commands ground idle <strong>8 seconds</strong> after WOW. CAS GROUND IDLE L/R if airborne with ground idle active.</li>
+    <li><strong>Flight Idle:</strong> higher N2 ensuring rapid response for go-around. Active: airborne + throttle IDLE. With anti-ice ON: FADEC adjusts fuel flow to maintain flight idle N1/N2.</li>
+    <li><strong>Above idle:</strong> FADEC establishes and regulates N1 for T/O, MCT, CRU detents. At IDLE: FADEC regulates N2.</li>
+    <li><strong>RPM Overspeed:</strong> FADEC limits N1/N2 by fuel regulation before red line. Overspeed solenoid valve shuts off fuel at ≥110% N1 or N2.</li>
+    <li><strong>ITT overtemperature:</strong> FADEC reduces fuel flow to control temperature during start and operation.</li>
+    <li><strong>Auto relight:</strong> if actual N2 drops below commanded N2 → FADEC activates igniter exciter boxes and attempts relight → CAS ENGINE SHUTDOWN until engine recovers.</li>
+    <li><strong>Engine SYNC:</strong> SYNC NORM = left/right FADECs synchronize N1. Available inflight: gear UP, throttles above IDLE and below T/O detent. Capture range: <strong>4% N1</strong>. Maintained within <strong>±0.1% N1</strong>.</li>
+  </ul>
+</div>
+</div>
+
+<div class="card r">
+  <div class="ct r">🔁 Thrust Reversers — Clamshell Type</div>
+  <div class="g2">
+  <div>
+    <ul class="s">
+      <li>Electrically controlled, hydraulically actuated clamshell-type reversers on aft engine nacelle</li>
+      <li>Aerodynamic forces keep reversers stowed at high-speed flight with throttles above idle — resist inadvertent deployment</li>
+      <li>Requires <strong>all three squat switches indicating ground</strong> — cannot deploy in flight (normal operation)</li>
+      <li>Controlled by piggyback levers on throttle handles</li>
+      <li><strong>Isolation valve:</strong> solenoid-type — must open to allow hydraulic pressure to reach control valve. ARM indication = isolation valve open, hydraulic pressure present at control valve.</li>
+      <li><strong>Control valve:</strong> double solenoid — directs hydraulic fluid to deploy or stow sides of actuators.</li>
+    </ul>
+  </div>
+  <div>
+    <ul class="s">
+      <li><strong>EICAS indications:</strong> ARM (isolation valve open) → UNLOCK (mechanical locks released) → DPLY (fully deployed). On ground: ARM/UNLOCK white, DPLY green. In flight: ARM/UNLOCK inverse-video amber + CAS; DPLY inverse-video red.</li>
+      <li><strong>Reverse thrust:</strong> can only be increased once DPLY is displayed — system logic prevents premature increase.</li>
+      <li><strong>Emergency Stow buttons (2 red):</strong> flash any time reverser inadvertently unlocks or deploys in flight. Pressing: opens isolation valve + commands control valve to STOW. Lights go steady once pressed.</li>
+      <li><strong>T/R in-flight deploy:</strong> FADEC reduces affected engine to flight idle automatically.</li>
+      <li><strong>T/R UNLOCK CAS (3–4 locks open):</strong> rudder bias moves to minimum position — rudder pedal force for single-engine ops increases significantly.</li>
+    </ul>
+  </div>
+  </div>
+</div>
+
+<div class="card y">
+  <div class="ct y">🔢 Powerplant — Key Numbers to Memorize</div>
+  <div class="g2">
+  <table class="tb">
+    <tr><th>Value</th><th>What It Is</th></tr>
+    <tr><td class="tk">3%</td><td>VGV tracking check (start)</td></tr>
+    <tr><td class="tk">5.2%</td><td>Ignition + fuel flow enabled</td></tr>
+    <tr><td class="tk">9%</td><td>Advance throttle (pilot)</td></tr>
+    <tr><td class="tk">25%</td><td>PMA takes over FADEC power</td></tr>
+    <tr><td class="tk">40%</td><td>Ignition off</td></tr>
+    <tr><td class="tk">44%</td><td>Starter disengages</td></tr>
+    <tr><td class="tk">57%</td><td>Ground idle established</td></tr>
+  </table>
+  <table class="tb">
+    <tr><th>Value</th><th>What It Is</th></tr>
+    <tr><td class="tk">20 PSI</td><td>Oil pressure low trigger</td></tr>
+    <tr><td class="tk">110% N1/N2</td><td>Overspeed solenoid cuts fuel</td></tr>
+    <tr><td class="tk">300°C ITT</td><td>Start valve energizes manifold</td></tr>
+    <tr><td class="tk">100°C ΔT</td><td>Auto-abort (ITT above trend)</td></tr>
+    <tr><td class="tk">15 sec</td><td>No ITT rise → auto-abort</td></tr>
+    <tr><td class="tk">30 sec</td><td>Keep batteries ON post-shutdown</td></tr>
+    <tr><td class="tk">8 sec</td><td>FADEC → ground idle post-WOW</td></tr>
+  </table>
+  </div>
+</div>
+
+<div class="card b">
+  <div class="ct b">⚠️ Key CAS Messages — Powerplant</div>
+  <div class="cas"><span class="cb r">ENGINE FIRE L/R</span><div class="cd">Fire loop detected high temperature in engine nacelle. Two loops per engine (outer + internal). ENG FIRE button on glareshield flashes. Pressing button: closes fuel + hydraulic F/W shutoff valves, deactivates generator, disables T/R, arms both fire bottles.</div></div>
+  <div class="cas"><span class="cb r">ENGINE FAILED L/R</span><div class="cd">N2 &lt;~6% + not starting + throttle not in CUTOFF. Engine has failed when it should be running.</div></div>
+  <div class="cas"><span class="cb a">OIL PRESSURE LOW L/R</span><div class="cd">Oil pressure below 20 PSI. Standby OIL PRESS annunciator also illuminates (powered by emergency bus — persists during electrical emergency).</div></div>
+  <div class="cas"><span class="cb a">ENGINE CHIP DETECT L/R</span><div class="cd">Metal particles detected by electronic magnetic chip detector on AGB. Debounce: 5 sec.</div></div>
+  <div class="cas"><span class="cb a">ENGINE CONTROL FAULT L/R</span><div class="cd">FADEC detected internal fault or sensor miscompare — reduced redundancy. Also triggers if ignition switch not in NORM. Debounce: 1 sec.</div></div>
+  <div class="cas"><span class="cb a">ENGINE VIBRATION L/R</span><div class="cd">Excessive engine vibration detected any time engine is running. Debounce: 20 sec.</div></div>
+  <div class="cas"><span class="cb a">OIL FILTER BYPASS L/R</span><div class="cd">Oil filter contaminated — bypass active. Inhibited if oil temp &lt;–38°C. Debounce: 2 sec.</div></div>
+  <div class="cas"><span class="cb a">GROUND IDLE L/R</span><div class="cd">FADEC in ground mode while aircraft is airborne. Inhibited on ground and TOPI/ESDI. Debounce: standard.</div></div>
+  <div class="cas"><span class="cb a">T/R ARMED L/R</span><div class="cd">Thrust reverser isolation valve open in flight. Inhibited on ground and TOPI/BFI.</div></div>
+  <div class="cas"><span class="cb a">T/R UNLOCK L/R</span><div class="cd">2+ of 4 mechanical locks sensed open in flight. 3–4 locks open: rudder bias moves to minimum position, increased pedal force required.</div></div>
+  <div class="cas"><span class="cb a">ENGINE DISPATCH LIMIT L/R</span><div class="cd">FADEC condition requiring logbook entry + maintenance within 125 hours. Inhibited in flight. Press EVENT MARKER to record additional data. Debounce: standard.</div></div>
+  <div class="cas"><span class="cb w">ENGINE SHUTDOWN L/R</span><div class="cd">Engine shut down via throttle CUTOFF, or below-idle recovery in progress. Clears after successful start sequence.</div></div>
+  <div class="cas"><span class="cb w">OIL LEVEL LOW L/R</span><div class="cd">Oil quantity too low for start. Ground only, engines not running. If oil level sensor fails: message also displayed amber.</div></div>
+</div>
+</div>
+
+<!-- ============================================================ CH 08 ============================================================ -->
+<div class="ch" id="ch-8">
+<div class="ch-hdr"><div class="ch-n">08</div><div><div class="ch-t">FIRE PROTECTION</div><div class="ch-s">Engine · APU · Baggage · Interior — Detection and Suppression</div></div></div>
+<div style="display:flex;justify-content:flex-end;margin-bottom:14px"><button id="sbtn-8" onclick="markStudied(8)" style="font-family:'Orbitron';font-size:9px;padding:5px 12px;background:transparent;border:1px solid var(--border);color:var(--muted);border-radius:2px;cursor:pointer;letter-spacing:1px">☐ MARK AS STUDIED</button></div>
+<div class="g2">
+<div class="card r">
+  <div class="ct r">🔥 Engine Fire Protection</div>
+  <ul class="s">
+    <li><strong>2 fire detection loops per engine:</strong> one around engine outer case + one internally. High temperature triggers cockpit indications.</li>
+    <li><strong>2 Halon fire bottles</strong> in tail cone. Each bottle can discharge to either engine (cross-connected).</li>
+    <li><strong>ENG FIRE buttons (red, glareshield):</strong> illuminate when loop detects high temp → triggers MASTER WARNING flash + CAS ENGINE FIRE L/R + aural.</li>
+    <li><strong>Bleed-air leak:</strong> throttle to IDLE → bleed temp drops → loop cools → ENG FIRE extinguishes within <strong>15 seconds</strong>. If remains lit: full engine shutdown required.</li>
+    <li><strong>Pressing ENG FIRE button:</strong> ① Fuel firewall shutoff valve CLOSES ② Fuel shuts off in HFCU ③ Hydraulic firewall shutoff CLOSES ④ Engine generator DEACTIVATED ⑤ Thrust reverser DISABLED ⑥ Both fire bottles ARMED</li>
+    <li><strong>BOTTLE ARMED buttons (white):</strong> illuminate after ENG FIRE pressed. Press to discharge agent to the selected engine. Second bottle available if fire persists.</li>
+  </ul>
+</div>
+<div class="card o">
+  <div class="ct o">💨 Baggage Fire Protection</div>
+  <ul class="s">
+    <li><strong>2 smoke detectors</strong> in baggage compartment ceiling (forward + aft). Can detect smoke from any location within <strong>1 minute</strong>.</li>
+    <li>On smoke detection: baggage heat shutoff valve <strong>automatically closes</strong> — stops bleed air flow into compartment.</li>
+    <li><strong>BAGGAGE FIRE button (guarded, red):</strong> continuously armed with electrical power. Pressing: discharges Bag/APU bottle (tail cone) + low-rate squib of dedicated nose bottle simultaneously.</li>
+    <li><strong>SEC BAG BOTTLE button (guarded):</strong> activates high-discharge rate squib of nose bottle — used during descent/landing phase. If not pressed: light flashes below FL250.</li>
+    <li><strong>Nose bottle capacity:</strong> sufficient for max cruise <strong>180 minutes</strong> (FL330–FL390) before descent must be initiated.</li>
+    <li>CAS FIRE BOTTLE LOW BAG-APU: tail cone bottle discharged → closes baggage heat, shuts down APU, inhibits APU start.</li>
+  </ul>
+</div>
+</div>
+<div class="card b">
+  <div class="ct b">🧯 Fire Bottle Inventory — 5 Total</div>
+  <table class="tb">
+    <tr><th>Bottle</th><th>Location</th><th>Protects</th><th>Activated By</th></tr>
+    <tr><td class="tk">Engine No.1 (Halon)</td><td>Tail cone</td><td>Either engine</td><td>BOTTLE 1 ARMED button</td></tr>
+    <tr><td class="tk">Engine No.2 (Halon)</td><td>Tail cone</td><td>Either engine</td><td>BOTTLE 2 ARMED button</td></tr>
+    <tr><td class="tk">Bag/APU (shared)</td><td>Tail cone</td><td>Baggage OR APU</td><td>BAGGAGE FIRE or APU FIRE button (or auto in 8 sec)</td></tr>
+    <tr><td class="tk">Baggage (dedicated)</td><td>Nose compartment</td><td>Baggage only</td><td>BAGGAGE FIRE (low-rate) + SEC BAG BOTTLE (high-rate)</td></tr>
+    <tr><td class="tk">Portable (×2)</td><td>Cockpit (R seat) + Fwd cabin</td><td>Interior</td><td>Manual by crew</td></tr>
+  </table>
+  <div class="hi"><strong>APU fire auto-discharge:</strong> if APU FIRE button NOT pressed within 8 seconds of illumination → shared Bag/APU bottle discharges automatically into APU compartment.</div>
+</div>
+</div>
+
+<!-- ============================================================ CH 09 ============================================================ -->
+<div class="ch" id="ch-9">
+<div class="ch-hdr"><div class="ch-n">09</div><div><div class="ch-t">PNEUMATICS</div><div class="ch-s">Bleed Air Sources · HP/LP Logic · Bleed-Air Leak Detection · Service Air</div></div></div>
+<div style="display:flex;justify-content:flex-end;margin-bottom:14px"><button id="sbtn-9" onclick="markStudied(9)" style="font-family:'Orbitron';font-size:9px;padding:5px 12px;background:transparent;border:1px solid var(--border);color:var(--muted);border-radius:2px;cursor:pointer;letter-spacing:1px">☐ MARK AS STUDIED</button></div>
+<div class="card b">
+  <div class="ct b">💨 Three Bleed-Air Sources</div>
+  <div class="g2">
+  <div>
+    <ul class="s">
+      <li><strong>LP (Low-Pressure) compressor bleed:</strong> used during cruise and high-power conditions</li>
+      <li><strong>HP (High-Pressure) compressor bleed:</strong> used during start, low power, and high-altitude conditions</li>
+      <li><strong>APU bleed air:</strong> ground operations and in flight up to ~FL200. Does not require precooling. Not available for anti-ice.</li>
+      <li><strong>HP and LP cannot be used simultaneously.</strong> PCB logic selects automatically.</li>
+    </ul>
+  </div>
+  <div>
+    <ul class="s">
+      <li><strong>HP/LP selection logic factors:</strong> WOW · Throttle Lever Angle (TLA) · Aircraft altitude · Anti-ice systems ON/OFF</li>
+      <li><strong>Single-engine operation:</strong> bleed air from one engine sufficient to maintain all pneumatic system functions.</li>
+      <li>Engine bleed air precooled by N1 bypass air in heat exchanger before entering fuselage.</li>
+      <li>Ozone converters in bleed-air lines improve environmental air quality.</li>
+    </ul>
+  </div>
+  </div>
+</div>
+<div class="g2">
+<div class="card o">
+  <div class="ct o">🔍 Bleed-Air Leak Detection — 6 Zones</div>
+  <ul class="s">
+    <li><strong>L/R Wing anti-ice zones:</strong> if overtemp → closes wing anti-ice valves → CAS WING BLEED LEAK L/R</li>
+    <li><strong>L/R Supply bleed-leak zones:</strong> if overtemp → closes pylon valve + wing anti-ice valve + stab anti-ice valve + flow control valve → CAS SUPPLY BLEED LEAK L/R</li>
+    <li><strong>Stabilizer anti-ice zone:</strong> if overtemp → closes left AND right stab anti-ice valves → CAS STAB BLEED LEAK</li>
+    <li><strong>ACM bleed-leak zone:</strong> if overtemp → closes mass flow valves + APU BCV → APU shuts down (cannot start) → <strong>Emergency pressurization activates</strong> → CAS ACM BLEED LEAK + EMERGENCY PRESSURIZATION</li>
+  </ul>
+  <div class="dng"><strong>All leak CAS messages PERSIST</strong> even after the sensor cools — they do not self-extinguish.</div>
+</div>
+<div class="card g">
+  <div class="ct g">🔧 Service Air System (25 PSI)</div>
+  <ul class="s">
+    <li>Available from either operating engine or APU when running</li>
+    <li>Passes through 25 PSI pressure regulators</li>
+    <li><strong>Uses:</strong> Rudder bias actuator heat (early aircraft) · ACM water separator aspiration · Outflow valve vacuum ejector (pressurization) · Acoustic door seal · Baggage compartment heat (via left engine bleed → precooled)</li>
+    <li><strong>Baggage heat:</strong> left engine precooled bleed heats unpressurized tail cone compartment. Bleed air mixes with compartment air before exhausting through distribution ducts.</li>
+    <li>Baggage heat valve auto-closes if smoke detected in baggage compartment.</li>
+  </ul>
+</div>
+</div>
+</div>
+
+<!-- ============================================================ CH 10 ============================================================ -->
+<div class="ch" id="ch-10">
+<div class="ch-hdr"><div class="ch-n">10</div><div><div class="ch-t">ICE AND RAIN PROTECTION</div><div class="ch-s">Bleed Air Anti-Ice · Electric Heat · Ice Detection · Rain Removal</div></div></div>
+<div style="display:flex;justify-content:flex-end;margin-bottom:14px"><button id="sbtn-10" onclick="markStudied(10)" style="font-family:'Orbitron';font-size:9px;padding:5px 12px;background:transparent;border:1px solid var(--border);color:var(--muted);border-radius:2px;cursor:pointer;letter-spacing:1px">☐ MARK AS STUDIED</button></div>
+<div class="sr">
+  <div class="sb"><div class="sv">+10°C</div><div class="sl">RAT at or below + visible moisture = icing conditions</div></div>
+  <div class="sb o"><div class="sv">–35°C</div><div class="sl">Lower limit for anti-ice requirement (with visible moisture)</div></div>
+  <div class="sb g"><div class="sv">180 KIAS</div><div class="sl">Minimum speed in icing — except approach/landing</div></div>
+  <div class="sb r"><div class="sv">PREVENT</div><div class="sl">Anti-ice designed to prevent — NOT remove accumulated ice</div></div>
+</div>
+<div class="g2">
+<div class="card b">
+  <div class="ct b">💨 Bleed-Air Anti-Ice Protection</div>
+  <ul class="s">
+    <li><strong>Wing leading edges:</strong> inboard sections — bleed air via PRSOV. Temperature sensors monitor for over/undertemp conditions.</li>
+    <li><strong>Horizontal stabilizer leading edges:</strong> L and R independent — bleed air via dedicated SOVs.</li>
+    <li><strong>Engine nacelle lip heat:</strong> bleed air</li>
+    <li><strong>Nose cone heat:</strong> bleed air</li>
+    <li><strong>Engine stator vane heat:</strong> dedicated <strong>P2.8 bleed air</strong> (separate from other anti-ice systems)</li>
+    <li><strong>ENGINE/STAB L/R buttons:</strong> deenergize valves OPEN when selected ON. With button OFF: each anti-ice valve is energized closed by main DC power.</li>
+    <li><strong>Outboard wing anti-ice:</strong> separate outboard PRSOV — additional wing leading edge protection.</li>
+    <li><strong>Stabilizer crossflow SOV:</strong> normally closed — for X-flow between L/R stab systems.</li>
+  </ul>
+  <div class="hi"><strong>Warm-up CAS messages (cyan, ground only):</strong> ANTI-ICE ON ENGINE/STAB · ENGINE ANTI-ICE COLD L/R · STAB ANTI-ICE COLD L/R · INB WING A/I COLD L/R — all extinguish once surfaces reach operating temperature. Inhibited in air.</div>
+</div>
+<div class="card o">
+  <div class="ct o">⚡ Electrical Anti-Ice and Heating</div>
+  <ul class="s">
+    <li><strong>Windshields (main L/R):</strong> AC power from alternators — 3 heated zones per windshield, each using one phase of AC. Inoperative when engines are shut down.</li>
+    <li><strong>Left alternator supplies:</strong> two outboard panels of left windshield + inboard panel of right windshield + right forward side window.</li>
+    <li><strong>Right alternator supplies:</strong> opposite panels. Loss of either alternator does NOT cause total loss to a windshield — each alternator covers specific panels on BOTH windshields.</li>
+    <li><strong>Temperature sensors:</strong> imbedded in each windshield center and outboard panel — monitor for overheat. CAS WINDSHIELD OVERTEMP L/R + WINDSHIELD HEAT INOP L/R if overtemp detected.</li>
+    <li><strong>CAS AC BEARING L/R:</strong> respective alternator may experience bearing failure within ~20 hours.</li>
+    <li><strong>Pitot/static system:</strong> 3 independent electric systems (L, R, Standby). Buttons on ANTI-ICE panel. CAS PITOT/STATIC COLD L/R/STBY: on ground with buttons OFF; amber in flight with buttons OFF.</li>
+    <li><strong>AOA vanes and cases:</strong> electrically heated. Cases: main DC via AOA CASE HEAT CBs — heat ON anytime avionics are ON.</li>
+    <li><strong>RAT probes:</strong> electrically heated when ENGINE/STAB buttons are ON. CAS RAT HEAT FAIL L/R if probe not receiving current.</li>
+  </ul>
+</div>
+</div>
+<div class="card g">
+  <div class="ct g">🌧️ Rain Removal and Ice Detection</div>
+  <div class="g2">
+  <div>
+    <ul class="s">
+      <li><strong>Rain repellent:</strong> permanent Surface Seal™ coating on windshields — effective during flight. No other compounds authorized.</li>
+      <li><strong>Windshield fan (W/S FAN button):</strong> two-speed blower in nose compartment. AUTO low speed for avionics cooling. High speed (W/S FAN ON) for ground rain removal.</li>
+    </ul>
+  </div>
+  <div>
+    <ul class="s">
+      <li><strong>Windshield ice detection lights (2 red LEDs, glareshield):</strong> aimed at unprotected area near inboard edge of each windshield. When ice forms → red glow visible. Active in NIGHT mode.</li>
+      <li><strong>Wing inspection lights:</strong> two lights per side forward of wing root — illuminate outboard leading edges for night ice detection.</li>
+    </ul>
+  </div>
+  </div>
+  <div class="dng"><strong>Icing operations:</strong> anti-ice must be ON and operating BEFORE entering icing conditions. Equipment not approved for freezing rain or severe mixed/clear ice. Prolonged operation with gear/flaps down not recommended in icing.</div>
+</div>
+</div>
+
+<!-- ============================================================ CH 11 ============================================================ -->
+<div class="ch" id="ch-11">
+<div class="ch-hdr"><div class="ch-n">11</div><div><div class="ch-t">AIR CONDITIONING</div><div class="ch-sub">ECU · ACM · Heat Exchangers · Water Separator · Temperature Control</div></div></div>
+<div style="display:flex;justify-content:flex-end;margin-bottom:14px"><button id="sbtn-11" onclick="markStudied(11)" style="font-family:'Orbitron';font-size:9px;padding:5px 12px;background:transparent;border:1px solid var(--border);color:var(--muted);border-radius:2px;cursor:pointer;letter-spacing:1px">☐ MARK AS STUDIED</button></div>
+<div class="card b">
+  <div class="ct b">❄️ Air Conditioning Flow Path</div>
+  <div class="flow">
+    <div class="fb">Engine/APU bleed air</div><div class="ar">→</div>
+    <div class="fb">Pylon precooler</div><div class="ar">→</div>
+    <div class="fb o">Primary Heat Exchanger (cools with ram air)</div><div class="ar">→</div>
+    <div class="fb o">ACM Compressor (compresses + heats)</div><div class="ar">→</div>
+    <div class="fb o">Secondary Heat Exchanger (cools again)</div><div class="ar">→</div>
+    <div class="fb g">ACM Turbine (expands → very cold)</div><div class="ar">→</div>
+    <div class="fb g">Water Separator → cockpit/cabin ducts</div>
+  </div>
+  <div class="hi" style="margin-top:8px"><strong>Single engine</strong> can maintain all environmental and pressurization requirements under most operating conditions.</div>
+</div>
+<div class="g2">
+<div class="card o">
+  <div class="ct o">⚙️ ECU Components</div>
+  <ul class="s">
+    <li><strong>Air-Cycle Machine (ACM):</strong> single shaft drives fan + compressor + turbine. Fan pulls ram air across heat exchangers (exhaust out right fuselage vent). Compressor and turbine on same shaft — rapid expansion in turbine creates very cold air.</li>
+    <li><strong>Primary HX:</strong> cools incoming bleed air before ACM compressor using ram air.</li>
+    <li><strong>Secondary HX:</strong> cools compressed air from ACM compressor using ram air, before turbine.</li>
+    <li><strong>Water Separator:</strong> removes condensation from cold air after turbine expansion. Extracted water sprayed over heat exchangers. Bypass temp valve prevents freezing at separator. If water freezes: internal relief valve maintains airflow to cabin.</li>
+    <li><strong>Temperature control valves:</strong> mix hot bleed air with cold ACM output for desired temperature. Auto or manual control.</li>
+    <li><strong>Recirculation fan:</strong> recirculates cabin air through the system.</li>
+  </ul>
+</div>
+<div class="card g">
+  <div class="ct g">🌡️ Temperature Control</div>
+  <ul class="s">
+    <li><strong>3 distribution ducts:</strong> overhead (cold ECU air) + floor + sidewall (warm bleed mixed with cold)</li>
+    <li><strong>Control panel:</strong> cockpit or remote cabin panel. AUTO or MANUAL mode.</li>
+    <li><strong>APU bleed air:</strong> below ~FL200, APU can supply all environmental air. Above FL200: engine bleed pressure exceeds APU → engine bleed takes over automatically.</li>
+    <li><strong>APU bleed does NOT need precooler</strong> — already below 475°F / 246°C.</li>
+    <li>Check valve in ductwork prevents reverse flow between APU and engine ducts.</li>
+    <li><strong>Ozone converters:</strong> in engine bleed-air lines — improve air quality for cabin.</li>
+  </ul>
+</div>
+</div>
+</div>
+
+<!-- ============================================================ CH 12 ============================================================ -->
+<div class="ch" id="ch-12">
+<div class="ch-hdr"><div class="ch-n">12</div><div><div class="ch-t">PRESSURIZATION</div><div class="ch-s">Outflow Valves · Electronic Controller · Modes · Limits · CAS</div></div></div>
+<div style="display:flex;justify-content:flex-end;margin-bottom:14px"><button id="sbtn-12" onclick="markStudied(12)" style="font-family:'Orbitron';font-size:9px;padding:5px 12px;background:transparent;border:1px solid var(--border);color:var(--muted);border-radius:2px;cursor:pointer;letter-spacing:1px">☐ MARK AS STUDIED</button></div>
+<div class="sr">
+  <div class="sb"><div class="sv">8,000 ft</div><div class="sl">Nominal cruise cabin altitude</div></div>
+  <div class="sb o"><div class="sv">14,250 ft</div><div class="sl">Max cabin altitude (±250 ft) — limiters</div></div>
+  <div class="sb g"><div class="sv">9.6 psid</div><div class="sl">Max ΔP — outflow valve relief</div></div>
+  <div class="sb r"><div class="sv">14,500 ft</div><div class="sl">Cabin altitude → O₂ auto-deploy (±490 ft)</div></div>
+</div>
+<div class="card b">
+  <div class="ct b">⚙️ Outflow Valves — How Pressurization Works</div>
+  <div class="g2">
+  <div>
+    <ul class="s">
+      <li><strong>2 interconnected outflow valves</strong> on lower aft pressure bulkhead. Work together.</li>
+      <li><strong>More open = cabin altitude RISES</strong> (pressure escapes to unpressurized tail cone).</li>
+      <li><strong>More closed = cabin altitude DESCENDS</strong> (pressure builds up).</li>
+      <li><strong>Primary outflow valve:</strong> servo-type torque motor metering valve driven by electronic pressure controller via vacuum from service air vacuum ejector.</li>
+      <li><strong>Secondary outflow valve:</strong> pneumatically interconnected — follows primary. In MANUAL mode: crew controls secondary via CABIN ALT lever; primary follows secondary.</li>
+      <li><strong>Cabin door seal:</strong> uses differential pressure between cabin and outside atmosphere to seal against door frame.</li>
+    </ul>
+  </div>
+  <div>
+    <ul class="s">
+      <li><strong>Max altitude limiters:</strong> prevent cabin altitude above 14,250 ±250 ft. Poppet valve on each outflow valve opens to allow cabin air into control chamber — overrides vacuum, forcing valves to close. Works in AUTO and MANUAL.</li>
+      <li><strong>Max ΔP limiters:</strong> if controller malfunctions and causes uncontrolled pressure increase: relief mechanism opens when ΔP reaches 9.6 psid — outflow valves open.</li>
+      <li><strong>Static ports:</strong> Left static port → primary outflow valve. Right static port → secondary outflow valve. Both sense atmospheric pressure for ΔP limiters.</li>
+    </ul>
+  </div>
+  </div>
+  <div class="hi"><strong>Pre-pressurization on takeoff roll:</strong> when L throttle advances beyond 82.5% N2, controller signals outflow valves to begin closing → cabin altitude descends ~180 ft below field elevation before liftoff. Prevents pressure fluctuations at rotation.</div>
+</div>
+<div class="card o">
+  <div class="ct o">🎛️ Control Modes</div>
+  <div class="g2">
+  <div>
+    <ul class="s">
+      <li><strong>AUTO / NORM:</strong> controller follows pre-programmed cabin altitude vs. aircraft altitude schedule. Set "A" knob to departure or destination field elevation (inner scale). Automatic climb, cruise, and descent control throughout flight.</li>
+      <li><strong>AUTO / ALT SEL:</strong> crew selects desired aircraft cruise altitude (outer scale) or desired cabin altitude (inner scale). Set rate with "R" knob. Controller climbs cabin at selected rate to selected altitude.</li>
+      <li><strong>MANUAL:</strong> torque motor metering valve disabled. Secondary outflow valve controlled by CABIN ALT lever. Rate selector knob adjusts rate of change. Emergency bus power required.</li>
+    </ul>
+  </div>
+  <div>
+    <ul class="s">
+      <li><strong>High-altitude airfield mode:</strong> "A" knob set within yellow arc (8,100–14,000 ft cabin alt). Different schedule: cabin climbs to 8,000 ft during cruise (10 min stable OR 1,000 ft descent from peak), then adjusts per destination elevation during descent below FL245.</li>
+      <li><strong>Rate multipliers for high-altitude landing:</strong> 8,000–11,000 ft: ×1.6. Above 11,000 ft: ×2.8 — ensures cabin is depressurized at touchdown.</li>
+      <li><strong>Landing mode:</strong> if still pressurized at touchdown → squat switch logic → controller dumps pressure at scheduled rate for 60 sec. After 60 sec: full dump to atmosphere.</li>
+      <li>System self-test (FAULT light) when electrical power is first applied.</li>
+    </ul>
+  </div>
+  </div>
+</div>
+<div class="card r">
+  <div class="ct r">⚠️ Pressurization CAS Messages</div>
+  <div class="cas"><span class="cb r">CABIN ALTITUDE</span><div class="cd">Cabin altitude above 10,000 ft (normal) or above 14,500 ft (high-altitude airfield mode, below FL245). Aural "Cabin Altitude" voice warning. Triggers passenger oxygen auto-deployment if PASS OXY in AUTO above 14,500±490 ft.</div></div>
+  <div class="cas"><span class="cb a">CABIN ALT WARN</span><div class="cd">Cabin altitude approaching warning threshold. Amber precursor to red CABIN ALTITUDE.</div></div>
+  <div class="cas"><span class="cb a">PRESS CONTROLLER FAULT</span><div class="cd">Electronic pressurization controller fault — switch to manual or backup mode.</div></div>
+  <div class="hi"><strong>Emergency descent memory items:</strong> Oxygen masks DON + 100% · Autopilot OFF · Throttles IDLE · Speedbrakes 100% · Nose down ~15°</div>
+</div>
+</div>
+
+<!-- ============================================================ CH 13 ============================================================ -->
+<div class="ch" id="ch-13">
+<div class="ch-hdr"><div class="ch-n">13</div><div><div class="ch-t">HYDRAULIC POWER SYSTEM</div><div class="ch-s">3,000 PSI · Engine-Driven Pumps · Auxiliary Pump · Consumers</div></div></div>
+<div style="display:flex;justify-content:flex-end;margin-bottom:14px"><button id="sbtn-13" onclick="markStudied(13)" style="font-family:'Orbitron';font-size:9px;padding:5px 12px;background:transparent;border:1px solid var(--border);color:var(--muted);border-radius:2px;cursor:pointer;letter-spacing:1px">☐ MARK AS STUDIED</button></div>
+<div class="sr">
+  <div class="sb"><div class="sv">3,000 PSI</div><div class="sl">Normal system operating pressure</div></div>
+  <div class="sb o"><div class="sv">2</div><div class="sl">Engine-driven hydraulic pumps (EDPs)</div></div>
+  <div class="sb g"><div class="sv">DC</div><div class="sl">Auxiliary pump power source (ground use only)</div></div>
+</div>
+<div class="g2">
+<div class="card b">
+  <div class="ct b">⚙️ System Architecture</div>
+  <ul class="s">
+    <li><strong>Two Engine-Driven Pumps (EDP):</strong> one per engine AGB — primary power source. Either pump can supply full system pressure. Both run simultaneously during normal operations.</li>
+    <li><strong>Auxiliary hydraulic pump:</strong> DC-powered, for ground use only. Used for ground checks and when engine-driven pumps not available on ground.</li>
+    <li><strong>Single hydraulic system:</strong> all consumers draw from the same reservoir and return to the same reservoir.</li>
+    <li><strong>Firewall shutoff valves:</strong> close when ENG FIRE button pressed — isolates hydraulic supply to that engine pylon. Thrust reverser is also disabled.</li>
+    <li><strong>EICAS indications:</strong> system pressure (3,000 PSI nominal) and volume displayed. CAS HYD PRESSURE LOW L/R when pressure is low.</li>
+  </ul>
+</div>
+<div class="card o">
+  <div class="ct o">🔧 Hydraulic System Consumers</div>
+  <div class="g2">
+  <ul class="s">
+    <li>Landing gear retraction/extension</li>
+    <li>Main wheel brakes + antiskid</li>
+    <li>Nosewheel steering (NWS)</li>
+    <li>Speed brakes (ground + flight)</li>
+  </ul>
+  <ul class="s">
+    <li>Spoilers (roll and speed brake)</li>
+    <li>Thrust reversers</li>
+    <li>Autopilot servos</li>
+    <li>Yaw damper</li>
+  </ul>
+  </div>
+  <div class="dng"><strong>Loss of hydraulic pressure:</strong> loss of spoiler control → spoiler panels ratchet to stowed position. Landing gear cannot retract on emergency DC power. Brakes and NWS have pneumatic/accumulator backups.</div>
+</div>
+</div>
+</div>
+
+<!-- ============================================================ CH 14 ============================================================ -->
+<div class="ch" id="ch-14">
+<div class="ch-hdr"><div class="ch-n">14</div><div><div class="ch-t">LANDING GEAR AND BRAKES</div><div class="ch-s">Trailing-Link Tricycle · NWS · Brakes/Antiskid · Emergency Extension</div></div></div>
+<div style="display:flex;justify-content:flex-end;margin-bottom:14px"><button id="sbtn-14" onclick="markStudied(14)" style="font-family:'Orbitron';font-size:9px;padding:5px 12px;background:transparent;border:1px solid var(--border);color:var(--muted);border-radius:2px;cursor:pointer;letter-spacing:1px">☐ MARK AS STUDIED</button></div>
+<div class="g2">
+<div class="card b">
+  <div class="ct b">🛬 Landing Gear Design</div>
+  <ul class="s">
+    <li>Trailing-link tricycle design — dual wheels on all three legs</li>
+    <li>Main gear: air-over-oil struts (nitrogen cushion). Trailing-link absorbs shock loads gradually.</li>
+    <li>Nose gear: retracts FORWARD, extends AFT — free fall assisted by slipstream</li>
+    <li>6 heat shields per main wheel assembly; <strong>3 thermal fuse plugs per wheel</strong> — rupture at high temp to prevent tire over-inflation from brake overheating</li>
+    <li>Tire chines on nose gear: deflect standing water away from engine inlets</li>
+    <li>Nose gear automatically centers on retraction for wheel well clearance</li>
+    <li><strong>3 squat switches</strong> (one per gear leg) — affect: FADEC ground/flight idle logic, thrust reverser operation, pressurization logic, NO TAKEOFF system, and other systems</li>
+    <li><strong>Gear transit time:</strong> approximately 6 seconds to extend or retract</li>
+  </ul>
+</div>
+<div class="card o">
+  <div class="ct o">🔒 Locking Systems</div>
+  <ul class="s">
+    <li><strong>Downlocks (internal):</strong> mechanical locking device in each actuator — engages at end of extend stroke. Internal microswitch illuminates green LH/RH/NO lights when locked down.</li>
+    <li><strong>Uplocks:</strong> hook assemblies in each wheel well — hold gear retracted. Microswitch confirms each gear is in uplock. Once all three confirmed in uplocks: hydraulic pressure REMOVED, gear held mechanically.</li>
+    <li><strong>Uplock release:</strong> hydraulic pressure OR pneumatic pressure OR manual cable (from aft cabin in total hydraulic + pneumatic failure).</li>
+    <li><strong>Red UNLOCK annunciator:</strong> gear position does NOT agree with handle position. Extinguishes only when all three gears confirm either all-down-locked or all-up-locked.</li>
+    <li><strong>Gear retraction inhibited on emergency DC power.</strong></li>
+    <li><strong>Ground safety lock:</strong> solenoid prevents handle moving to UP unless nose gear + one main gear indicates air mode.</li>
+  </ul>
+</div>
+</div>
+<div class="card g">
+  <div class="ct g">⚠️ Gear Warning Horn</div>
+  <p class="d">Warning horn activates for any of three conditions:</p>
+  <ul class="s">
+    <li>Any gear NOT down and locked — flaps greater than <strong>24°</strong></li>
+    <li>Any gear NOT down and locked — radar altitude indicates less than <strong>500 ft AGL</strong> AND both TLAs less than 30°</li>
+    <li>Any gear NOT down and locked — radio altitude INVALID AND TLAs less than 30° AND both AOA greater than 0.4</li>
+  </ul>
+</div>
+<div class="g2">
+<div class="card r">
+  <div class="ct r">🆘 Emergency Extension Methods</div>
+  <ul class="s">
+    <li><strong>Method 1 — Pneumatic blowdown:</strong> Red blowdown handle (right of center pedestal, below gear handle) pulls cable to discharge nitrogen bottle in nose compartment → pressure released into gear hydraulic lines → gear extends. Handle can be returned to stowed position after use.</li>
+    <li><strong>Method 2 — Manual nose gear release:</strong> Red "D"-ring handle (next to blowdown knob) — pulls nose gear uplock away from roller. Gear free-falls due to gravity + slipstream.</li>
+    <li><strong>Method 3 — Main gear manual release:</strong> Lever below lavatory closet — pulls two cables simultaneously, disengages main gear uplock hooks. Both main gears free-fall. <strong>Must be checked STOWED during cabin preflight.</strong></li>
+  </ul>
+  <div class="dng"><strong>Manual methods:</strong> used only if pneumatic blowdown unsuccessful.</div>
+</div>
+<div class="card p">
+  <div class="ct p">🛞 Nosewheel Steering (NWS)</div>
+  <ul class="s">
+    <li>Rack-and-pinion NWS unit at top of nose gear — hydraulically powered</li>
+    <li><strong>Tiller (left side of cockpit):</strong> large steering angle — for taxi. Spring-loaded to center on release.</li>
+    <li><strong>Rudder pedals:</strong> smaller steering angle — for takeoff and landing roll</li>
+    <li><strong>Combined (tiller + pedals):</strong> maximum angle <strong>85 ± 2°</strong></li>
+    <li>Taxi lights rotate WITH steering (on nose gear lower barrel)</li>
+    <li>After takeoff with gear UP: NWS unit hydraulically centers nosewheel</li>
+    <li><strong>AP/TRIM/NWS DISC button:</strong> shuts off hydraulic pressure to NWS during press-and-hold. Use to deactivate NWS for flight control check.</li>
+    <li><strong>NWS accumulator:</strong> allows limited steering in event of complete hydraulic failure</li>
+    <li>NWS available on ground: gear indicating ground mode, with engine or auxiliary pump pressure</li>
+    <li><strong>Torque link MUST be disconnected for towing</strong> — failure to do so may damage steering unit</li>
+  </ul>
+</div>
+</div>
+<div class="card y">
+  <div class="ct y">🛑 Brakes and Antiskid</div>
+  <ul class="s">
+    <li><strong>Multiple disc brake assembly</strong> on each main wheel — controlled via toe pedals on rudder pedals</li>
+    <li><strong>Antiskid:</strong> electronic protection — switch selectable in cockpit</li>
+    <li><strong>Hydraulic backup:</strong> pneumatic storage bottle in nose compartment (dedicated for brakes). Bottle pressure checked against placard.</li>
+    <li>Brake system powered from left and right emergency buses (LDG GEAR CONT 1 and 2 CBs)</li>
+  </ul>
+</div>
+</div>
+
+<!-- ============================================================ CH 15 ============================================================ -->
+<div class="ch" id="ch-15">
+<div class="ch-hdr"><div class="ch-n">15</div><div><div class="ch-t">FLIGHT CONTROLS</div><div class="ch-s">Roll · Pitch · Rudder · Flaps · Speed Brakes · Gust Lock · NO TAKEOFF</div></div></div>
+<div style="display:flex;justify-content:flex-end;margin-bottom:14px"><button id="sbtn-15" onclick="markStudied(15)" style="font-family:'Orbitron';font-size:9px;padding:5px 12px;background:transparent;border:1px solid var(--border);color:var(--muted);border-radius:2px;cursor:pointer;letter-spacing:1px">☐ MARK AS STUDIED</button></div>
+<div class="card b">
+  <div class="ct b">✈️ Flight Control Surfaces Overview</div>
+  <div class="g2">
+  <ul class="s">
+    <li><strong>Roll:</strong> Ailerons (mechanical, cable/pulley) + Roll spoilers (panels 2,3,4 and 7,8,9 — hydraulic)</li>
+    <li><strong>Pitch:</strong> Elevators (mechanical, cable/pulley) on movable horizontal stabilizer + Elevator tab system + Mach trim tabs</li>
+    <li><strong>Yaw:</strong> Rudder (conventional, cable/pulley) + Rudder bias system</li>
+    <li><strong>Flaps:</strong> Electric, 4 positions: UP · 5° · 15° · 35°</li>
+  </ul>
+  <ul class="s">
+    <li><strong>Speed brakes:</strong> 10 panels on wings (5 per side) — hydraulic. Full deployment: all panels 1–10. Modulated: panels 2–4 and 7–9.</li>
+    <li><strong>Trim:</strong> Electric for all axes. Primary pitch: control wheel switches. Secondary pitch: center pedestal (backup).</li>
+    <li><strong>Gust lock:</strong> T-handle under pilot tilt panel</li>
+    <li><strong>Pitch/roll disconnect:</strong> T-handle — allows pitch and roll to operate independently</li>
+  </ul>
+  </div>
+</div>
+<div class="g2">
+<div class="card o">
+  <div class="ct o">🔁 Roll Controls — Aileron + Spoilers</div>
+  <ul class="s">
+    <li><strong>Ailerons:</strong> full deflection below 158 KIAS. Between 158–270 KIAS: aileron ratio changer reduces deflection proportionally (reduces control loading at high speed). Autopilot roll servo in aileron cable system.</li>
+    <li><strong>Roll spoilers:</strong> NOT affected by aileron ratio changer — deployment always proportional to control wheel input. Controlled by spoiler mixer box via hydraulic actuators. Loss of hydraulics → spoilers RATCHET to stowed position.</li>
+    <li><strong>EICAS display (ground only):</strong> SPD-BRK/SPOILERS section shows 6 panels (3 per side). In flight: roll spoiler display disabled.</li>
+    <li><strong>Aileron trim:</strong> green band displayed on EICAS on ground. Must be in green range before takeoff — if out of range: indicator turns amber, contributes to NO TAKEOFF. In flight: green band not displayed, pointer remains white.</li>
+  </ul>
+</div>
+<div class="card g">
+  <div class="ct g">⬆️ Pitch Controls — Stabilizer + Elevators</div>
+  <ul class="s">
+    <li><strong>Two independent elevators</strong> on trailing edge of movable horizontal stabilizer. Left control column drives left elevator, right drives right — interconnected for normal operation.</li>
+    <li><strong>Primary pitch trim:</strong> electric, both primary trim switches on control wheels must be pressed SIMULTANEOUSLY to activate. Either pilot primary switches have PRIORITY over autopilot → AP disengages when pressed.</li>
+    <li><strong>Stabilizer travel:</strong> +1.2° to –6.9° range.</li>
+    <li><strong>Flap/stabilizer interconnect:</strong> when flaps move between 15°–35° in flight → primary trim system automatically trims stabilizer. Not active on ground.</li>
+    <li><strong>Elevator tab system:</strong> mechanically linked to stabilizer — tabs fair with stabilizer as it moves. Stabilizer full leading-edge down → maximum tab down deflection (check during preflight).</li>
+    <li><strong>Mach trim system:</strong> adjusts elevator tabs above 0.77 Mach. Deflects flow tabs down → trailing edge of elevator raised → aircraft pitch-up. Max 1° down deflection. Active with or without AP. CAS MACH TRIM FAIL if fault detected.</li>
+    <li><strong>Secondary trim:</strong> backup if primary fails. Slower than primary. Requires emergency bus power. No AP trim available during secondary trim operation.</li>
+  </ul>
+</div>
+</div>
+<div class="g2">
+<div class="card p">
+  <div class="ct p">🦿 Rudder and Rudder Bias</div>
+  <ul class="s">
+    <li>Conventional rudder system — cable and pulley from rudder pedals</li>
+    <li><strong>Yaw damper:</strong> autopilot rudder servo in rudder cable system</li>
+    <li><strong>Rudder bias system:</strong> automatically deflects rudder during single-engine operations to reduce pilot pedal force. NORM/OVERRIDE button. Late production aircraft have updated bias system.</li>
+    <li><strong>T/R UNLOCK (3–4 locks open in flight):</strong> rudder bias moves to minimum position → significantly increased pedal force required for single-engine ops.</li>
+    <li><strong>Electric rudder trim</strong> via secondary trim panel</li>
+  </ul>
+</div>
+<div class="card y">
+  <div class="ct y">🚀 Flaps and Speed Brakes</div>
+  <ul class="s">
+    <li><strong>Flaps (4 positions):</strong> UP · 5° (approach) · 15° (approach) · 35° (landing). Electric drive. RESET button available if fault. Flap position displayed on EICAS.</li>
+    <li><strong>Speed brakes (10 panels):</strong> speed brake handle on center pedestal. STOW = deadband. Pull aft = modulated deployment (panels 2–4, 7–9). Full detent = ALL panels 1–10 deploy.</li>
+    <li><strong>CAS SPEED BRAKES (amber):</strong> any panel not stowed below 500 ft RA in flight.</li>
+    <li>Panels not stowed on ground: contribute to NO TAKEOFF warning.</li>
+  </ul>
+</div>
+</div>
+<div class="card r">
+  <div class="ct r">⛔ NO TAKEOFF Warning System</div>
+  <p class="d">System prevents takeoff with incorrect configuration. Activated when T/O power set on ground with certain conditions present. Aural "No Takeoff" warning + CAS messages on MFD.</p>
+  <div class="mn">
+    <div class="mn-t">NO TAKEOFF CONDITIONS — KEY ITEMS</div>
+    <div class="mn-r"><span class="mn-c" style="font-size:11px">GUST LOCK</span><span class="mn-x">Gust lock T-handle not properly stowed (CAS GUST LOCK ON)</span></div>
+    <div class="mn-r"><span class="mn-c" style="font-size:11px">FLAPS</span><span class="mn-x">Flap position outside takeoff range</span></div>
+    <div class="mn-r"><span class="mn-c" style="font-size:11px">STAB TRIM</span><span class="mn-x">Stabilizer trim out of green takeoff range</span></div>
+    <div class="mn-r"><span class="mn-c" style="font-size:11px">SPOILERS</span><span class="mn-x">Any speedbrake/spoiler panel not stowed</span></div>
+    <div class="mn-r"><span class="mn-c" style="font-size:11px">AILERON</span><span class="mn-x">Aileron trim out of green range</span></div>
+  </div>
+  <div class="hi"><strong>Gust lock behavior:</strong> with gust lock engaged, LEFT throttle can only advance midway between IDLE and CRU detents — physically prevents T/O power on locked aircraft.</div>
+</div>
+</div>
+
+<!-- ============================================================ CH 16 ============================================================ -->
+<div class="ch" id="ch-16">
+<div class="ch-hdr"><div class="ch-n">16</div><div><div class="ch-t">AVIONICS — PRIMUS EPIC®</div><div class="ch-s">Honeywell Primus EPIC · Displays · AFCS · FMS · TCAS · TAWS · Reversions</div></div></div>
+<div style="display:flex;justify-content:flex-end;margin-bottom:14px"><button id="sbtn-16" onclick="markStudied(16)" style="font-family:'Orbitron';font-size:9px;padding:5px 12px;background:transparent;border:1px solid var(--border);color:var(--muted);border-radius:2px;cursor:pointer;letter-spacing:1px">☐ MARK AS STUDIED</button></div>
+<div class="card b">
+  <div class="ct b">🖥️ Display Configuration — 4 LCDs</div>
+  <div class="g2">
+  <ul class="s">
+    <li><strong>DU1 — Left PFD:</strong> pilot primary flight display — attitude, airspeed, altitude, HSI, flight director, approach guidance</li>
+    <li><strong>DU2 — Center upper (EICAS):</strong> default position. Engine indications (N1/N2/ITT/oil), CAS messages, electrical, hydraulics, fuel, flaps, trim, speed brakes, pressurization. Can be moved to DU3 via reversion panel.</li>
+    <li><strong>DU3 — Center lower (MFD):</strong> FMS pages, TCAS display, TAWS/terrain, weather radar, checklists, vertical profile, map</li>
+    <li><strong>DU4 — Right PFD:</strong> copilot primary flight display</li>
+    <li><strong>Controls:</strong> 2 MCDUs (left and right) + 2 CCDs (cursor control devices on center pedestal)</li>
+  </ul>
+  <ul class="s">
+    <li><strong>ASCB (Avionics Standard Comm Bus):</strong> bidirectional high-speed network connecting all MAUs, DUs, MRUs. Also uses ARINC 429 for non-ASCB components.</li>
+    <li><strong>MAU cooling:</strong> replaceable cooling fans within each MAU cabinet</li>
+    <li><strong>CMS (Central Maintenance System):</strong> integrated diagnostics and fault recording</li>
+    <li><strong>SSDFR:</strong> solid-state flight data recorder</li>
+    <li><strong>EICAS colors:</strong> Green = normal range. Amber = outside normal (caution). Red = exceedance. White = information. Analog pointer takes color of corresponding digital background.</li>
+  </ul>
+  </div>
+</div>
+<div class="g2">
+<div class="card o">
+  <div class="ct o">🎯 Integrated Systems</div>
+  <ul class="s">
+    <li><strong>AFCS (Automatic Flight Control System):</strong> autopilot + dual flight directors + yaw damper. Dual actuator I/O (lanes 1A/1B, 2A/2B). GP-400 guidance panel. SM-1000 servos (aileron, elevator, rudder). Pitch trim servo.</li>
+    <li><strong>Dual FMS:</strong> Honeywell GPS-based. Dual GPS receivers. LNAV/VNAV capable. FMS status and active flight plan displayed on MFD.</li>
+    <li><strong>TCAS II:</strong> traffic collision avoidance — TA (Traffic Advisory) and RA (Resolution Advisory). Display on PFDs and MFD.</li>
+    <li><strong>TAWS (Terrain Awareness Warning System):</strong> enhanced GPWS modes. Terrain display on MFD.</li>
+    <li><strong>Weather radar:</strong> WU-880 with WC-880 controller.</li>
+    <li><strong>Radio altimeter:</strong> RT-300 — provides RA input to TCAS, gear warning, speed brake warnings, and minimums alerts.</li>
+    <li><strong>Dual AHRS:</strong> attitude and heading reference system.</li>
+    <li><strong>Dual ADC (AZ-200):</strong> air data computer — left in left nose, right in right nose. Digitizes pitot-static inputs for MAU processing.</li>
+    <li><strong>Lightning detection:</strong> LP-850 processor + AT-850 antenna (optional)</li>
+  </ul>
+</div>
+<div class="card g">
+  <div class="ct g">🔄 Display Reversions</div>
+  <ul class="s">
+    <li><strong>NORM:</strong> standard operation — DU1 = L PFD, DU2 = EICAS, DU3 = MFD, DU4 = R PFD</li>
+    <li><strong>LEFT EMER:</strong> L PFD assumes EICAS function in addition to PFD data</li>
+    <li><strong>RIGHT EMER:</strong> R PFD assumes EICAS function</li>
+    <li><strong>OFF/REV:</strong> display reversed (inverted display)</li>
+    <li><strong>PFD/MFD/EICAS reversion selector:</strong> on each instrument panel — ADC and ATT/HDG source selection</li>
+    <li>EICAS can be moved between DU2 and DU3 with EICAS LEFT/RIGHT button on reversion panels (avionics must be ON).</li>
+    <li><strong>EICAS MISCOMPARE:</strong> wraparound test — compares values sent to EICAS vs. displayed. Mismatch → flashing amber on both PFDs right of HSI. Cross-check standby instruments.</li>
+  </ul>
+  <div class="hi"><strong>V-speed identifiers</strong> and <strong>flap speed limits</strong> tables are in Chapter 16 (Table 16-1, 16-2) — reference for EICAS speed tape color coding and bug settings.</div>
+</div>
+</div>
+</div>
+
+<!-- ============================================================ CH 17 ============================================================ -->
+<div class="ch" id="ch-17">
+<div class="ch-hdr"><div class="ch-n">17</div><div><div class="ch-t">OXYGEN SYSTEM</div><div class="ch-s">Crew EROS Masks · Passenger Drop Boxes · Cylinders · Limitations</div></div></div>
+<div style="display:flex;justify-content:flex-end;margin-bottom:14px"><button id="sbtn-17" onclick="markStudied(17)" style="font-family:'Orbitron';font-size:9px;padding:5px 12px;background:transparent;border:1px solid var(--border);color:var(--muted);border-radius:2px;cursor:pointer;letter-spacing:1px">☐ MARK AS STUDIED</button></div>
+<div class="sr">
+  <div class="sb"><div class="sv">76 ft³</div><div class="sl">Standard cylinder (×1 or optional ×2)</div></div>
+  <div class="sb o"><div class="sv">36–70 PSI</div><div class="sl">Regulated delivery pressure</div></div>
+  <div class="sb g"><div class="sv">14,500 ft</div><div class="sl">Cabin altitude — auto passenger O₂ deploy</div></div>
+  <div class="sb r"><div class="sv">40,000 ft</div><div class="sl">Maximum cabin altitude for oxygen system</div></div>
+</div>
+<div class="g2">
+<div class="card b">
+  <div class="ct b">👨‍✈️ Crew Oxygen System</div>
+  <ul class="s">
+    <li><strong>2 EROS (Emergency Rapid Donning) masks</strong> — pilot and copilot. Quick-donning design with integrated smoke goggles.</li>
+    <li>Oxygen NOT normally required: pressurization maintains cabin altitude sea level to 8,000 ft.</li>
+    <li><strong>Memory items — Cockpit/Cabin Smoke or Fire:</strong> Oxygen masks + goggles → DON + 100% · Establish communication · L and R MIC SEL buttons to MASK</li>
+    <li><strong>Memory items — Loss of Cabin Pressure:</strong> Oxygen masks → DON + 100% · L and R MIC SEL to MASK · Emergency Descent — AS REQUIRED</li>
+    <li>Portable walkaround bottle: 11 ft³ — for individual emergency use</li>
+    <li>Extended range option: second 76 ft³ cylinder</li>
+  </ul>
+</div>
+<div class="card o">
+  <div class="ct o">👥 Passenger Oxygen System</div>
+  <ul class="s">
+    <li><strong>Drop boxes</strong> in cabin/lavatory headliner — 2 masks per box. Standard: 9-passenger config. Up to 12-passenger optional.</li>
+    <li><strong>PASS OXY knob (cockpit):</strong> AUTO = drops automatically above 14,500 ±490 ft cabin altitude. ON = manual deploy.</li>
+    <li><strong>Sequence regulator:</strong> in low-pressure oxygen lines.<br>— Cabin alt 14,500–26,000 ft: 36–41 PSI + momentary surge to 70 ±10 PSI (unlocks drop boxes)<br>— Cabin alt above 30,000 ft: full 70 ±10 PSI to passenger masks</li>
+    <li><strong>Lanyard:</strong> attached to mask — must be pulled to start oxygen flow through the mask. Flag helps identify mask in drop box.</li>
+    <li>Pilot can manually deploy passenger oxygen at any time with PASS OXY knob.</li>
+    <li><strong>Emergency bus condition:</strong> PASS OXY knob auto-deploys at 14,500 ft in AUTO. Manual deploy via ON position still available.</li>
+  </ul>
+</div>
+</div>
+<div class="card g">
+  <div class="ct g">🔧 System Components and Preflight</div>
+  <ul class="s">
+    <li><strong>Cylinder(s):</strong> fuselage belly — 76 ft³ standard. Optional second cylinder can be added.</li>
+    <li><strong>Pressure regulator (on bottle):</strong> 4 ports — supply (36–70 PSI) + servicing + pressure monitoring + overpressure relief discharge.</li>
+    <li><strong>Overpressure relief valve:</strong> if overpressurized, relief valve opens and dumps contents overboard. <strong>Green disk</strong> at end of relief tube — visible during preflight walk-around. Must be INTACT. If disk is blown: cylinder has discharged.</li>
+    <li><strong>Oxygen service panel:</strong> right fuselage, forward of wing fairing. Fill port + pressure gauge for servicing and monitoring.</li>
+    <li><strong>2 pressure transducers:</strong> solid-state, sense cabin pressure for auto passenger O₂ deployment (with PASS OXY in AUTO).</li>
+    <li><strong>Limitation:</strong> system approved for use up to 40,000 ft cabin altitude.</li>
+    <li><strong>Limitation:</strong> crew pressure-demand masks must be properly STOWED in containers to qualify as quick-donning.</li>
+    <li><strong>Limitation:</strong> for flight above FL250, if aircraft has been exposed to temperatures below –9°C for prolonged periods — cabin must be warmed to at least 60°F before flight.</li>
+  </ul>
+</div>
+</div>
+
+<!-- ============================================================ CH 18 ============================================================ -->
+<div class="ch" id="ch-18">
+<div class="ch-hdr"><div class="ch-n">18</div><div><div class="ch-t">WEIGHT AND BALANCE</div><div class="ch-s">Formulas · Weight Categories · CG Limits · Balance Limits</div></div></div>
+<div style="display:flex;justify-content:flex-end;margin-bottom:14px"><button id="sbtn-18" onclick="markStudied(18)" style="font-family:'Orbitron';font-size:9px;padding:5px 12px;background:transparent;border:1px solid var(--border);color:var(--muted);border-radius:2px;cursor:pointer;letter-spacing:1px">☐ MARK AS STUDIED</button></div>
+<div class="card b">
+  <div class="ct b">📐 Essential Formulas</div>
+  <div class="g2">
+    <div style="background:rgba(0,200,255,.05);border:1px solid rgba(0,200,255,.2);padding:13px;border-radius:3px;text-align:center">
+      <div style="font-family:'Share Tech Mono';font-size:14px;color:var(--accent);margin-bottom:5px">Weight × Arm = Moment</div>
+      <div style="font-family:'Share Tech Mono';font-size:12px;color:var(--muted)">Arm = Moment ÷ Weight</div>
+    </div>
+    <div style="background:rgba(255,107,53,.05);border:1px solid rgba(255,107,53,.2);padding:13px;border-radius:3px;text-align:center">
+      <div style="font-family:'Share Tech Mono';font-size:12px;color:var(--a2)">CG Shift = (Weight Shifted × Distance Shifted) ÷ Total Weight</div>
+    </div>
+  </div>
+</div>
+<div class="g2">
+<div class="card o">
+  <div class="ct o">⚖️ Weight Definitions — Hierarchy</div>
+  <ul class="s">
+    <li><strong>MEW (Manufacturer's Empty Weight):</strong> structure + powerplants + systems + fixed equipment</li>
+    <li><strong>Standard BEW:</strong> MEW + standard items (unusable fuel, engine oil, toilet fluid, charged fire extinguisher, all hydraulic fluid, trapped fuel)</li>
+    <li><strong>BEW (Basic Empty Weight):</strong> Standard BEW + installed optional equipment</li>
+    <li><strong>Useful Load:</strong> Max Design Taxi Weight − BEW (includes payload + usable fuel)</li>
+    <li><strong>Operational Takeoff Weight:</strong> max authorized for start of takeoff roll</li>
+    <li><strong>Operational Landing Weight:</strong> max authorized for landing — subject to brake energy limits</li>
+    <li><strong>Usable Fuel:</strong> fuel available for propulsion</li>
+    <li><strong>Unusable Fuel:</strong> fuel remaining after fuel run-out test — part of standard items</li>
+  </ul>
+</div>
+<div class="card r">
+  <div class="ct r">⚠️ CG Limits — Effects</div>
+  <ul class="s">
+    <li><strong>CG too far FORWARD:</strong> aircraft nose-heavy → may not be able to rotate at Vr or flare for landing. More stability, less maneuverability.</li>
+    <li><strong>CG too far AFT (out of limits):</strong> significantly reduced stability → stall recovery may be IMPOSSIBLE. Never operate beyond aft limits.</li>
+    <li><strong>Forward CG:</strong> more stable — larger horizontal stabilizer download required to balance → more drag</li>
+    <li><strong>Aft CG:</strong> less stable — closer to neutral point → reduced pitch damping</li>
+    <li>CG limits envelope graph provided with aircraft on delivery (Cessna form). Must be consulted for each flight.</li>
+    <li>Weight addition/removal formula: ΔCG = (Weight Change × Arm Distance) ÷ New Total Weight</li>
+  </ul>
+</div>
+</div>
+</div>
+
+<!-- ============================================================ CH 19 ============================================================ -->
+<div class="ch" id="ch-19">
+<div class="ch-hdr"><div class="ch-n">19</div><div><div class="ch-t">FLIGHT PLANNING AND PERFORMANCE</div><div class="ch-s">FAR Part 25 · Climb Gradients · Takeoff · Landing · V-Speeds</div></div></div>
+<div style="display:flex;justify-content:flex-end;margin-bottom:14px"><button id="sbtn-19" onclick="markStudied(19)" style="font-family:'Orbitron';font-size:9px;padding:5px 12px;background:transparent;border:1px solid var(--border);color:var(--muted);border-radius:2px;cursor:pointer;letter-spacing:1px">☐ MARK AS STUDIED</button></div>
+<div class="card b">
+  <div class="ct b">📊 FAR Part 25 Climb Gradients</div>
+  <table class="tb">
+    <tr><th>Segment</th><th>Minimum Gradient</th><th>Configuration / Condition</th></tr>
+    <tr><td class="tk">1st Segment</td><td><span style="color:var(--a3)">0% gross</span></td><td>Gear still retracting, flaps at T/O position, one engine inoperative (OEI)</td></tr>
+    <tr><td class="tk">2nd Segment</td><td><span style="color:var(--warn)">1.6% net (OEI)</span></td><td>Gear UP, flaps T/O, at V2 + power. <strong>Most limiting segment for max T/O weight.</strong></td></tr>
+    <tr><td class="tk">3rd Segment</td><td><span style="color:var(--muted)">N/A</span></td><td>Acceleration at level flight, flap retraction to clean, speed increase</td></tr>
+    <tr><td class="tk">Final (Enroute)</td><td><span style="color:var(--a3)">1.2% gross</span></td><td>Clean configuration, cruise altitude, OEI</td></tr>
+  </table>
+  <div class="hi"><strong>Important:</strong> Max T/O weight from climb requirements chart guarantees ONLY 2nd segment performance — does NOT guarantee other segments or obstacle clearance.</div>
+</div>
+<div class="g2">
+<div class="card o">
+  <div class="ct o">✈️ Takeoff Performance Calculation</div>
+  <ul class="s">
+    <li>Determine gross weight + obtain airport data (runway, temp, pressure alt, wind, gradient, obstacles)</li>
+    <li>Verify temp within ambient limits</li>
+    <li>Calculate crosswind/headwind component</li>
+    <li>From T/O gross weight: determine TOFL and V-speeds for DRY conditions (AFM Section IV)</li>
+    <li>Correct for runway gradient (rise/runway length × 100)</li>
+    <li>If contaminated runway: AFM Section VII advisory corrections</li>
+    <li>Compare available runway length vs. calculated TOFL → if insufficient: reduce weight</li>
+    <li>Calculate 2nd segment OEI climb gradient (AFM Section IV) → if not met: reduce weight</li>
+  </ul>
+</div>
+<div class="card g">
+  <div class="ct g">🛬 Landing Performance Calculation</div>
+  <ul class="s">
+    <li>Determine landing weight at arrival (after fuel burn)</li>
+    <li>Obtain destination airport data + check brake energy limits</li>
+    <li>Calculate go-around thrust (approach + landing climb gradient for OEI)</li>
+    <li>If contaminated runway: AFM Section VII corrections</li>
+    <li><strong>FAR 135 operations:</strong> divide calculated landing distance by 0.6 (requires 67% excess runway)</li>
+    <li>If landing weight exceeds limit: must burn off fuel prior to landing</li>
+    <li>Check approach climb gradient (OEI) and landing climb gradient (all engines) for go-around capability</li>
+  </ul>
+</div>
+</div>
+<div class="card y">
+  <div class="ct y">📚 Performance Data Sources</div>
+  <table class="tb">
+    <tr><th>Source</th><th>Data Contained</th></tr>
+    <tr><td class="tk">AFM Section IV</td><td>T/O field length, V-speeds, 2nd segment OEI climb gradient, landing field length</td></tr>
+    <tr><td class="tk">AFM Section VII (Advisory)</td><td>Contaminated/adverse runway corrections, climb gradient details</td></tr>
+    <tr><td class="tk">Performance Manual</td><td>Climb, cruise, and descent performance data</td></tr>
+  </table>
+  <div class="mn" style="margin-top:12px">
+    <div class="mn-t">RUNWAY SLOPE / CLIMB RATE FORMULAS</div>
+    <div style="font-family:'Share Tech Mono';font-size:12px;color:var(--a3);margin-bottom:6px">Gradient (%) = (Elevation Change ÷ Runway Length) × 100</div>
+    <div style="font-family:'Share Tech Mono';font-size:12px;color:var(--a3)">Climb Rate (fpm) = Groundspeed × Gradient% × (6,076 ÷ 100)</div>
+  </div>
+</div>
+</div>
+
+<div class="foot">
+  Citation Sovereign CE-680 · PTM Rev 5.0 · FOR TRAINING PURPOSES ONLY<br>
+  This guide does not supersede the AFM, manufacturer's flight manuals, or regulatory publications.<br>
+  Created by Leonardo Maia · Version 2.0
+</div>
+
+
+<!-- ============================================================ QUIZ ============================================================ -->
+<div class="ch" id="ch-quiz">
+<div class="ch-hdr"><div class="ch-n" style="color:#39ff6e;opacity:.9">🎯</div><div><div class="ch-t">KNOWLEDGE TEST</div><div class="ch-s">Official PTM questions · All chapters · With answer explanations</div></div></div>
+
+<div id="quiz-setup">
+  <div class="card g">
+    <div class="ct g">📋 Select Chapter</div>
+    <div id="qsel-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:8px;margin-top:4px"></div>
+    <div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap">
+      <button onclick="startQuiz('all')" style="font-family:'Orbitron';font-size:10px;padding:8px 16px;background:rgba(57,255,110,.12);border:1px solid var(--a3);color:var(--a3);border-radius:2px;cursor:pointer;letter-spacing:1px">🚀 ALL CHAPTERS</button>
+      <button onclick="startQuiz('rnd')" style="font-family:'Orbitron';font-size:10px;padding:8px 16px;background:rgba(0,200,255,.08);border:1px solid var(--accent);color:var(--accent);border-radius:2px;cursor:pointer;letter-spacing:1px">🎲 RANDOM 10</button>
+    </div>
+  </div>
+</div>
+
+<div id="quiz-active" style="display:none">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;font-family:'Share Tech Mono';font-size:11px">
+    <span id="q-label" style="color:var(--accent)"></span>
+    <span id="q-counter" style="color:var(--muted)"></span>
+  </div>
+  <div class="card b">
+    <div id="q-text" style="font-size:15px;font-weight:600;color:#fff;margin-bottom:18px;line-height:1.5"></div>
+    <div id="q-opts" style="display:flex;flex-direction:column;gap:8px"></div>
+    <div id="q-fb" style="display:none;margin-top:14px;padding:12px;border-radius:3px;font-size:13px;line-height:1.5"></div>
+  </div>
+  <div style="display:flex;gap:8px;margin-top:12px">
+    <button id="q-next" onclick="nextQ()" style="display:none;font-family:'Orbitron';font-size:10px;padding:8px 18px;background:rgba(57,255,110,.12);border:1px solid var(--a3);color:var(--a3);border-radius:2px;cursor:pointer;letter-spacing:1px">NEXT →</button>
+    <button onclick="endQuiz()" style="font-family:'Orbitron';font-size:9px;padding:6px 12px;background:transparent;border:1px solid var(--muted);color:var(--muted);border-radius:2px;cursor:pointer">END QUIZ</button>
+  </div>
+</div>
+
+<div id="quiz-results" style="display:none">
+  <div class="card b">
+    <div class="ct b">📊 QUIZ RESULTS</div>
+    <div id="res-score" style="text-align:center;padding:20px 0"></div>
+    <div id="res-wrong" style="margin-top:14px"></div>
+    <button onclick="resetQuiz()" style="margin-top:14px;font-family:'Orbitron';font-size:10px;padding:8px 18px;background:rgba(0,200,255,.1);border:1px solid var(--accent);color:var(--accent);border-radius:2px;cursor:pointer;letter-spacing:1px">↩ NEW QUIZ</button>
+  </div>
+</div>
+</div>
+
+<!-- ============================================================ CAS INDEX ============================================================ -->
+<div class="ch" id="ch-cas">
+<div class="ch-hdr"><div class="ch-n" style="color:var(--warn);opacity:.9">⚠️</div><div><div class="ch-t">CAS MESSAGE INDEX</div><div class="ch-s">All crew alerting system messages — searchable, filterable</div></div></div>
+<div style="display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;align-items:center">
+  <input id="cas-search" oninput="renderCAS()" placeholder="Search messages..." style="flex:1;min-width:140px;background:var(--panel);border:1px solid var(--border);color:var(--text);padding:7px 12px;border-radius:3px;font-family:'Share Tech Mono';font-size:12px;outline:none;box-sizing:border-box">
+  <select id="cas-color" onchange="renderCAS()" style="background:var(--panel);border:1px solid var(--border);color:var(--text);padding:7px 10px;border-radius:3px;font-family:'Share Tech Mono';font-size:11px;outline:none;cursor:pointer">
+    <option value="all">ALL COLORS</option>
+    <option value="r">🔴 RED</option>
+    <option value="a">🟡 AMBER</option>
+    <option value="c">🔵 CYAN</option>
+    <option value="w">⚪ WHITE</option>
+  </select>
+</div>
+<div id="cas-count" style="font-family:'Share Tech Mono';font-size:10px;color:var(--muted);margin-bottom:10px"></div>
+<div id="cas-list" style="background:var(--panel);border:1px solid var(--border);border-radius:3px;overflow:hidden"></div>
+</div>
+
+<!-- ============================================================ GLOSSARY ============================================================ -->
+<div class="ch" id="ch-gloss">
+<div class="ch-hdr"><div class="ch-n" style="color:#b06aff;opacity:.9">📖</div><div><div class="ch-t">GLOSSARY</div><div class="ch-s">Key terms and acronyms used throughout the PTM</div></div></div>
+<input id="gloss-search" oninput="renderGloss()" placeholder="Search terms..." style="width:100%;background:var(--panel);border:1px solid var(--border);color:var(--text);padding:8px 12px;border-radius:3px;font-family:'Share Tech Mono';font-size:12px;outline:none;box-sizing:border-box;margin-bottom:12px">
+<div id="gloss-list" style="background:var(--panel);border:1px solid var(--border);border-radius:3px;overflow:hidden"></div>
+</div>
+
+<script>
+// ============================================================ NAVIGATION
+var studied = {};
+
+function show(n, btn) {
+  document.querySelectorAll('.ch').forEach(function(c){c.classList.remove('active');});
+  document.querySelectorAll('.nb').forEach(function(b){b.classList.remove('active');});
+  var id = (typeof n === 'number') ? 'ch-' + n : 'ch-' + n;
+  var el = document.getElementById(id);
+  if (el) el.classList.add('active');
+  if (btn) btn.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+  if (n === 'quiz') initQuizSetup();
+  if (n === 'cas') renderCAS();
+  if (n === 'gloss') renderGloss();
+}
+
+// ============================================================ PROGRESS (in-memory, no localStorage)
+function markStudied(ch) {
+  studied[ch] = !studied[ch];
+  var btn = document.getElementById('sbtn-' + ch);
+  if (btn) {
+    btn.textContent = studied[ch] ? '✓ STUDIED' : '☐ MARK AS STUDIED';
+    btn.style.color = studied[ch] ? 'var(--a3)' : 'var(--muted)';
+    btn.style.borderColor = studied[ch] ? 'var(--a3)' : 'var(--border)';
+  }
+  updateProgress();
+}
+
+function updateProgress() {
+  var count = Object.values(studied).filter(Boolean).length;
+  var pct = Math.round(count / 19 * 100);
+  var fill = document.getElementById('prog-fill');
+  var pctEl = document.getElementById('prog-pct');
+  var dots = document.getElementById('prog-dots');
+  if (fill) fill.style.width = pct + '%';
+  if (pctEl) pctEl.textContent = count + ' / 19 chapters studied (' + pct + '%)';
+  if (dots) {
+    dots.innerHTML = '';
+    for (var i = 1; i <= 19; i++) {
+      var d = document.createElement('div');
+      var done = studied[i];
+      d.style.cssText = 'width:16px;height:16px;border-radius:2px;background:' + (done ? 'var(--a3)' : 'var(--border)') + ';cursor:pointer;title=Ch' + i;
+      d.title = 'Chapter ' + i;
+      (function(n){ d.onclick = function(){ document.querySelectorAll('.nb')[n-1].click(); }; })(i);
+      dots.appendChild(d);
+    }
+  }
+}
+
+window.addEventListener('load', function(){ updateProgress(); });
+
+// ============================================================ QUIZ
+var QUIZ = {
+  1:{t:"Aircraft General",q:[
+    {q:"The CE-680 is certified according to:",o:["CFR Part 23","CFR Part 91","CFR Part 135","CFR Part 25"],a:3},
+    {q:"The microswitch signaling NOSE DOOR OPEN L/R CAS is located:",o:["At the cam key lock","At the mechanical latches","At the safety latch","On the locking pin"],a:1},
+    {q:"Which publication must be immediately available to the flight crew:",o:["The FAA-approved AFM","The CE-680 Operating Manual","The Pilot Training Manual","The CE-680 Weight and Balance Manual"],a:0}
+  ]},
+  2:{t:"Electrical Power Systems",q:[
+    {q:"BATTERY O'TEMP CAS displayed and battery button placed to OFF with generators online. Result:",o:["Voltage cannot be read on battery","Battery continues to be charged","Only BATTERY bus equipment functions","Battery isolated, but all main DC items operate normally"],a:3},
+    {q:"Primary DC electrical power sources include:",o:["Aircraft batteries","APU generator, engine-driven generator, or EPU","Lead-acid battery pack in nose avionics bay","Engine-driven alternator with inverter system"],a:1},
+    {q:"Batteries during engine starts are included:",o:["During battery and airborne starts only","In cross-generator starts only","In every engine start except external power","In every engine start (except windmilling)"],a:3},
+    {q:"The electrical bus tie in flight:",o:["Operates automatically","Closes automatically on generator failure","Must be manually closed by crew","Always operates manually on ground and in flight"],a:2},
+    {q:"Minimum battery voltage for engine/APU starts:",o:["20 VDC","22 VDC","24 VDC","26 VDC"],a:2}
+  ]},
+  3:{t:"Lighting",q:[
+    {q:"The cabin entry lights are powered by:",o:["Main DC electrical system","Battery bus with 10-min auto-off timer on DC loss","Left emergency bus","Aircraft batteries directly"],a:1},
+    {q:"Emergency cabin lighting activates automatically upon:",o:["Loss of main DC power only","Loss of main DC power, a 5G impact, or PAX SAFETY button ON","Any AC power failure","Pilot selection only"],a:1},
+    {q:"Windshield ice detection lights activate in:",o:["DAY mode only","NIGHT mode (DAY/NIGHT button in NIGHT)","Automatically when RAT is below +10 deg C","Only when PITOT/STATIC heat is ON"],a:1}
+  ]},
+  4:{t:"Master Warning System",q:[
+    {q:"Which MAUs process and display CAS messages?",o:["MAUs 1 and 4","MAUs 2 and 3","MAUs 3 and 4","MAUs 1 and 3"],a:0},
+    {q:"What causes the red X across the CAS display in the EICAS window?",o:["Loss of left monitor warning software","Loss of right monitor warning software","Loss of MAUs 1 and 4","Loss of MAUs 2 and 3"],a:2},
+    {q:"Red CAS messages:",o:["Flash for 5 seconds then auto-cancel","Flash until acknowledged with MASTER WARNING button","Flash until acknowledged with MASTER CAUTION button","Activate a single chime"],a:1},
+    {q:"Cyan CAS messages:",o:["Flash and illuminate steady MASTER CAUTION","Acknowledged with MASTER CAUTION buttons","Initially illuminate steady","Flash and self-acknowledge after 5 seconds"],a:3},
+    {q:"Invalid data on the EICAS is displayed as:",o:["Red dashes","Amber dashes — does NOT activate CAS messages","A white X over the value","Blank spaces"],a:1}
+  ]},
+  5:{t:"Fuel System",q:[
+    {q:"A fuel quantity system fault is indicated by:",o:["FUEL QTY FAULT CAS message","Amber dashes in EICAS fuel quantity digits (invalid data)","Lack of sound associated with dual flameout","Alert on MCDUs scratchpad"],a:1},
+    {q:"CE-680 maximum fuel capacity:",o:["11,223 lbs whether over-wing or SPR","11,223 lbs over-wing or 10,800 lbs SPR","10,800 lbs regardless of fueling method","900 liters per wing tank"],a:0},
+    {q:"During a main DC power failure, the crossfeed valve:",o:["Closes automatically","Opens automatically","Functions normally","Fails in current position"],a:3},
+    {q:"With fuel boost buttons in NORM, boost pump auto-activates for:",o:["Engine start and crossfeed only","Low fuel pressure only","Engine start, crossfeed, and low fuel pressure","Engine start, crossfeed, low pressure, and throttle cutoff"],a:2}
+  ]},
+  6:{t:"APU",q:[
+    {q:"When the red APU FIRE light illuminates:",o:["APU automatically shuts down; after 8 sec BAG/APU bottle discharges","Cancel MASTER WARNING first, then press APU FIRE button","Immediately turn APU MASTER OFF, then push APU FIRE button","Pressing APU FIRE discharges the MDR nose fire bottle"],a:0},
+    {q:"The APU provides:",o:["DC power, hydraulic pressure, and bleed air","Conditioned bleed air and AC power","DC power and bleed air (NOT anti-ice bleed)","Both DC and AC power plus service bleed air"],a:2},
+    {q:"APU FIRE DETECT FAIL CAS displayed means the APU:",o:["Has detected a fire internally","Will not start and auto-shuts down if running","Must be manually shut down","Requires a maintenance inspection before next flight"],a:1}
+  ]},
+  7:{t:"Powerplant",q:[
+    {q:"The normal way to check engine oil is:",o:["Through the sight glass on each engine","Check for OIL LEVEL LOW L/R CAS message","Check oil temp on EICAS","3 QTS LOW display on EICAS"],a:0},
+    {q:"PW306C engines develop:",o:["5,770 lbs thrust at sea level to 30 deg C","5,227 lbs thrust at sea level to 30 deg C","5,700 lbs thrust at sea level to 28 deg C","5,450 lbs thrust at sea level to 28 deg C"],a:0},
+    {q:"GROUND IDLE CAS message illuminates when:",o:["8 sec after landing when engines reach ground idle RPM","After landing when engine reaches 65-85% N1","After ground start when engine reaches 57-59% N2","FADEC in ground mode while aircraft is airborne"],a:3},
+    {q:"N1 target bugs turn AMBER when:",o:["Monitoring FADEC channel cannot set the N1 bug — controlling channel posts it","Max N2 is displayed by the FADEC channel in control","Amber N1 digits represent the highest N1 from both FADEC channels","During start, N1 RPM must be indicated by 9% N2"],a:0},
+    {q:"With ignition switch in NORM position:",o:["Continuous ignition for all flight phases","Ignition applied only during T/O detent","FADEC keeps ignition continuously ON in icing","Ignition applied as required by the FADEC"],a:3},
+    {q:"The Pilot Event Marker button records:",o:["4-min trace in Cessna maintenance computer","5-min engine parameter trace in EDU (4 prior + 1 after)","Previous engine cycle history to EDU","3-min trace in the cockpit voice recorder"],a:1}
+  ]},
+  8:{t:"Fire Protection",q:[
+    {q:"When baggage smoke detectors activate:",o:["BAG FIRE and SEC BAG FIRE lights illuminate","BAG FIRE illuminates and baggage heat shutoff valve auto-closes","BAG FIRE and SEC BAG FIRE illuminate and shared bottle discharges automatically","All bottles discharge immediately"],a:1},
+    {q:"ENG FIRE light illuminates in climb. After reaching safe altitude, pilot should:",o:["Reduce throttle to CUTOFF, push ENG FIRE, push BOTTLE ARMED","Push ENG FIRE, push BOTTLE ARMED, and place throttle to IDLE","Reduce throttle to IDLE; if ENG FIRE remains after 15 sec, push ENG FIRE button, then push illuminated BOTTLE ARMED","Push ENG FIRE, bring throttle to CUTOFF, press BOTTLE ARMED, select WING/STAB XFLOW ON"],a:2},
+    {q:"Fire detection system monitors:",o:["Engines (fire), APU (fire), baggage compartment (smoke)","Engines (fire), APU (fire), baggage (fire), aft lavatory (smoke)","Engines (fire+smoke), nose avionics (smoke), baggage (fire+smoke)","Engines (fire), APU (fire), baggage, and cabin (smoke)"],a:0},
+    {q:"Pressing the red BAGGAGE FIRE button:",o:["Discharges both BAG/APU bottle and nose bottle into baggage compartment","Closes baggage heat valve and nose bottles discharge","Nose bottle (MDR) immediately discharges; BAG/APU bottle discharges after 5 min","BAG/APU bottle discharges into baggage + heat valve closes + APU inhibited + nose bottle low-rate squib fires"],a:3}
+  ]},
+  9:{t:"Pneumatics",q:[
+    {q:"Left or right bleed air selectors in NORM position:",o:["Controls only LP bleed air","Selects LP or HP pressure per normal logic","When selected OFF in flight causes BLEED SELECT NOT NORM L/R","When selected OFF on ground causes BLEED SELECT NOT NORM L/R"],a:1},
+    {q:"Bleed-air leak detection system:",o:["Has 5 major zones monitored","Closes specific valves to isolate a zone on overtemperature","If leak detected, associated valve closes and cannot reopen in flight","Supply bleed leak requires immediate emergency descent"],a:1},
+    {q:"Emergency pressurization activates:",o:["Automatically from right engine only","Through cabin/cockpit underfloor and overhead ducting","Automatically at 8,500 ft cabin altitude","Automatically with an ACM BLEED LEAK condition"],a:3}
+  ]},
+  10:{t:"Ice and Rain Protection",q:[
+    {q:"Windshield anti-ice is powered by:",o:["Left and right FADEC","PMA if an alternator fails","An alternator on each engine","If engine fails, opposite alternator powers ALL windshield heat"],a:2},
+    {q:"Electrically powered anti-ice systems include:",o:["Windshields, pitot/static, and primary stabilizer trim heat","RAT heat, windshields, pitot/static, and AOA vane heat","RAT heat, windshields, pitot/static, and inboard wing anti-ice","Windshields, pitot/static, RAT heat, and radome"],a:1},
+    {q:"Anti-ice systems using bleed air:",o:["Engine inlets, inboard+outboard wing, horizontal+vertical stab, and RAT heats","Engine inlets, outboard wing leading edge, and vertical stab leading edge","Engine inlets, wing leading edge, horizontal stab leading edge, plus rain removal","Engine inlet+stator vanes, wing leading edges, horizontal stab leading edge"],a:3},
+    {q:"RAT anti-ice heaters are:",o:["Bleed air heated any time engine is running","Designed to not need anti-icing","Electrically heated when ENGINE/STAB anti-ice buttons are ON","Not heated unless aircraft is in icing conditions"],a:2}
+  ]},
+  11:{t:"Air Conditioning + Pressurization",q:[
+    {q:"Temperature control valves (TCVs) control temperature by:",o:["Mixing cold ACM air with precooled bleed air for the underfloor ducting","Directing cold ambient air to the overhead WEMACs","Mixing baggage heat with the underfloor air","Combining the left and right underfloor air"],a:0},
+    {q:"Max cabin altitude limiters prevent cabin altitude above:",o:["12,000 ft","13,000 ft","14,250 +/-250 ft","15,000 ft"],a:2},
+    {q:"Max delta P limiters open the outflow valves at:",o:["7.5 psid","8.0 psid","9.6 psid","11.0 psid"],a:2},
+    {q:"Pre-pressurization on takeoff roll starts when:",o:["Gear handle selected UP","L throttle advances beyond 82.5% N2","Aircraft lifts off","V1 is reached"],a:1}
+  ]},
+  12:{t:"Hydraulics + Landing Gear",q:[
+    {q:"Hydraulic system subsystems powered:",o:["Speedbrakes, roll spoilers, ailerons, brakes, and flaps","Landing gear, brakes, speedbrakes, roll spoilers, and nosewheel steering","Wheel brakes, landing gear, nosewheel steering, and trim","Flaps, secondary horizontal stabilizer trim, landing gear, wheel brakes, and steering"],a:1},
+    {q:"ANTISKID FAIL CAS message illuminates if:",o:["Anti-skid fault detected during self-test while gear is retracting","Power brakes fail and pneumatic braking must be used","ANTISKID FAIL illuminates then extinguishes during warning systems test","Anti-skid fault detected or switch is turned OFF"],a:3},
+    {q:"An uncommanded NWS deflection can be overcome by:",o:["Pressing and holding the AP/TRIM/NWS DISC button","Turning off the AUX hydraulic pump","Selecting NWS OFF on the electrical panel","Disconnecting the torque link"],a:0},
+    {q:"If ANTISKID FAIL CAS prior to landing cannot be extinguished:",o:["Power braking still available, anti-skid lost — landing distance must be extended","Power brakes available, no change to landing distance","Power braking and thrust-reversers lost — pneumatic braking required","Power brakes available unless BRAKE PRESS LOW CAS also illuminated"],a:0}
+  ]},
+  13:{t:"Flight Controls",q:[
+    {q:"All primary flight controls are:",o:["Hydraulically assisted","Hydraulically assisted (rudder only)","Electrically assisted (elevators only)","Manually operated via cables and pulleys"],a:3},
+    {q:"Roll control consists of:",o:["Ailerons only","Ailerons and hydraulically actuated spoilers","Ailerons and electrically actuated spoilers","Hydraulically actuated ailerons and spoilers"],a:1},
+    {q:"The primary pitch trim system consists of:",o:["Electrically controlled trim tabs on each elevator trailing edge","Electrically controlled movable horizontal stabilizer","Manually operated elevator trim tabs","Electrically controlled and hydraulically actuated movable horizontal stabilizer"],a:1},
+    {q:"The Mach trim system trims elevator tabs:",o:["Above 0.65 Mach","Above 0.77 Mach — deflects tabs down, raises elevator trailing edge, causing pitch-up","Above 0.85 Mach","Only when autopilot is engaged, above 0.77 Mach"],a:1},
+    {q:"The flap/stabilizer interconnect trims horizontal stabilizer when flaps move:",o:["Between 0 and 15 deg","Between 15 and 35 deg — in flight, with or without autopilot","Between 7 and 15 deg","Only during takeoff and landing below 500 ft AGL"],a:1},
+    {q:"Which triggers NO TAKEOFF on the EICAS?",o:["Lavatory door not stowed open during taxi","Stabilizer trim not in takeoff range (EICAS green band) / PITCH/ROLL DISCONNECT engaged","MACH TRIM FAIL CAS message","PITOT/STATIC buttons not selected ON"],a:1}
+  ]},
+  14:{t:"Avionics",q:[
+    {q:"Autopilot EMERGENCY DESCENT mode activates when:",o:["EMER button on audio panel is pressed","Cabin altitude exceeds 10,000 ft and autopilot is engaged","Pilot presses GA and TCS buttons simultaneously","Autopilot engaged, aircraft above FL310, cabin altitude exceeds 14,500 ft"],a:3},
+    {q:"TOLD/V-speed information from the FMS is displayed:",o:["In cyan digits","In red digits","In magenta digits","On the MFD only"],a:2},
+    {q:"During cruise, altitude hold (ALT) is verified when:",o:["Green ALT annunciation at top of each PFD","Cyan ALTSEL CAS message on EICAS","VS button illuminates on flight guidance control panel","White A/C annunciation at top of each PFD"],a:0}
+  ]},
+  15:{t:"Oxygen System",q:[
+    {q:"Memory items — Cockpit or Cabin Smoke or Fire:",o:["Oxygen masks + goggles DON and 100%, establish communication","Oxygen masks + goggles DON and EMER","Oxygen masks + goggles DON and 100% only","Oxygen masks + goggles DON and EMER, L and R MIC SEL to MASK"],a:1},
+    {q:"Memory items — Loss of Cabin Pressure:",o:["Masks DON 100%, Autopilot OFF, Throttles IDLE, Speedbrakes 100%, Nose down 15 deg","Masks DON 100%, L and R MIC SEL to MASK, Communication ESTABLISH","Autopilot OFF, Throttles IDLE, Speedbrakes 100%, Nose down 5 deg","Masks DON 100%, L and R MIC SEL to MASK, Emergency Descent AS REQUIRED"],a:3},
+    {q:"PASS OXY knob in AUTO auto-deploys passenger O2 when cabin altitude exceeds:",o:["10,000 ft","12,000 ft","14,500 ft (+/-490 ft)","16,000 ft"],a:2}
+  ]}
+};
+
+var qSession = [], qIdx = 0, qScore = 0, qAnswered = false, qWrong = [];
+
+function initQuizSetup() {
+  var grid = document.getElementById('qsel-grid');
+  if (!grid || grid.children.length > 0) return;
+  grid.innerHTML = '';
+  Object.keys(QUIZ).forEach(function(ch) {
+    var btn = document.createElement('button');
+    var info = QUIZ[ch];
+    btn.innerHTML = '<div style="font-family:\'Orbitron\';font-size:9px;letter-spacing:1px;color:var(--accent);margin-bottom:3px">CH ' + String(ch).padStart(2,'0') + '</div><div style="font-size:11px;color:var(--text)">' + info.t + '</div><div style="font-size:10px;color:var(--muted);margin-top:3px">' + info.q.length + ' questions</div>';
+    btn.style.cssText = 'background:rgba(0,200,255,.05);border:1px solid var(--border);border-radius:3px;padding:10px;cursor:pointer;text-align:left;transition:border-color .15s';
+    btn.onmouseover = function(){ this.style.borderColor='var(--accent)'; };
+    btn.onmouseout = function(){ this.style.borderColor='var(--border)'; };
+    btn.onclick = function(){ startQuiz(ch); };
+    grid.appendChild(btn);
+  });
+}
+
+function startQuiz(ch) {
+  document.getElementById('quiz-setup').style.display = 'none';
+  document.getElementById('quiz-active').style.display = 'block';
+  document.getElementById('quiz-results').style.display = 'none';
+  if (ch === 'all') {
+    qSession = [];
+    Object.values(QUIZ).forEach(function(c){ c.q.forEach(function(q){ qSession.push({q:q.q,o:q.o,a:q.a,ch:c.t}); }); });
+  } else if (ch === 'rnd') {
+    var all = [];
+    Object.values(QUIZ).forEach(function(c){ c.q.forEach(function(q){ all.push({q:q.q,o:q.o,a:q.a,ch:c.t}); }); });
+    qSession = all.sort(function(){return Math.random()-.5;}).slice(0,10);
+  } else {
+    var c = QUIZ[ch];
+    qSession = c.q.map(function(q){ return {q:q.q,o:q.o,a:q.a,ch:c.t}; });
+  }
+  qSession = qSession.sort(function(){return Math.random()-.5;});
+  qIdx = 0; qScore = 0; qWrong = [];
+  var lbl = ch==='all'?'ALL CHAPTERS':ch==='rnd'?'RANDOM SELECTION':'CH '+ch+' — '+QUIZ[ch].t;
+  document.getElementById('q-label').textContent = lbl;
+  renderQ();
+}
+
+function renderQ() {
+  if (qIdx >= qSession.length) { showResults(); return; }
+  var q = qSession[qIdx];
+  qAnswered = false;
+  document.getElementById('q-counter').textContent = 'Q '+(qIdx+1)+' / '+qSession.length+'  |  Score: '+qScore;
+  document.getElementById('q-text').textContent = q.q;
+  var opts = document.getElementById('q-opts');
+  opts.innerHTML = '';
+  var letters = ['A','B','C','D'];
+  q.o.forEach(function(opt, i) {
+    var btn = document.createElement('button');
+    btn.innerHTML = '<span style="font-family:\'Orbitron\';font-size:10px;color:var(--accent);min-width:20px;display:inline-block">'+letters[i]+'.</span> '+opt;
+    btn.style.cssText = 'background:rgba(0,200,255,.04);border:1px solid var(--border);color:var(--text);padding:10px 14px;border-radius:3px;cursor:pointer;text-align:left;font-size:12px;line-height:1.4;width:100%;transition:border-color .15s';
+    btn.onmouseover = function(){ if(!qAnswered) this.style.borderColor='var(--accent)'; };
+    btn.onmouseout = function(){ if(!qAnswered) this.style.borderColor='var(--border)'; };
+    btn.onclick = (function(idx,b){ return function(){ answerQ(idx,b); }; })(i,btn);
+    opts.appendChild(btn);
+  });
+  document.getElementById('q-fb').style.display = 'none';
+  document.getElementById('q-next').style.display = 'none';
+}
+
+function answerQ(i, btn) {
+  if (qAnswered) return;
+  qAnswered = true;
+  var q = qSession[qIdx];
+  var correct = i === q.a;
+  var btns = document.getElementById('q-opts').querySelectorAll('button');
+  btns.forEach(function(b, idx) {
+    b.style.cursor = 'default';
+    if (idx === q.a) { b.style.background='rgba(57,255,110,.15)'; b.style.borderColor='var(--a3)'; b.style.color='var(--a3)'; }
+    else if (idx === i && !correct) { b.style.background='rgba(255,59,59,.15)'; b.style.borderColor='var(--danger)'; b.style.color='#ff6e6e'; }
+  });
+  if (correct) { qScore++; }
+  else { qWrong.push({q:q.q,correct:q.o[q.a],chosen:q.o[i]}); }
+  var fb = document.getElementById('q-fb');
+  fb.style.display = 'block';
+  fb.style.background = correct ? 'rgba(57,255,110,.1)' : 'rgba(255,59,59,.1)';
+  fb.style.border = '1px solid ' + (correct ? 'var(--a3)' : 'var(--danger)');
+  fb.style.color = correct ? 'var(--a3)' : '#ff6e6e';
+  fb.textContent = correct ? '✓ Correct!' : '✗ Incorrect. Correct answer: ' + ['A','B','C','D'][q.a] + '. ' + q.o[q.a];
+  document.getElementById('q-counter').textContent = 'Q '+(qIdx+1)+' / '+qSession.length+'  |  Score: '+qScore;
+  document.getElementById('q-next').style.display = 'inline-block';
+}
+
+function nextQ() { qIdx++; renderQ(); }
+function endQuiz() { document.getElementById('quiz-active').style.display='none'; document.getElementById('quiz-setup').style.display='block'; }
+function resetQuiz() { document.getElementById('quiz-results').style.display='none'; document.getElementById('quiz-setup').style.display='block'; document.getElementById('qsel-grid').innerHTML=''; initQuizSetup(); }
+
+function showResults() {
+  document.getElementById('quiz-active').style.display = 'none';
+  document.getElementById('quiz-results').style.display = 'block';
+  var pct = Math.round(qScore / qSession.length * 100);
+  var color = pct>=80?'var(--a3)':pct>=60?'var(--warn)':'var(--danger)';
+  document.getElementById('res-score').innerHTML = '<div style="font-family:\'Orbitron\';font-size:52px;font-weight:900;color:'+color+';line-height:1">'+pct+'%</div><div style="font-size:14px;color:var(--muted);margin-top:6px">'+qScore+' / '+qSession.length+' correct</div><div style="font-size:13px;color:'+color+';margin-top:8px">'+(pct>=80?'🏆 Excellent!':pct>=60?'📚 Keep studying':'⚠️ Review required')+'</div>';
+  var bd = document.getElementById('res-wrong');
+  if (qWrong.length > 0) {
+    bd.innerHTML = '<div style="font-family:\'Orbitron\';font-size:10px;color:var(--danger);letter-spacing:1px;margin-bottom:10px">REVIEW — INCORRECT ANSWERS:</div>';
+    qWrong.forEach(function(w){ bd.innerHTML += '<div style="background:rgba(255,59,59,.07);border:1px solid rgba(255,59,59,.2);border-radius:3px;padding:10px;margin-bottom:8px;font-size:12px"><div style="color:#ff9a9a;margin-bottom:5px">'+w.q+'</div><div style="color:var(--a3)">✓ Correct: '+w.correct+'</div><div style="color:var(--muted)">✗ Your answer: '+w.chosen+'</div></div>'; });
+  } else { bd.innerHTML = '<div style="color:var(--a3);font-size:14px;margin-top:8px">🎯 Perfect score! All answers correct!</div>'; }
+}
+
+// ============================================================ CAS INDEX
+var CAS = [
+  {m:"ENGINE FIRE L/R",c:"r",s:"07-08",d:"Fire loop detected high temperature in engine nacelle. Pressing ENG FIRE button: closes fuel and hydraulic F/W shutoff valves, deactivates generator, disables T/R, arms both Halon bottles."},
+  {m:"ENGINE FAILED L/R",c:"r",s:"07",d:"N2 below ~6% + not starting + throttle not in CUTOFF. Engine has failed when it should be running."},
+  {m:"CABIN ALTITUDE",c:"r",s:"12",d:"Cabin altitude above 10,000 ft (normal) or 14,500 ft (high-altitude airfield mode). Aural 'Cabin Altitude' voice warning. Triggers passenger O2 auto-deploy if PASS OXY in AUTO above 14,500 ft."},
+  {m:"APU FIRE",c:"r",s:"06-08",d:"Fire detected in APU compartment. ECU initiates abnormal shutdown and prevents restart. If APU FIRE button not pressed within 8 seconds: bottle discharges automatically."},
+  {m:"BAGGAGE FIRE",c:"r",s:"08",d:"Smoke detected in baggage compartment. Baggage heat shutoff valve auto-closes. Pressing BAGGAGE FIRE: discharges BAG/APU bottle (tail cone) and low-rate squib of nose bottle simultaneously."},
+  {m:"OIL PRESSURE LOW L/R",c:"a",s:"07",d:"Oil pressure below 20 PSI. Standby OIL PRESS annunciator also illuminates (emergency bus powered — persists in electrical emergency)."},
+  {m:"ENGINE CHIP DETECT L/R",c:"a",s:"07",d:"Metal particles detected by chip detector on AGB. Possible internal engine damage. Debounce: 5 sec."},
+  {m:"ENGINE CONTROL FAULT L/R",c:"a",s:"07",d:"FADEC detected internal fault or sensor miscompare — reduced redundancy. Also triggers if ignition switch not in NORM."},
+  {m:"ENGINE VIBRATION L/R",c:"a",s:"07",d:"Excessive engine vibration detected any time engine is running. Debounce: 20 sec."},
+  {m:"OIL FILTER BYPASS L/R",c:"a",s:"07",d:"Oil filter contaminated — bypass active. Inhibited if oil temp below -38 deg C. Debounce: 2 sec."},
+  {m:"GROUND IDLE L/R",c:"a",s:"07",d:"FADEC in ground idle mode while aircraft is airborne. Engine may not have adequate power for go-around."},
+  {m:"T/R ARMED L/R",c:"a",s:"07",d:"Thrust reverser isolation valve open in flight. Inhibited on ground."},
+  {m:"T/R UNLOCK L/R",c:"a",s:"07",d:"2 or more of 4 mechanical locks sensed open in flight. With 3-4 locks open: rudder bias moves to minimum, significantly increased pedal force required for single-engine ops."},
+  {m:"FUEL FILTER BYPASS L/R",c:"a",s:"07",d:"Fuel filter contaminated — bypass active. Inspect filter before next flight."},
+  {m:"ENGINE DISPATCH LIMIT L/R",c:"a",s:"07",d:"FADEC condition requiring logbook entry and maintenance within 125 hours. Inhibited in flight. Press EVENT MARKER to record additional data."},
+  {m:"FUEL LEVEL LOW L/R",c:"a",s:"05",d:"Tank quantity below 540 lbs (approximately). EICAS tank digits amber below 500 lbs; total fuel digits amber below 1,000 lbs."},
+  {m:"FUEL PRESSURE LOW L/R",c:"a",s:"05",d:"Low fuel pressure to engine. Boost pump auto-activates — CAS FUEL BOOST ON displayed. Clears when pressure restored."},
+  {m:"FUEL CROSSFEED",c:"a",s:"05",d:"White = normal crossfeed (heavier tank feeding). AMBER = reversed flow — lighter tank is feeding (abnormal)."},
+  {m:"FUEL MOTIVE VLV FAIL L/R",c:"a",s:"05",d:"Crossfeed selected but opposite side motive flow pressure failed to drop — shutoff valve failed closed. Crossfeed from opposite tank may not occur."},
+  {m:"DC GEN OFF L/R/APU",c:"a",s:"02",d:"Engine or APU generator is off-line. Consult AFM checklist. Battery endurance timer begins."},
+  {m:"BATTERY OFF L/R",c:"a",s:"02",d:"Battery relay open (BATT button in OFF or battery overtemperature condition)."},
+  {m:"DC EMER BUS L/R",c:"a",s:"02",d:"ELEC NORM/EMER button selected to EMER — electrical relay manually opened."},
+  {m:"HYDRAULIC PRESSURE LOW L/R",c:"a",s:"13",d:"Hydraulic system pressure low. Loss of all hydraulic-powered systems if both EDPs fail."},
+  {m:"ANTISKID FAIL",c:"a",s:"13-14",d:"Anti-skid fault detected or switch turned OFF. Power brakes still available but anti-skid protection lost — landing distance must be extended."},
+  {m:"PITOT/STATIC COLD L/R/STBY",c:"a",s:"10",d:"Pitot/static heat not receiving current with button ON, or button is OFF with throttle in TO detent, or button OFF in flight."},
+  {m:"WINDSHIELD HEAT INOP L/R",c:"a",s:"10",d:"Windshield controller malfunction or overheat detected. Loss of windshield anti-ice capability."},
+  {m:"RAT HEAT FAIL L/R",c:"a",s:"10",d:"Current not detected at RAT probes with ENGINE/STAB button ON. FADECs will automatically compensate RAT in icing conditions."},
+  {m:"WING BLEED LEAK L/R",c:"a",s:"09",d:"Overtemperature in wing anti-ice zone. Wing anti-ice valves closed. Message persists after sensor cools."},
+  {m:"SUPPLY BLEED LEAK L/R",c:"a",s:"09",d:"Overtemperature in bleed air supply zone. Pylon valve and anti-ice valves closed. Message persists after sensor cools."},
+  {m:"STAB BLEED LEAK",c:"a",s:"09",d:"Overtemperature in stabilizer anti-ice zone. Both stab anti-ice valves closed. Message persists after sensor cools."},
+  {m:"ACM BLEED LEAK",c:"a",s:"09",d:"Overtemperature in ACM zone. Mass flow valves and APU BCV closed. APU shuts down and cannot start. Emergency pressurization activates. Message persists after sensor cools."},
+  {m:"MACH TRIM FAIL",c:"a",s:"15",d:"Mach trim system has failed. System normally adjusts elevator tabs above 0.77 Mach for pitch-up compensation."},
+  {m:"GUST LOCK ON",c:"a",s:"15",d:"Gust lock T-handle not properly stowed. Left throttle limited to mid-range. Contributes to NO TAKEOFF warning."},
+  {m:"SPEED BRAKES",c:"a",s:"15",d:"Any speedbrake panel not stowed below 500 ft radio altitude in flight. On ground: contributes to NO TAKEOFF warning."},
+  {m:"FIRE BOTTLE LOW BAG-APU",c:"a",s:"06-08",d:"Shared tail cone Bag/APU bottle discharged. Baggage heat valve closes, APU shuts down, APU inhibited from starting."},
+  {m:"APU FIRE DETECT FAIL",c:"a",s:"06",d:"APU fire detection loop faulty with APU MASTER ON. APU will not start and auto-shuts down if running."},
+  {m:"MW1 / MW2",c:"a",s:"04",d:"Monitor Warning System miscompare between MAU 1 and MAU 4. Switch between MWSs via MCDU Menu/Display Setup to determine correct CAS stack."},
+  {m:"EICAS MISCOMPARE",c:"a",s:"04",d:"Wraparound test detected mismatch between values sent to EICAS and values displayed. Cross-check with standby engine instruments."},
+  {m:"PRIMARY STAB FAIL",c:"a",s:"15",d:"On ground until satisfactory primary stabilizer trim preflight check. In flight if primary trim system failed. Autopilot will be inoperative."},
+  {m:"ROLL SYSTEM CONTROL FAULT",c:"a",s:"15",d:"Fault detected in aileron ratio changer. Lateral control force will vary depending on failure position."},
+  {m:"AC BEARING L/R",c:"a",s:"10",d:"Respective engine AC alternator may experience bearing failure within approximately 20 hours of operation."},
+  {m:"NOSE DOOR OPEN L/R",c:"a",s:"01",d:"Either lower latch assembly on the respective nose door is not secured. Debounce: 2 sec."},
+  {m:"REMOTE CB TRIPPED",c:"a",s:"02",d:"A circuit breaker in the aft J-box has tripped. These CBs cannot be accessed by the crew."},
+  {m:"BUS TIE CLOSED",c:"c",s:"02",d:"Bus tie relay closed on the ground. Normal during engine/APU start, single generator operation, or EPU connected."},
+  {m:"FUEL BOOST ON L/R",c:"c",s:"05",d:"Fuel boost pump operating (normal start sequence or crew selected). Extinguishes at 57% N2 after start."},
+  {m:"ANTI-ICE ON ENGINE/STAB",c:"c",s:"10",d:"ENGINE/STAB anti-ice selected ON. Warm-up phase on ground — inhibited in air."},
+  {m:"APU ON",c:"c",s:"06",d:"APU running. Cyan below FL300. Amber above FL300 — monitor EGT, consider shutdown at high altitude."},
+  {m:"PARKING BRAKE ON",c:"c",s:"13",d:"PARK BRAKE handle not stowed. Cyan on ground. Amber once a throttle exceeds CRU detent or if airborne."},
+  {m:"ENGINE SHUTDOWN L/R",c:"w",s:"07",d:"Engine shut down via throttle CUTOFF or below-idle recovery in progress. Clears after successful start sequence."},
+  {m:"OIL LEVEL LOW L/R",c:"w",s:"07",d:"Oil quantity too low for start. Ground only, engines not running. If oil level sensor fails: message shown amber."},
+  {m:"FUEL FW SHUTOFF L/R",c:"w",s:"05",d:"Fuel firewall shutoff valve fully closed (post ENG FIRE button action)."}
+];
+
+function renderCAS() {
+  var list = document.getElementById('cas-list');
+  var search = (document.getElementById('cas-search').value || '').toLowerCase();
+  var color = document.getElementById('cas-color').value;
+  if (!list) return;
+  var colorBg = {r:'rgba(255,59,59,.18)',a:'rgba(255,204,0,.13)',c:'rgba(0,200,255,.1)',w:'rgba(200,216,232,.07)'};
+  var colorTx = {r:'#ff7070',a:'#ffd740',c:'var(--accent)',w:'#c8d8e8'};
+  var colorLb = {r:'RED',a:'AMBER',c:'CYAN',w:'WHITE'};
+  var filtered = CAS.filter(function(c){
+    var mc = color==='all' || c.c===color;
+    var ms = !search || c.m.toLowerCase().includes(search) || c.d.toLowerCase().includes(search);
+    return mc && ms;
+  });
+  var cnt = document.getElementById('cas-count');
+  if (cnt) cnt.textContent = 'Showing '+filtered.length+' of '+CAS.length+' messages';
+  list.innerHTML = filtered.map(function(c){
+    return '<div style="display:flex;align-items:flex-start;gap:10px;padding:9px 12px;border-bottom:1px solid var(--border)">'
+      +'<div style="flex-shrink:0;min-width:180px"><div style="font-family:\'Share Tech Mono\';font-size:10px;padding:3px 7px;border-radius:2px;background:'+colorBg[c.c]+';color:'+colorTx[c.c]+';font-weight:700;white-space:nowrap">'+c.m+'</div>'
+      +'<div style="font-size:9px;color:'+colorTx[c.c]+';margin-top:3px;font-family:\'Share Tech Mono\'">'+colorLb[c.c]+' · CH '+c.s+'</div></div>'
+      +'<div style="font-size:12px;color:var(--text);line-height:1.5">'+c.d+'</div></div>';
+  }).join('');
+}
+
+// ============================================================ GLOSSARY
+var GLOSS = [
+  {t:"AGB",d:"Accessory Gearbox — driven by N2 spool via tower shaft. Houses starter-generator, oil pumps, fuel pump, hydraulic pump, alternator, PMA."},
+  {t:"ACM",d:"Air-Cycle Machine — primary component of the ECU. Fan + compressor + turbine on one shaft. Produces cold air for cabin conditioning."},
+  {t:"ADC",d:"Air Data Computer (AZ-200) — dual system. Processes pitot-static inputs for airspeed, altitude, and vertical speed. Left in left nose, right in right nose."},
+  {t:"AFCS",d:"Automatic Flight Control System — autopilot + dual flight directors + yaw damper. GP-400 guidance panel + SM-1000 servos."},
+  {t:"AFM",d:"Airplane Flight Manual — FAA-approved. Must be immediately available to the flight crew at all times."},
+  {t:"AHRS",d:"Attitude Heading Reference System — dual system providing attitude and heading data to the Primus EPIC displays."},
+  {t:"APU",d:"Auxiliary Power Unit — Honeywell RE100(CS). Provides 28.5 VDC / 275A and bleed air. NOT available for anti-ice systems."},
+  {t:"AOA",d:"Angle of Attack — measured by AOA vanes on fuselage below cockpit windows. Electrically heated (AOA CASE HEAT CBs). Connected to stall warning computer."},
+  {t:"ASCB",d:"Avionics Standard Communications Bus — high-speed bidirectional network linking all MAUs, display units, and modular radio cabinets."},
+  {t:"BCV",d:"Bleed Control Valve — controls APU bleed-air flow to environmental systems. Closed during APU start, opens after READY TO LOAD."},
+  {t:"BEW",d:"Basic Empty Weight — Standard BEW (MEW + standard items) plus installed optional equipment."},
+  {t:"BOV",d:"Bleed-Off Valve — 4 per engine, FADEC-controlled solenoid valves that prevent compressor surge/stall."},
+  {t:"CAS",d:"Crew Alerting System — integrated into EICAS. RED (warning/immediate action), AMBER (caution/awareness), CYAN (advisory/status)."},
+  {t:"CCD",d:"Cursor Control Device — two CCDs on center pedestal for navigating MCDU menus and EICAS display."},
+  {t:"CG",d:"Center of Gravity — must remain within published envelope. Forward CG: more stable but increased drag. Aft of limits: stall recovery may be impossible."},
+  {t:"CMS",d:"Central Maintenance System — integrated diagnostics within the Primus EPIC system for fault recording and download."},
+  {t:"DC/DC Converter",d:"Maintains 24 VDC minimum for FADECs and EICAS during voltage sags on engine/APU starts. Located next to aft J-box."},
+  {t:"ECU",d:"Electronic Control Unit (APU) — or Environmental Control Unit (air conditioning). Context determines meaning."},
+  {t:"EDU",d:"Engine Diagnostic Unit — stores FADEC fault codes, engine exceedances, pilot event marker recordings, and uncommanded shutdowns."},
+  {t:"EDP",d:"Engine-Driven (Hydraulic) Pump — one per engine AGB. Both run simultaneously for normal hydraulic system operation at 3,000 PSI."},
+  {t:"EEC",d:"Electronic Engine Controller — the FADEC hardware. Dual channel (A and B) per engine. Constantly communicating, only one controlling."},
+  {t:"EICAS",d:"Engine Indicating and Crew Alerting System — default position DU2. Shows N1/N2/ITT/oil, CAS messages, and all aircraft system status."},
+  {t:"EPU",d:"External Power Unit — ground connection. Up to 1,500A for engine starts. EXT PWR button: AVAIL (connected, voltage OK) then ON."},
+  {t:"FADEC",d:"Full Authority Digital Electronic Control — two channels (A/B) per engine. Controls all engine functions. Powers from Start Bus until 25% N2, then from PMA."},
+  {t:"FMS",d:"Flight Management System — dual Honeywell GPS-based. LNAV/VNAV capable. Fully integrated with AFCS and displays."},
+  {t:"FOHE",d:"Fuel/Oil Heat Exchanger — fuel cools engine oil AND oil warms fuel to prevent ice crystal formation in fuel lines."},
+  {t:"FQSC",d:"Fuel Quantity Signal Conditioner — dual-channel microprocessor. Receives 7 capacitance probe signals per wing and calculates fuel quantity."},
+  {t:"GCU",d:"Generator Control Unit — regulates generator voltage, current, and protection. Controlled by L/R GEN toggle switches (ON/OFF/RESET)."},
+  {t:"HFCU",d:"Hydro-mechanical Fuel Control Unit — FADEC-controlled valve body. Meters fuel flow, controls thrust, idle, acceleration/deceleration, and VGV position."},
+  {t:"HP / LP",d:"High-Pressure / Low-Pressure — bleed air sources from different stages of the engine compressor. PCB logic selects automatically. Cannot be used simultaneously."},
+  {t:"ITT",d:"Inter-Turbine Temperature (T4.5) — measured between HP and LP turbines. Key parameter for engine health monitoring and start sequence."},
+  {t:"MAU",d:"Modular Avionics Unit — 4 units total. MAU 1/2 in nose avionics compartment. MAU 3/4 above baggage compartment. Brain of the Primus EPIC system."},
+  {t:"MCDU",d:"Multifunction Control Display Unit — two units (L and R on center pedestal). Primary interface for FMS, radio tuning, and system menus."},
+  {t:"MCT",d:"Maximum Continuous Thrust — detented throttle position. FADEC automatically determines the correct N1 target for this rating."},
+  {t:"MFD",d:"Multifunction Flight Display — default on DU3. Shows FMS, TCAS, TAWS/terrain, weather radar, checklists, vertical profile, and maps."},
+  {t:"MWS",d:"Monitor Warning System — software running in MAU 1 (MW1) and MAU 4 (MW2). Independently processes and prioritizes CAS messages. Cross-checks each other."},
+  {t:"N1",d:"Fan speed expressed as percentage of RPM. Primary thrust indicator on EICAS. FADEC regulates N1 to achieve desired thrust at power detents."},
+  {t:"N2",d:"Core (compressor) speed expressed as percentage of RPM. Drives AGB via tower shaft. FADEC regulates N2 at idle power settings."},
+  {t:"NiCad",d:"Nickel-Cadmium — battery chemistry used in main aircraft batteries. 25V / 44 Ah. Housed in stainless steel containers in rear fuselage."},
+  {t:"NWS",d:"Nosewheel Steering — hydraulically powered rack-and-pinion unit. Tiller: large angle steering. Rudder pedals: small angle. Combined max: 85 +/- 2 degrees."},
+  {t:"PFD",d:"Primary Flight Display — DU1 (pilot, left) and DU4 (copilot, right). Shows attitude, airspeed, altitude, HSI, flight director, and alerts."},
+  {t:"PMA",d:"Permanent Magnet Alternator — mounted on AGB. Self-powered alternator that supplies FADEC channels above 25% N2 without external electrical power."},
+  {t:"PRSOV",d:"Pressure-Reducing Shutoff Valve — controls and regulates bleed-air pressure and flow in the anti-ice system distribution network."},
+  {t:"RAT",d:"Ram-Air Temperature — measured by probes in each engine inlet. Input to FADEC for thrust calculations and to EICAS for display. Electrically heated."},
+  {t:"SPR",d:"Single-Point Refueling — pressure refueling system from a single adapter. Auto high-level float valve shutoff. Precheck levers must be tested before fueling."},
+  {t:"SSDFR",d:"Solid-State Digital Flight Data Recorder — mandatory recording device integrated into the aircraft systems."},
+  {t:"TAWS",d:"Terrain Awareness Warning System — enhanced GPWS. Displays terrain on MFD. Provides terrain and obstacle warnings."},
+  {t:"TCAS",d:"Traffic Collision Avoidance System — TCAS II. Issues Traffic Advisories (TA) and Resolution Advisories (RA). Highest priority aural warnings after EGPWS."},
+  {t:"TLA",d:"Throttle Lever Angle — used by FADEC for thrust management and by PCB logic for HP/LP bleed-air selection and pressurization mode control."},
+  {t:"T/O",d:"Takeoff — detented throttle position. FADEC automatically determines the correct N1 target for maximum takeoff thrust rating."},
+  {t:"VGV",d:"Variable Guide Vanes — variable inlet guide vanes and first-stage stator vanes. FADEC-controlled for optimum compressor airflow at all power settings."},
+  {t:"WOW",d:"Weight-on-Wheels — squat switch logic. Affects FADEC ground/flight idle, thrust reverser arming, pressurization controller, and NO TAKEOFF system."},
+  {t:"Tower Shaft",d:"Mechanical shaft connecting N2 spool to Accessory Gearbox (AGB). Drives all engine accessories: fuel pump, oil pump, generator, PMA, hydraulic pump."},
+  {t:"Trailing-Link Gear",d:"Landing gear design where the wheel axle is behind the strut attachment on a trailing arm. Absorbs touchdown shock gradually — signature smooth landing characteristic."},
+  {t:"Forced Mixing Nozzle",d:"Exhaust nozzle that mixes bypass air with core exhaust stream on the PW306C. Reduces noise levels and increases overall propulsive efficiency."},
+  {t:"Chip Detector",d:"Electromagnetic chip detector on AGB. Detects metal particles in engine oil — early indicator of internal engine wear or damage."}
+].sort(function(a,b){return a.t.localeCompare(b.t);});
+
+function renderGloss() {
+  var list = document.getElementById('gloss-list');
+  var search = (document.getElementById('gloss-search').value || '').toLowerCase();
+  if (!list) return;
+  var filtered = GLOSS.filter(function(g){ return !search || g.t.toLowerCase().includes(search) || g.d.toLowerCase().includes(search); });
+  list.innerHTML = filtered.map(function(g){
+    return '<div style="display:flex;align-items:flex-start;gap:14px;padding:8px 14px;border-bottom:1px solid rgba(24,32,48,.5)">'
+      +'<div style="font-family:\'Orbitron\';font-size:11px;font-weight:700;color:#b06aff;min-width:110px;flex-shrink:0">'+g.t+'</div>'
+      +'<div style="font-size:12px;color:var(--text);line-height:1.55">'+g.d+'</div></div>';
+  }).join('');
+}
+</script>
+</body>
+</html>
+
