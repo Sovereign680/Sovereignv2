@@ -1,0 +1,1383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>King Air B200 — Pilot Reference</title>
+<style>
+  :root {
+    --bg: #0d1117;
+    --surface: #161b22;
+    --surface2: #21262d;
+    --border: #30363d;
+    --cyan: #58a6ff;
+    --green: #3fb950;
+    --red: #f85149;
+    --orange: #e3b341;
+    --purple: #bc8cff;
+    --text: #e6edf3;
+    --muted: #8b949e;
+    --checked-bg: #1a3d2e;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: -apple-system, sans-serif; font-size: 15px; line-height: 1.5; }
+
+  /* HEADER */
+  .header { background: linear-gradient(135deg, #0d1b2e 0%, #1a1f2e 100%); border-bottom: 1px solid var(--border); padding: 16px 20px 0; position: sticky; top: 0; z-index: 100; }
+  .header-top { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+  .back { color: var(--cyan); font-size: 13px; text-decoration: none; border: 1px solid var(--border); border-radius: 6px; padding: 4px 10px; }
+  .back:hover { border-color: var(--cyan); }
+  .aircraft-id { flex: 1; }
+  .brand { font-size: 11px; color: var(--muted); letter-spacing: 2px; text-transform: uppercase; }
+  .model { font-size: 20px; font-weight: 700; color: var(--text); }
+  .sub { font-size: 12px; color: var(--muted); }
+  .badge-poh { background: var(--orange); color: #000; font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 4px; letter-spacing: 1px; }
+
+  /* TABS */
+  .tabs { display: flex; gap: 2px; overflow-x: auto; scrollbar-width: none; }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tab { flex-shrink: 0; padding: 8px 16px; font-size: 13px; font-weight: 600; color: var(--muted); cursor: pointer; border-bottom: 2px solid transparent; border-radius: 4px 4px 0 0; transition: all 0.15s; letter-spacing: 0.5px; background: none; border-left: none; border-right: none; border-top: none; }
+  .tab:hover { color: var(--text); background: rgba(255,255,255,0.04); }
+  .tab.active { color: var(--cyan); border-bottom-color: var(--cyan); }
+  .tab.emergency { color: var(--red); }
+  .tab.emergency.active { border-bottom-color: var(--red); color: var(--red); }
+  .tab.abnormal { color: var(--orange); }
+  .tab.abnormal.active { border-bottom-color: var(--orange); color: var(--orange); }
+
+  /* SECTIONS */
+  .section { display: none; padding: 16px; max-width: 700px; margin: 0 auto; }
+  .section.active { display: block; }
+
+  /* HOME */
+  .home-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px; }
+  .home-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 16px; cursor: pointer; transition: border-color 0.15s; text-align: center; }
+  .home-card:hover { border-color: var(--cyan); }
+  .home-card.emergency:hover { border-color: var(--red); }
+  .home-card.abnormal:hover { border-color: var(--orange); }
+  .home-card.normal:hover { border-color: var(--green); }
+  .home-card .icon { font-size: 32px; margin-bottom: 8px; }
+  .home-card .title { font-size: 13px; font-weight: 700; letter-spacing: 0.5px; margin-bottom: 4px; }
+  .home-card .desc { font-size: 11px; color: var(--muted); }
+
+  /* LIMITS */
+  .lim-section { margin-bottom: 20px; }
+  .lim-title { font-size: 12px; font-weight: 700; color: var(--orange); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 10px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
+  .lim-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid #1c2128; }
+  .lim-row:last-child { border-bottom: none; }
+  .lim-label { color: var(--muted); font-size: 13px; flex: 1; }
+  .lim-value { font-weight: 700; font-size: 14px; color: var(--text); text-align: right; }
+  .lim-value.red { color: var(--red); }
+  .lim-value.green { color: var(--green); }
+  .lim-value.orange { color: var(--orange); }
+  .lim-note { font-size: 12px; color: var(--muted); background: var(--surface2); border-radius: 6px; padding: 8px 10px; margin-top: 6px; border-left: 3px solid var(--orange); }
+  .warn-box { background: rgba(248,81,73,0.1); border: 1px solid var(--red); border-radius: 6px; padding: 10px 12px; font-size: 12px; color: var(--red); margin-top: 8px; }
+  .warn-box strong { display: block; margin-bottom: 4px; font-size: 11px; letter-spacing: 1px; }
+
+  /* ENGINE TABLE */
+  .eng-table { width: 100%; border-collapse: collapse; font-size: 12px; margin-top: 8px; }
+  .eng-table th { background: var(--surface2); color: var(--orange); font-size: 10px; letter-spacing: 1px; padding: 8px 10px; text-align: left; border-bottom: 1px solid var(--border); }
+  .eng-table td { padding: 7px 10px; border-bottom: 1px solid #1c2128; }
+  .eng-table tr:last-child td { border-bottom: none; }
+  .eng-table td:not(:first-child) { color: var(--text); text-align: center; }
+  .eng-table td:first-child { color: var(--muted); }
+
+  /* CHECKLISTS */
+  .cl-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+  .cl-title { font-size: 18px; font-weight: 700; }
+  .cl-subtitle { font-size: 12px; color: var(--muted); margin-top: 2px; }
+  .cl-reset { background: none; border: 1px solid var(--border); color: var(--muted); font-size: 12px; padding: 5px 12px; border-radius: 6px; cursor: pointer; }
+  .cl-reset:hover { border-color: var(--orange); color: var(--orange); }
+  .cl-block { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; margin-bottom: 12px; overflow: hidden; }
+  .cl-block-header { padding: 12px 14px; background: var(--surface2); font-weight: 700; font-size: 13px; letter-spacing: 0.5px; display: flex; align-items: center; justify-content: space-between; cursor: pointer; border: none; width: 100%; color: var(--text); }
+  .cl-block-header .progress { font-size: 11px; color: var(--muted); font-weight: 400; }
+  .cl-block-header.emergency { color: var(--red); }
+  .cl-block-header.abnormal { color: var(--orange); }
+  .cl-block-header.normal { color: var(--green); }
+  .cl-block-header.blue { color: var(--cyan); }
+  .cl-items { }
+  .cl-item { display: flex; align-items: center; padding: 10px 14px; border-bottom: 1px solid var(--border); cursor: pointer; transition: background 0.1s; user-select: none; gap: 12px; }
+  .cl-item:last-child { border-bottom: none; }
+  .cl-item:hover { background: var(--surface2); }
+  .cl-item.done { background: var(--checked-bg); }
+  .cl-item.done .cl-action { color: var(--green); font-weight: 700; }
+  .cl-item.done .cl-check { background: var(--green); border-color: var(--green); }
+  .cl-item.done .cl-check::after { content: '✓'; color: #000; font-size: 11px; font-weight: 900; }
+  .cl-item.bold-action .cl-action { font-weight: 800; color: var(--red); }
+  .cl-check { width: 22px; height: 22px; min-width: 22px; border: 2px solid var(--border); border-radius: 4px; display: flex; align-items: center; justify-content: center; transition: all 0.1s; }
+  .cl-step { flex: 1; min-width: 0; }
+  .cl-desc { font-size: 13px; color: var(--text); }
+  .cl-action { font-size: 13px; color: var(--cyan); text-align: right; min-width: 80px; font-weight: 600; }
+  .cl-note { font-size: 11px; color: var(--orange); margin-top: 2px; }
+  .cl-warning { display: flex; align-items: flex-start; gap: 8px; padding: 10px 14px; border-bottom: 1px solid var(--border); background: rgba(248,81,73,0.07); }
+  .cl-warning .warn-icon { font-size: 16px; min-width: 20px; }
+  .cl-warning .warn-text { font-size: 12px; color: var(--red); }
+
+  /* SPEEDS CARD */
+  .speeds-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px; }
+  .speed-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 12px; }
+  .speed-label { font-size: 10px; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; }
+  .speed-val { font-size: 22px; font-weight: 800; color: var(--cyan); margin: 2px 0; }
+  .speed-unit { font-size: 11px; color: var(--muted); }
+
+  /* SECTION PAGE HEADER */
+  .page-header { margin-bottom: 20px; }
+  .page-header h2 { font-size: 20px; font-weight: 700; margin-bottom: 4px; }
+  .page-header .source { font-size: 11px; color: var(--muted); }
+
+  /* PROGRESS BAR */
+  .progress-bar { height: 3px; background: var(--border); border-radius: 2px; margin: 8px 0 4px; overflow: hidden; }
+  .progress-fill { height: 100%; background: var(--green); border-radius: 2px; transition: width 0.3s; }
+
+  /* COLLAPSE ICON */
+  .collapse-icon { transition: transform 0.2s; }
+  .cl-block.collapsed .collapse-icon { transform: rotate(-90deg); }
+  .cl-block.collapsed .cl-items { display: none; }
+
+  footer { text-align: center; padding: 24px 16px; font-size: 11px; color: var(--muted); border-top: 1px solid var(--border); margin-top: 24px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-top">
+    <a href="index.html" class="back">← BACK</a>
+    <div class="aircraft-id">
+      <div class="brand">BEECHCRAFT</div>
+      <div class="model">KING AIR B200 <span class="badge-poh">POH</span></div>
+      <div class="sub">Super King Air B200/B200C · PT6A-42 · POH/AFM P/N 101-590010-147C</div>
+    </div>
+  </div>
+  <div class="tabs">
+    <button class="tab active" onclick="showTab('home',this)">🏠 HOME</button>
+    <button class="tab" onclick="showTab('limits',this)">⚠️ LIMITS</button>
+    <button class="tab emergency" onclick="showTab('emergency',this)">🚨 EMERGENCY</button>
+    <button class="tab abnormal" onclick="showTab('abnormal',this)">⚡ ABNORMAL</button>
+    <button class="tab" onclick="showTab('normal',this)">✅ NORMAL</button>
+    <button class="tab" onclick="showTab('perf',this)">📊 PERFORMANCE</button>
+    <button class="tab" onclick="showTab('wb',this)">⚖️ WEIGHT &amp; BAL</button>
+  </div>
+</div>
+
+<!-- ══════════════════ HOME ══════════════════ -->
+<div class="section active" id="sec-home">
+  <div style="margin-top:16px">
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px;margin-bottom:16px">
+      <div style="font-size:12px;color:var(--muted);margin-bottom:8px">QUICK REFERENCE — 12,500 LBS</div>
+      <div class="speeds-grid">
+        <div class="speed-card"><div class="speed-label">V1 / VR TO (Flaps UP)</div><div class="speed-val">95</div><div class="speed-unit">KIAS Rotation</div></div>
+        <div class="speed-card"><div class="speed-label">V2 / 50-ft (Flaps UP)</div><div class="speed-val">121</div><div class="speed-unit">KIAS at 50 ft</div></div>
+        <div class="speed-card"><div class="speed-label">VYSE (Blue Line)</div><div class="speed-val">121</div><div class="speed-unit">KIAS best ROC OEI</div></div>
+        <div class="speed-card"><div class="speed-label">VXSE</div><div class="speed-val">115</div><div class="speed-unit">KIAS best angle OEI</div></div>
+        <div class="speed-card"><div class="speed-label">VMCA</div><div class="speed-val">86</div><div class="speed-unit">KIAS min ctrl air</div></div>
+        <div class="speed-card"><div class="speed-label">VMO / MMO</div><div class="speed-val" style="font-size:16px">260 / .52</div><div class="speed-unit">KIAS / Mach</div></div>
+        <div class="speed-card"><div class="speed-label">Vy (2-Engine)</div><div class="speed-val">125</div><div class="speed-unit">KIAS best ROC</div></div>
+        <div class="speed-card"><div class="speed-label">Emergency Descent</div><div class="speed-val">181</div><div class="speed-unit">KIAS max</div></div>
+      </div>
+    </div>
+    <div class="home-cards">
+      <div class="home-card" onclick="switchTab('limits')">
+        <div class="icon">📋</div>
+        <div class="title" style="color:var(--orange)">LIMITATIONS</div>
+        <div class="desc">Airspeed · Engine · Fuel · Weight · Icing</div>
+      </div>
+      <div class="home-card emergency" onclick="switchTab('emergency')">
+        <div class="icon">🚨</div>
+        <div class="title" style="color:var(--red)">EMERGENCY</div>
+        <div class="desc">Engine failure · Fire · Descent · Electrical</div>
+      </div>
+      <div class="home-card abnormal" onclick="switchTab('abnormal')">
+        <div class="icon">⚡</div>
+        <div class="title" style="color:var(--orange)">ABNORMAL</div>
+        <div class="desc">Smoke · Fuel low · Door unlocked</div>
+      </div>
+      <div class="home-card normal" onclick="switchTab('normal')">
+        <div class="icon">✅</div>
+        <div class="title" style="color:var(--green)">NORMAL PROC</div>
+        <div class="desc">Preflight · Start · Taxi · TO · Landing</div>
+      </div>
+      <div class="home-card" style="border-color:var(--purple)" onclick="switchTab('perf')">
+        <div class="icon">📊</div>
+        <div class="title" style="color:var(--purple)">PERFORMANCE</div>
+        <div class="desc">V-speeds · Cruise · Fuel flow · Climb</div>
+      </div>
+      <div class="home-card" style="border-color:var(--cyan)" onclick="switchTab('wb')">
+        <div class="icon">⚖️</div>
+        <div class="title" style="color:var(--cyan)">WEIGHT &amp; BAL</div>
+        <div class="desc">Peso · CG · ZFW · TOW · Envelope</div>
+      </div>
+    </div>
+    <div style="background:rgba(248,81,73,0.08);border:1px solid var(--red);border-radius:8px;padding:12px;margin-top:16px;font-size:12px;color:var(--red)">
+      <strong style="display:block;margin-bottom:4px;letter-spacing:1px;font-size:11px">⚠️ FOR TRAINING PURPOSES ONLY</strong>
+      This reference is derived from the Beechcraft Super King Air B200/B200C POH/AFM P/N 101-590010-147C. Not for operational use. Always refer to the current AFM for actual flight operations.
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ LIMITATIONS ══════════════════ -->
+<div class="section" id="sec-limits">
+  <div class="page-header">
+    <h2 style="color:var(--orange)">⚠️ Section II — Limitations</h2>
+    <div class="source">FAA Approved · Must be observed in all operations</div>
+  </div>
+
+  <!-- AIRSPEED -->
+  <div class="lim-section">
+    <div class="lim-title">Airspeed Limitations</div>
+    <div class="lim-row"><span class="lim-label">VMO — Max Operating Speed</span><span class="lim-value red">260 KIAS / 259 KCAS</span></div>
+    <div class="lim-row"><span class="lim-label">MMO — Max Mach</span><span class="lim-value red">M 0.52</span></div>
+    <div class="lim-row"><span class="lim-label">VA — Maneuvering Speed (12,500 lb)</span><span class="lim-value orange">181 KIAS</span></div>
+    <div class="lim-row"><span class="lim-label">VFE — Flaps Approach (40%)</span><span class="lim-value orange">200 KIAS</span></div>
+    <div class="lim-row"><span class="lim-label">VFE — Flaps Full Down (100%)</span><span class="lim-value orange">157 KIAS</span></div>
+    <div class="lim-row"><span class="lim-label">VLO — Gear Extension / Retraction</span><span class="lim-value orange">181 KIAS</span></div>
+    <div class="lim-row"><span class="lim-label">VLE — Max Gear Extended</span><span class="lim-value orange">181 KIAS</span></div>
+    <div class="lim-row"><span class="lim-label">VMCA — Air Min Control Speed</span><span class="lim-value red">86 KIAS</span></div>
+    <div class="lim-note">Do not make full or abrupt control movements above VA. Do not lift power levers in flight.</div>
+  </div>
+
+  <!-- POWERPLANT -->
+  <div class="lim-section">
+    <div class="lim-title">Powerplant Limitations — PT6A-42</div>
+    <div class="lim-row"><span class="lim-label">Engines</span><span class="lim-value">2 × Pratt &amp; Whitney PT6A-42</span></div>
+    <div class="lim-row"><span class="lim-label">Max Torque (T/O &amp; Max Cont)</span><span class="lim-value red">2,230 ft-lbs</span></div>
+    <div class="lim-row"><span class="lim-label">ITT — Takeoff &amp; Max Continuous</span><span class="lim-value red">800°C</span></div>
+    <div class="lim-row"><span class="lim-label">ITT — Transient (max 5 sec)</span><span class="lim-value red">850°C</span></div>
+    <div class="lim-row"><span class="lim-label">ITT — Starting (max)</span><span class="lim-value red">1,000°C</span></div>
+    <div class="lim-row"><span class="lim-label">N1 — Max Gas Generator RPM</span><span class="lim-value red">101.5%</span></div>
+    <div class="lim-row"><span class="lim-label">Propeller RPM — Max</span><span class="lim-value red">2,000 RPM</span></div>
+    <div class="lim-row"><span class="lim-label">Propeller RPM — Normal Cruise</span><span class="lim-value">1,700 RPM</span></div>
+    <table class="eng-table">
+      <tr><th>CONDITION</th><th>TORQUE (ft-lb)</th><th>ITT (°C)</th><th>N1 (%)</th></tr>
+      <tr><td>Starting</td><td>—</td><td>1,000 max</td><td>—</td></tr>
+      <tr><td>Low Idle</td><td>—</td><td>—</td><td>—</td></tr>
+      <tr><td>High Idle</td><td>—</td><td>—</td><td>—</td></tr>
+      <tr><td>Takeoff / Max Continuous</td><td>2,230</td><td>800</td><td>101.5</td></tr>
+      <tr><td>Max Reverse</td><td>850</td><td>800</td><td>—</td></tr>
+      <tr><td>Transient (5 sec max)</td><td>2,230</td><td>850</td><td>—</td></tr>
+    </table>
+    <div class="lim-row" style="margin-top:8px"><span class="lim-label">Starter Limits</span><span class="lim-value" style="font-size:12px;text-align:right">40s ON / 60s OFF / 40s ON / 60s OFF / 40s ON — then 30 min OFF</span></div>
+  </div>
+
+  <!-- WEIGHTS -->
+  <div class="lim-section">
+    <div class="lim-title">Weight Limitations</div>
+    <div class="lim-row"><span class="lim-label">Maximum Takeoff Weight</span><span class="lim-value red">12,500 lb</span></div>
+    <div class="lim-row"><span class="lim-label">Maximum Ramp Weight</span><span class="lim-value red">12,590 lb</span></div>
+    <div class="lim-row"><span class="lim-label">Maximum Landing Weight</span><span class="lim-value red">12,500 lb</span></div>
+    <div class="lim-row"><span class="lim-label">Maximum Zero Fuel Weight</span><span class="lim-value red">10,430 lb</span></div>
+    <div class="lim-row"><span class="lim-label">Minimum Flight Crew</span><span class="lim-value green">1 Pilot</span></div>
+    <div class="lim-row"><span class="lim-label">Maximum Occupancy (incl. crew)</span><span class="lim-value orange">15</span></div>
+  </div>
+
+  <!-- ALTITUDE -->
+  <div class="lim-section">
+    <div class="lim-title">Altitude &amp; Pressure Limits</div>
+    <div class="lim-row"><span class="lim-label">Max Operating Pressure Altitude</span><span class="lim-value red">35,000 ft</span></div>
+    <div class="lim-row"><span class="lim-label">Max Altitude — Yaw Damp Inoperative</span><span class="lim-value red">17,000 ft</span></div>
+    <div class="lim-row"><span class="lim-label">Max Cabin Pressure Differential</span><span class="lim-value red">6.6 psi</span></div>
+    <div class="lim-row"><span class="lim-label">Max Outside Air Temp (SL–25,000 ft)</span><span class="lim-value orange">ISA + 37°C</span></div>
+    <div class="lim-row"><span class="lim-label">Max Outside Air Temp (above 25,000 ft)</span><span class="lim-value orange">ISA + 31°C</span></div>
+  </div>
+
+  <!-- FUEL -->
+  <div class="lim-section">
+    <div class="lim-title">Fuel Limitations</div>
+    <div class="lim-row"><span class="lim-label">Approved — Commercial</span><span class="lim-value green">Jet A, Jet A-1, Jet B</span></div>
+    <div class="lim-row"><span class="lim-label">Approved — Military</span><span class="lim-value green">JP-4, JP-5, JP-8</span></div>
+    <div class="lim-row"><span class="lim-label">Emergency (AvGas)</span><span class="lim-value orange">100LL, 100/130, 115/145, 80</span></div>
+    <div class="lim-row"><span class="lim-label">Max Fuel Imbalance</span><span class="lim-value orange">200 lb</span></div>
+    <div class="lim-note">Emergency AvGas: Limited to 150 hrs between overhauls. Max FL 200 if standby pump inoperative. Avgas prohibited above FL 310.</div>
+  </div>
+
+  <!-- ICING -->
+  <div class="lim-section">
+    <div class="lim-title">Icing Limitations</div>
+    <div class="lim-row"><span class="lim-label">Min Ambient Temp for Deice Boots</span><span class="lim-value orange">−40°C</span></div>
+    <div class="lim-row"><span class="lim-label">Min Airspeed — Sustained Icing</span><span class="lim-value red">140 KIAS</span></div>
+    <div class="lim-row"><span class="lim-label">Ice Vanes EXTEND — at or below</span><span class="lim-value orange">+5°C (visible moisture)</span></div>
+    <div class="lim-row"><span class="lim-label">Ice Vanes RETRACT — above</span><span class="lim-value orange">+15°C all ops</span></div>
+    <div class="warn-box"><strong>⚠️ WARNING</strong>Sustained flight in icing conditions with flaps extended is PROHIBITED except for approach and landing.</div>
+  </div>
+
+  <!-- LANDING GEAR -->
+  <div class="lim-section">
+    <div class="lim-title">Systems &amp; Equipment Limits</div>
+    <div class="lim-row"><span class="lim-label">Landing Gear Cycle Limit</span><span class="lim-value orange">6 cycles, then 15 min cool-down</span></div>
+    <div class="lim-row"><span class="lim-label">Min interval per cycle</span><span class="lim-value orange">5 minutes</span></div>
+    <div class="lim-note">Aft-facing seats: seatback must be fully raised for takeoff and landing.</div>
+  </div>
+</div>
+
+<!-- ══════════════════ EMERGENCY ══════════════════ -->
+<div class="section" id="sec-emergency">
+  <div class="page-header">
+    <h2 style="color:var(--red)">🚨 Section III — Emergency Procedures</h2>
+    <div class="source">Bold items = immediate action · All airspeeds are IAS</div>
+  </div>
+
+  <div style="background:rgba(248,81,73,0.1);border:1px solid var(--red);border-radius:8px;padding:10px 12px;margin-bottom:16px;font-size:12px;color:var(--red)">
+    <strong>EMERGENCY AIRSPEEDS (12,500 LB):</strong> VXSE = 115 kts · VYSE = 121 kts · VMCA = 86 kts · Emergency Descent = 181 kts max · Max Range Glide = 135 kts
+  </div>
+
+  <!-- ENGINE EMERGENCY SHUTDOWN -->
+  <div class="cl-block" id="blk-emer-shutdown">
+    <button class="cl-block-header emergency" onclick="toggleBlock('blk-emer-shutdown')">
+      <span>🔴 Emergency Engine Shutdown</span>
+      <span class="collapse-icon">▼</span>
+    </button>
+    <div class="cl-items">
+      <div class="cl-warning"><span class="warn-icon">⚠️</span><span class="warn-text">APPLIES TO: Engine torque increase unscheduled · Engine fire in flight · Engine failure in flight</span></div>
+      <div class="cl-item bold-action" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Condition Lever — AFFECTED ENGINE</div></div><div class="cl-action">FUEL CUT OFF</div></div>
+      <div class="cl-item bold-action" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Propeller Lever</div></div><div class="cl-action">FEATHER</div></div>
+      <div class="cl-item bold-action" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Firewall Shutoff Valve</div></div><div class="cl-action">CLOSED</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Fire Extinguisher (if installed)</div></div><div class="cl-action">ACTUATE</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Auto Ignition</div></div><div class="cl-action">OFF</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Generator</div></div><div class="cl-action">OFF</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Prop Sync</div></div><div class="cl-action">OFF</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Electrical Load</div></div><div class="cl-action">MONITOR</div></div>
+    </div>
+  </div>
+
+  <!-- ENGINE FAILURE AFTER LIFT-OFF -->
+  <div class="cl-block" id="blk-emer-efato">
+    <button class="cl-block-header emergency" onclick="toggleBlock('blk-emer-efato')">
+      <span>✈️ Engine Failure After Lift-Off</span>
+      <span class="collapse-icon">▼</span>
+    </button>
+    <div class="cl-items">
+      <div class="cl-warning"><span class="warn-icon">⚠️</span><span class="warn-text">If conditions preclude immediate landing. Bank 3°–5° into operating engine.</span></div>
+      <div class="cl-item bold-action" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Power</div></div><div class="cl-action">MAX ALLOWABLE</div></div>
+      <div class="cl-item bold-action" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Airspeed</div><div class="cl-note">Maintain takeoff speed or above</div></div><div class="cl-action">MAINTAIN</div></div>
+      <div class="cl-item bold-action" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Landing Gear</div></div><div class="cl-action">UP</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Propeller Lever (inop engine)</div><div class="cl-note">Verify FEATHER if autofeather installed</div></div><div class="cl-action">FEATHER</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Airspeed — after obstacle clearance</div></div><div class="cl-action">VYSE 121 KT</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Flaps</div></div><div class="cl-action">UP</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Condition Lever (inop engine)</div></div><div class="cl-action">FUEL CUT OFF</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Propeller Lever (inop engine)</div></div><div class="cl-action">FEATHER</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Firewall Shutoff Valve</div></div><div class="cl-action">CLOSED</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Auto Ignition / Autofeather</div></div><div class="cl-action">OFF</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Generator (inop engine)</div></div><div class="cl-action">OFF</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Electrical Load</div></div><div class="cl-action">MONITOR</div></div>
+    </div>
+  </div>
+
+  <!-- ENGINE FIRE ON GROUND -->
+  <div class="cl-block" id="blk-emer-fire-gnd">
+    <button class="cl-block-header emergency" onclick="toggleBlock('blk-emer-fire-gnd')">
+      <span>🔥 Engine Fire On Ground</span>
+      <span class="collapse-icon">▼</span>
+    </button>
+    <div class="cl-items">
+      <div class="cl-item bold-action" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Condition Lever</div></div><div class="cl-action">FUEL CUT OFF</div></div>
+      <div class="cl-item bold-action" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Firewall Shutoff Valve</div></div><div class="cl-action">CLOSED</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Ignition and Engine Start</div></div><div class="cl-action">STARTER ONLY</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Fire Extinguisher (if installed)</div></div><div class="cl-action">ACTUATE</div></div>
+    </div>
+  </div>
+
+  <!-- ENGINE FAILURE GROUND ROLL -->
+  <div class="cl-block" id="blk-emer-efgr">
+    <button class="cl-block-header emergency" onclick="toggleBlock('blk-emer-efgr')">
+      <span>🛑 Engine Failure During Ground Roll</span>
+      <span class="collapse-icon">▼</span>
+    </button>
+    <div class="cl-items">
+      <div class="cl-item bold-action" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Power Levers</div></div><div class="cl-action">IDLE</div></div>
+      <div class="cl-item bold-action" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Brakes</div></div><div class="cl-action">AS REQUIRED</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Operative Engine</div></div><div class="cl-action">MAX REVERSE</div></div>
+      <div class="cl-warning"><span class="warn-icon">⚠️</span><span class="warn-text">If insufficient runway for stopping:</span></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Condition Levers</div></div><div class="cl-action">FUEL CUT OFF</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Firewall Shutoff Valves</div></div><div class="cl-action">CLOSED</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Master Switch (gang bar down)</div></div><div class="cl-action">OFF</div></div>
+    </div>
+  </div>
+
+  <!-- EMERGENCY DESCENT -->
+  <div class="cl-block" id="blk-emer-descent">
+    <button class="cl-block-header emergency" onclick="toggleBlock('blk-emer-descent')">
+      <span>⬇️ Emergency Descent</span>
+      <span class="collapse-icon">▼</span>
+    </button>
+    <div class="cl-items">
+      <div class="cl-item bold-action" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Oxygen — Crew required, passengers as required</div><div class="cl-note">Pull ON · DON masks · Mic selector OXYGEN MASK · Pull passenger lanyard</div></div><div class="cl-action">ON / DON</div></div>
+      <div class="cl-item bold-action" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Power Levers</div></div><div class="cl-action">IDLE</div></div>
+      <div class="cl-item bold-action" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Propeller Levers</div></div><div class="cl-action">FULL FORWARD</div></div>
+      <div class="cl-item bold-action" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Flaps</div></div><div class="cl-action">APPROACH</div></div>
+      <div class="cl-item bold-action" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Landing Gear</div></div><div class="cl-action">DOWN</div></div>
+      <div class="cl-item bold-action" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Airspeed</div></div><div class="cl-action">181 KT MAX</div></div>
+    </div>
+  </div>
+
+  <!-- ELECTRICAL FIRE -->
+  <div class="cl-block" id="blk-emer-elecfire">
+    <button class="cl-block-header emergency" onclick="toggleBlock('blk-emer-elecfire')">
+      <span>⚡ Electrical Smoke or Fire</span>
+      <span class="collapse-icon">▼</span>
+    </button>
+    <div class="cl-items">
+      <div class="cl-item bold-action" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Oxygen — PULL ON · DON Masks 100% · Mic → OXYGEN MASK</div></div><div class="cl-action">ON / DON</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Cabin Temp Mode</div></div><div class="cl-action">OFF</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Vent Blower</div></div><div class="cl-action">AUTO</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Aft Blower</div></div><div class="cl-action">OFF</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Avionics Master</div></div><div class="cl-action">OFF</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Non-essential Electrical Equipment</div></div><div class="cl-action">OFF</div></div>
+      <div class="cl-warning"><span class="warn-icon">⚠️</span><span class="warn-text">If smoke persists or fire not confirmed extinguished: DUMP cabin pressure · Land nearest suitable airport immediately.</span></div>
+    </div>
+  </div>
+
+  <!-- GLIDE (DUAL ENGINE FAILURE) -->
+  <div class="cl-block" id="blk-emer-glide">
+    <button class="cl-block-header emergency" onclick="toggleBlock('blk-emer-glide')">
+      <span>🪂 Glide (Both Engines)</span>
+      <span class="collapse-icon">▼</span>
+    </button>
+    <div class="cl-items">
+      <div class="cl-item bold-action" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Landing Gear</div></div><div class="cl-action">UP</div></div>
+      <div class="cl-item bold-action" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Flaps</div></div><div class="cl-action">UP</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Propellers — after restart attempts exhausted</div></div><div class="cl-action">FEATHER</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Airspeed</div></div><div class="cl-action">135 KIAS</div></div>
+      <div class="lim-note" style="margin:8px 14px;font-size:12px">Glide ratio: 2.0 nm per 1,000 ft altitude. Decrease 0.2 nm per 10 kts headwind.</div>
+    </div>
+  </div>
+
+  <!-- ENGINE FAILURE BELOW VMCA -->
+  <div class="cl-block" id="blk-emer-vmca">
+    <button class="cl-block-header emergency" onclick="toggleBlock('blk-emer-vmca')">
+      <span>⚠️ Engine Failure Below VMCA (86 kt)</span>
+      <span class="collapse-icon">▼</span>
+    </button>
+    <div class="cl-items">
+      <div class="cl-item bold-action" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Power</div><div class="cl-note">Reduce as required to maintain directional control</div></div><div class="cl-action">REDUCE</div></div>
+      <div class="cl-item bold-action" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Nose</div><div class="cl-note">Lower to accelerate above VMCA</div></div><div class="cl-action">LOWER</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Power (operative engine)</div></div><div class="cl-action">AS REQUIRED</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Failed Engine</div></div><div class="cl-action">SECURE</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ ABNORMAL ══════════════════ -->
+<div class="section" id="sec-abnormal">
+  <div class="page-header">
+    <h2 style="color:var(--orange)">⚡ Section IIIA — Abnormal Procedures</h2>
+    <div class="source">Non-emergency malfunctions requiring pilot action</div>
+  </div>
+
+  <!-- FUEL PRESSURE LOW -->
+  <div class="cl-block" id="blk-abn-fuelpress">
+    <button class="cl-block-header abnormal" onclick="toggleBlock('blk-abn-fuelpress')">
+      <span>⛽ Fuel Pressure Low (L or R FUEL PRESS)</span>
+      <span class="collapse-icon">▼</span>
+    </button>
+    <div class="cl-items">
+      <div class="cl-item bold-action" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Standby Pump (failed side)</div></div><div class="cl-action">ON</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">FUEL PRESS Annunciator</div></div><div class="cl-action">EXTINGUISHED?</div></div>
+    </div>
+  </div>
+
+  <!-- INVERTER INOPERATIVE -->
+  <div class="cl-block" id="blk-abn-inverter">
+    <button class="cl-block-header abnormal" onclick="toggleBlock('blk-abn-inverter')">
+      <span>⚡ Inverter Inoperative (INVERTER annunciator)</span>
+      <span class="collapse-icon">▼</span>
+    </button>
+    <div class="cl-items">
+      <div class="cl-item bold-action" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Select other inverter</div></div><div class="cl-action">SELECT OTHER</div></div>
+    </div>
+  </div>
+
+  <!-- CABIN DOOR UNLOCKED -->
+  <div class="cl-block" id="blk-abn-door">
+    <button class="cl-block-header abnormal" onclick="toggleBlock('blk-abn-door')">
+      <span>🚪 Cabin Door Unlocked (CABIN DOOR annunciator)</span>
+      <span class="collapse-icon">▼</span>
+    </button>
+    <div class="cl-items">
+      <div class="cl-warning"><span class="warn-icon">⚠️</span><span class="warn-text">Do NOT check door security in flight. Remain as far from door as possible. Seatbelts securely fastened.</span></div>
+      <div class="cl-item bold-action" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">All Occupants — seated, seatbelts securely fastened</div></div><div class="cl-action">SEATED</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Cabin Sign</div></div><div class="cl-action">NO SMOKE &amp; FSB</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Cabin Differential Pressure</div><div class="cl-note">Descend and/or select higher cabin altitude — reduce to lowest practical (zero preferred)</div></div><div class="cl-action">REDUCE</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Oxygen</div></div><div class="cl-action">AS REQUIRED</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Land at nearest suitable airport</div></div><div class="cl-action">DIVERT</div></div>
+    </div>
+  </div>
+
+  <!-- ENVIRONMENTAL SMOKE/FUMES -->
+  <div class="cl-block" id="blk-abn-envsmoke">
+    <button class="cl-block-header abnormal" onclick="toggleBlock('blk-abn-envsmoke')">
+      <span>💨 Environmental System Smoke or Fumes</span>
+      <span class="collapse-icon">▼</span>
+    </button>
+    <div class="cl-items">
+      <div class="cl-item bold-action" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Oxygen — PULL ON · DON Masks · Mic → OXYGEN MASK</div></div><div class="cl-action">ON / DON</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Cabin Temp Mode</div></div><div class="cl-action">OFF</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Vent Blower</div></div><div class="cl-action">HIGH</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Left Bleed Air Valve</div></div><div class="cl-action">ENVIR OFF</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">If smoke decreases — continue with L bleed off</div><div class="cl-note">If smoke does NOT decrease: open L, close R bleed air valve</div></div><div class="cl-action">MONITOR</div></div>
+    </div>
+  </div>
+
+  <!-- UNSCHEDULED ELECTRIC TRIM -->
+  <div class="cl-block" id="blk-abn-trim">
+    <button class="cl-block-header abnormal" onclick="toggleBlock('blk-abn-trim')">
+      <span>🔧 Unscheduled Electric Elevator Trim</span>
+      <span class="collapse-icon">▼</span>
+    </button>
+    <div class="cl-items">
+      <div class="cl-item bold-action" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Airplane Attitude — maintain using elevator control</div></div><div class="cl-action">MAINTAIN</div></div>
+      <div class="cl-item bold-action" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Control Wheel Disconnect Switch</div><div class="cl-note">Depress fully (2nd level) — ELEC TRIM OFF annunciator illuminates</div></div><div class="cl-action">DEPRESS</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ NORMAL PROCEDURES ══════════════════ -->
+<div class="section" id="sec-normal">
+  <div class="page-header">
+    <h2 style="color:var(--green)">✅ Section IV — Normal Procedures</h2>
+    <div class="source">• Items may be omitted at pilot's discretion after first flight of the day</div>
+  </div>
+
+  <!-- PREFLIGHT -->
+  <div class="cl-block" id="blk-preflight">
+    <button class="cl-block-header blue" onclick="toggleBlock('blk-preflight')">
+      <span>🔍 Preflight Inspection</span>
+      <span class="collapse-icon">▼</span>
+    </button>
+    <div class="cl-items">
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Condition Levers</div></div><div class="cl-action">FUEL CUT OFF</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Landing Gear Control</div></div><div class="cl-action">DN</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Control Locks</div></div><div class="cl-action">REMOVE</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Parking Brake</div></div><div class="cl-action">SET</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Ignition and Engine Start</div></div><div class="cl-action">ENSURE OFF</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Battery — ON, check minimum 23V</div></div><div class="cl-action">ON / CHECK</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Fuel Quantity</div></div><div class="cl-action">CHECK</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Flap Control (if desired)</div></div><div class="cl-action">APPR → DOWN</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Oxygen System Preflight Inspection</div></div><div class="cl-action">COMPLETE</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Walk-around (per POH flow)</div><div class="cl-note">Engine oil · Props · Fuel caps · Gear · Boots · Lights · Static wicks</div></div><div class="cl-action">COMPLETE</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Battery</div></div><div class="cl-action">OFF</div></div>
+    </div>
+  </div>
+
+  <!-- BEFORE ENGINE START -->
+  <div class="cl-block" id="blk-before-start">
+    <button class="cl-block-header normal" onclick="toggleBlock('blk-before-start')">
+      <span>🔋 Before Engine Starting</span>
+      <span class="collapse-icon">▼</span>
+    </button>
+    <div class="cl-items">
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Cabin Door — locked and checked</div></div><div class="cl-action">LOCKED</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Load and Baggage</div></div><div class="cl-action">SECURE</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Weight and CG</div></div><div class="cl-action">CHECKED</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Seats — positioned, seatbacks upright</div></div><div class="cl-action">POSITIONED</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Emergency Exit</div></div><div class="cl-action">SECURE &amp; UNLOCKED</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Passenger Briefing</div></div><div class="cl-action">COMPLETE</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Control Locks</div></div><div class="cl-action">REMOVED</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Seatbelts and Shoulder Harnesses</div></div><div class="cl-action">FASTENED</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Oxygen System Ready</div></div><div class="cl-action">PULL ON</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Fuel Panel Circuit Breakers</div></div><div class="cl-action">IN</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Engine Ice Vane Switches</div></div><div class="cl-action">EXTEND</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Power Levers — IDLE, Friction set</div></div><div class="cl-action">IDLE</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Propeller Levers — FULL FORWARD, Friction set</div></div><div class="cl-action">FULL FWD</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Condition Levers — FUEL CUT OFF, Friction set</div></div><div class="cl-action">FUEL CUT OFF</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Trim Controls — set for TO</div></div><div class="cl-action">SET</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Battery — ON</div></div><div class="cl-action">ON</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Firewall Shutoff Valves</div></div><div class="cl-action">OPEN</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Annunciators</div></div><div class="cl-action">TEST</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Beacon</div></div><div class="cl-action">ON</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Fuel Quantity</div></div><div class="cl-action">CHECK</div></div>
+    </div>
+  </div>
+
+  <!-- ENGINE START - BATTERY -->
+  <div class="cl-block" id="blk-start">
+    <button class="cl-block-header normal" onclick="toggleBlock('blk-start')">
+      <span>🔑 Engine Starting (Battery)</span>
+      <span class="collapse-icon">▼</span>
+    </button>
+    <div class="cl-items">
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">RIGHT Ignition and Engine Start</div><div class="cl-note">R FUEL PRESS annunciator extinguishes</div></div><div class="cl-action">ON</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Right Condition Lever — at 12% N1 or above</div></div><div class="cl-action">LOW IDLE</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">ITT and N1</div><div class="cl-note">No ITT rise in 10 sec → CUT OFF. Wait 60 sec then ENGINE CLEARING.</div></div><div class="cl-action">MONITOR 1000°C</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Right Oil Pressure</div></div><div class="cl-action">CHECK</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Right Condition Lever</div></div><div class="cl-action">HIGH IDLE</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Right Ignition and Engine Start — at 50% N1 or above</div></div><div class="cl-action">OFF</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Right Generator — RESET (hold 1 sec) then ON</div><div class="cl-note">Charge battery until loadmeter reads ~50% or less</div></div><div class="cl-action">RESET → ON</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Right Generator (after battery charged)</div></div><div class="cl-action">OFF</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">LEFT Ignition and Engine Start</div><div class="cl-note">L FUEL PRESS annunciator extinguishes</div></div><div class="cl-action">ON</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Left Condition Lever (as L N1 thru 12%) + Right Generator ON</div></div><div class="cl-action">LOW IDLE / ON</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">ITT and N1</div></div><div class="cl-action">MONITOR 1000°C</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Left Oil Pressure</div></div><div class="cl-action">CHECK</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Left Ignition and Engine Start — at 50% N1</div></div><div class="cl-action">OFF</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">DC Volt/Loadmeters</div><div class="cl-note">Should read 27.5–29.0 volts</div></div><div class="cl-action">CHECK 27.5–29V</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Left Generator — RESET (hold 1 sec) then ON</div></div><div class="cl-action">RESET → ON</div></div>
+    </div>
+  </div>
+
+  <!-- BEFORE TAXI -->
+  <div class="cl-block" id="blk-btaxi">
+    <button class="cl-block-header blue" onclick="toggleBlock('blk-btaxi')">
+      <span>🚖 Before Taxi</span>
+      <span class="collapse-icon">▼</span>
+    </button>
+    <div class="cl-items">
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Inverters — check volts/freq (105–120V / 380–420 Hz)</div></div><div class="cl-action">CHECK</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Loadmeters — parallel within 10%</div></div><div class="cl-action">CHECK</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Avionics Master</div></div><div class="cl-action">ON</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">External Lights</div></div><div class="cl-action">AS REQUIRED</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Cabin Temp Mode</div></div><div class="cl-action">AUTO</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Flight Controls — freedom and proper direction</div></div><div class="cl-action">CHECK</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Flaps — check and set</div></div><div class="cl-action">CHECK / SET</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Brakes</div></div><div class="cl-action">RELEASED &amp; CHECKED</div></div>
+    </div>
+  </div>
+
+  <!-- BEFORE TAKEOFF (RUNUP) -->
+  <div class="cl-block" id="blk-runup">
+    <button class="cl-block-header blue" onclick="toggleBlock('blk-runup')">
+      <span>🔊 Before Takeoff — Run-Up</span>
+      <span class="collapse-icon">▼</span>
+    </button>
+    <div class="cl-items">
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Propeller Levers — test and exercise</div></div><div class="cl-action">CHECK</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Autofeather (if installed)</div></div><div class="cl-action">ARM / TEST</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Engine Power — check at high power</div></div><div class="cl-action">CHECK</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Bleed Air — both sides open, check pressurization</div></div><div class="cl-action">OPEN / CHECK</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Engine Ice Vanes</div></div><div class="cl-action">CHECK</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Fuel Quantity, Flight and Engine Instruments</div></div><div class="cl-action">CHECK</div></div>
+    </div>
+  </div>
+
+  <!-- BEFORE TAKEOFF - FINAL -->
+  <div class="cl-block" id="blk-bto">
+    <button class="cl-block-header normal" onclick="toggleBlock('blk-bto')">
+      <span>🏁 Before Takeoff — Final Items</span>
+      <span class="collapse-icon">▼</span>
+    </button>
+    <div class="cl-items">
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Propeller Levers</div></div><div class="cl-action">FULL FORWARD</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Flaps</div></div><div class="cl-action">CONFIRM SET</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Trim</div></div><div class="cl-action">CONFIRM SET</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Left and Right Bleed Air</div></div><div class="cl-action">OPEN</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Annunciators</div></div><div class="cl-action">EXTINGUISHED</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Ice Protection (if required)</div><div class="cl-note">Auto Ignition ON · Ice Vanes extended · Windshield Anti-ice NORMAL/HI · Prop Heat AUTO · Pitot Heat ON</div></div><div class="cl-action">ON IF REQD</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">External Lights</div></div><div class="cl-action">AS REQUIRED</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Transponder</div></div><div class="cl-action">ON</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">V1, VR, V2 and Min Takeoff Power</div></div><div class="cl-action">CONFIRM</div></div>
+    </div>
+  </div>
+
+  <!-- TAKEOFF -->
+  <div class="cl-block" id="blk-to">
+    <button class="cl-block-header normal" onclick="toggleBlock('blk-to')">
+      <span>🛫 Takeoff</span>
+      <span class="collapse-icon">▼</span>
+    </button>
+    <div class="cl-items">
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Brakes</div></div><div class="cl-action">HOLD</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Power — set, ensure minimum takeoff power available</div></div><div class="cl-action">SET</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Autofeather Annunciators (if installed)</div></div><div class="cl-action">ILLUMINATED</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Brakes</div></div><div class="cl-action">RELEASED</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Landing Gear — when positive climb established</div></div><div class="cl-action">UP</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Flaps — at blue line (121 kts min)</div></div><div class="cl-action">UP</div></div>
+    </div>
+  </div>
+
+  <!-- CLIMB -->
+  <div class="cl-block" id="blk-climb">
+    <button class="cl-block-header blue" onclick="toggleBlock('blk-climb')">
+      <span>📈 Climb</span>
+      <span class="collapse-icon">▼</span>
+    </button>
+    <div class="cl-items">
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Yaw Damp</div></div><div class="cl-action">ON</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Climb Power</div></div><div class="cl-action">SET</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Propellers</div></div><div class="cl-action">1,900 RPM</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Prop Sync (if installed)</div></div><div class="cl-action">ON</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Autofeather (if installed)</div></div><div class="cl-action">OFF</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Engine Instruments</div></div><div class="cl-action">MONITOR</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Pressurization</div></div><div class="cl-action">CHECK</div></div>
+    </div>
+  </div>
+
+  <!-- CRUISE -->
+  <div class="cl-block" id="blk-cruise">
+    <button class="cl-block-header blue" onclick="toggleBlock('blk-cruise')">
+      <span>✈️ Cruise</span>
+      <span class="collapse-icon">▼</span>
+    </button>
+    <div class="cl-items">
+      <div class="cl-warning"><span class="warn-icon">⚠️</span><span class="warn-text">Do NOT lift power levers in flight.</span></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Cruise Power — per cruise power tables/graphs</div></div><div class="cl-action">SET</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Engine Instruments</div></div><div class="cl-action">MONITOR</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Auxiliary Fuel Gages — ensure transfer from aux tanks</div></div><div class="cl-action">MONITOR</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Pressurization — reset if altitude changes by 1,000 ft+</div></div><div class="cl-action">MONITOR</div></div>
+    </div>
+  </div>
+
+  <!-- DESCENT -->
+  <div class="cl-block" id="blk-descent">
+    <button class="cl-block-header blue" onclick="toggleBlock('blk-descent')">
+      <span>📉 Descent</span>
+      <span class="collapse-icon">▼</span>
+    </button>
+    <div class="cl-items">
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Pressurization — set cabin alt selector for landing altitude + 500 ft</div></div><div class="cl-action">SET</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Altimeter</div></div><div class="cl-action">SET</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Windshield Anti-ice (if required)</div><div class="cl-note">NORMAL or HI well before descent into warm moist air to aid defogging</div></div><div class="cl-action">AS REQUIRED</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Autofeather (if installed)</div></div><div class="cl-action">ARM</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Fuel Balance</div></div><div class="cl-action">CHECK</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Power</div><div class="cl-note">~75% N1 required to maintain pressurization schedule</div></div><div class="cl-action">AS REQUIRED</div></div>
+    </div>
+  </div>
+
+  <!-- BEFORE LANDING -->
+  <div class="cl-block" id="blk-bldg">
+    <button class="cl-block-header normal" onclick="toggleBlock('blk-bldg')">
+      <span>🛬 Before Landing</span>
+      <span class="collapse-icon">▼</span>
+    </button>
+    <div class="cl-items">
+      <div class="cl-warning"><span class="warn-icon">⚠️</span><span class="warn-text">Avoid propeller RPM range of 1,750–1,850 RPM — may cause ILS interference.</span></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Approach Speed</div></div><div class="cl-action">CONFIRM</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Pressurization</div></div><div class="cl-action">CHECK</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Cabin Sign</div></div><div class="cl-action">NO SMOKE &amp; FSB</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Flaps</div></div><div class="cl-action">APPROACH</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Landing Gear</div></div><div class="cl-action">DN / 3 GREEN</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Lights</div></div><div class="cl-action">AS REQUIRED</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Prop Sync (Type I)</div></div><div class="cl-action">OFF</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Radar</div></div><div class="cl-action">AS REQUIRED</div></div>
+    </div>
+  </div>
+
+  <!-- NORMAL LANDING -->
+  <div class="cl-block" id="blk-landing">
+    <button class="cl-block-header normal" onclick="toggleBlock('blk-landing')">
+      <span>✅ Normal Landing</span>
+      <span class="collapse-icon">▼</span>
+    </button>
+    <div class="cl-items">
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Flaps</div></div><div class="cl-action">DOWN</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Airspeed</div></div><div class="cl-action">NORMAL APPR SPD</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Yaw Damp</div></div><div class="cl-action">OFF</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Power Levers</div></div><div class="cl-action">IDLE</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Propeller Levers</div></div><div class="cl-action">FULL FORWARD</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">After Touchdown — Power Levers</div></div><div class="cl-action">BETA / REVERSE</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Brakes</div></div><div class="cl-action">AS REQUIRED</div></div>
+    </div>
+  </div>
+
+  <!-- AFTER LANDING -->
+  <div class="cl-block" id="blk-after-ldg">
+    <button class="cl-block-header blue" onclick="toggleBlock('blk-after-ldg')">
+      <span>🏁 After Landing</span>
+      <span class="collapse-icon">▼</span>
+    </button>
+    <div class="cl-items">
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Auto Ignition</div></div><div class="cl-action">OFF</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Engine Ice Vanes</div></div><div class="cl-action">EXTEND</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Ice Protection</div></div><div class="cl-action">OFF</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Transponder</div></div><div class="cl-action">STANDBY</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Radar</div></div><div class="cl-action">STANDBY / OFF</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Trim Tabs</div></div><div class="cl-action">SET</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Flaps</div></div><div class="cl-action">UP</div></div>
+    </div>
+  </div>
+
+  <!-- SHUTDOWN -->
+  <div class="cl-block" id="blk-shutdown">
+    <button class="cl-block-header blue" onclick="toggleBlock('blk-shutdown')">
+      <span>🔒 Shutdown and Securing</span>
+      <span class="collapse-icon">▼</span>
+    </button>
+    <div class="cl-items">
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Parking Brake</div></div><div class="cl-action">SET</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Standby Boost Pumps and Crossfeed</div></div><div class="cl-action">OFF</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Avionics Master</div></div><div class="cl-action">OFF</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Inverter</div></div><div class="cl-action">OFF</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Autofeather (if installed)</div></div><div class="cl-action">OFF</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Lights</div></div><div class="cl-action">OFF</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Cabin Temp Mode</div></div><div class="cl-action">OFF</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Condition Levers</div></div><div class="cl-action">FUEL CUT OFF</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Propeller Levers</div></div><div class="cl-action">FEATHER</div></div>
+      <div class="cl-item" onclick="toggleItem(this)"><div class="cl-check"></div><div class="cl-step"><div class="cl-desc">Battery</div></div><div class="cl-action">OFF</div></div>
+    </div>
+  </div>
+</div><!-- /section -->
+
+<footer>King Air B200 · Super King Air B200/B200C · POH/AFM P/N 101-590010-147C · For training purposes only</footer>
+
+<script>
+function showTab(id, btn) {
+  var secs = document.querySelectorAll('.section');
+  for (var i = 0; i < secs.length; i++) secs[i].classList.remove('active');
+  var tabs = document.querySelectorAll('.tab');
+  for (var j = 0; j < tabs.length; j++) tabs[j].classList.remove('active');
+  document.getElementById('sec-' + id).classList.add('active');
+  btn.classList.add('active');
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+function switchTab(id) {
+  var tabs = document.querySelectorAll('.tab');
+  var names = ['home','limits','emergency','abnormal','normal','perf','wb'];
+  for (var i = 0; i < tabs.length; i++) {
+    if (names[i] === id) {
+      showTab(id, tabs[i]);
+      return;
+    }
+  }
+}
+
+function toggleItem(el) {
+  el.classList.toggle('done');
+}
+
+function toggleBlock(id) {
+  var blk = document.getElementById(id);
+  blk.classList.toggle('collapsed');
+}
+</script>
+</body>
+</html>
+
+<!-- ══════════════ PERFORMANCE SECTION ══════════════ -->
+<div class="section" id="sec-perf">
+  <div class="page-header">
+    <h2 style="color:var(--purple)">📊 Performance Calculator</h2>
+    <div class="source">POH Section V · 1700 RPM · Data based on 11,000 lb unless noted</div>
+  </div>
+
+  <!-- V-SPEEDS -->
+  <div class="lim-section">
+    <div class="lim-title">V-Speeds Reference (12,500 lb)</div>
+    <div class="speeds-grid" style="margin-top:8px">
+      <div class="speed-card"><div class="speed-label">VR — Flaps UP</div><div class="speed-val">95</div><div class="speed-unit">KIAS rotation</div></div>
+      <div class="speed-card"><div class="speed-label">V2 / 50-ft — Flaps UP</div><div class="speed-val">121</div><div class="speed-unit">KIAS at 50 ft</div></div>
+      <div class="speed-card"><div class="speed-label">VR — Flaps APPR</div><div class="speed-val">94</div><div class="speed-unit">KIAS rotation</div></div>
+      <div class="speed-card"><div class="speed-label">50-ft — Flaps APPR</div><div class="speed-val">106</div><div class="speed-unit">KIAS at 50 ft</div></div>
+      <div class="speed-card"><div class="speed-label">VYSE — Blue Line</div><div class="speed-val">121</div><div class="speed-unit">KIAS best ROC OEI</div></div>
+      <div class="speed-card"><div class="speed-label">VXSE</div><div class="speed-val">115</div><div class="speed-unit">KIAS best angle OEI</div></div>
+      <div class="speed-card"><div class="speed-label">Vy (2-engine)</div><div class="speed-val">125</div><div class="speed-unit">KIAS best ROC</div></div>
+      <div class="speed-card"><div class="speed-label">Cruise Climb</div><div class="speed-val">160</div><div class="speed-unit">KIAS typical</div></div>
+    </div>
+    <div class="lim-note">V-speeds vary slightly with weight. Climb speeds: 125/124/121/118/115 kts at 12500/12000/11000/10000/9000 lb. Approach flaps climb: 115–103 kts decreasing with weight.</div>
+  </div>
+
+  <!-- CRUISE CALCULATOR -->
+  <div class="lim-section">
+    <div class="lim-title">Cruise Performance Calculator</div>
+    <div class="lim-note" style="margin-bottom:12px">Normal Cruise 1700 RPM · POH Tables pp.5-46 to 5-55 · ISA day</div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">
+      <div>
+        <label style="font-size:11px;color:var(--muted);display:block;margin-bottom:4px">POWER SETTING</label>
+        <select id="p-mode" style="width:100%;background:var(--surface2);border:1px solid var(--border);color:var(--text);padding:9px 10px;border-radius:6px;font-size:14px">
+          <option value="norm">Normal Cruise (1700 RPM)</option>
+          <option value="max">Max Cruise (1700 RPM)</option>
+        </select>
+      </div>
+      <div>
+        <label style="font-size:11px;color:var(--muted);display:block;margin-bottom:4px">PRESSURE ALTITUDE (ft)</label>
+        <select id="p-alt" style="width:100%;background:var(--surface2);border:1px solid var(--border);color:var(--text);padding:9px 10px;border-radius:6px;font-size:14px">
+          <option value="0">Sea Level</option>
+          <option value="2000">2,000 ft</option>
+          <option value="4000">4,000 ft</option>
+          <option value="6000">6,000 ft</option>
+          <option value="8000">8,000 ft</option>
+          <option value="10000">10,000 ft</option>
+          <option value="12000">12,000 ft</option>
+          <option value="14000">14,000 ft</option>
+          <option value="16000">16,000 ft</option>
+          <option value="18000">18,000 ft</option>
+          <option value="20000">20,000 ft</option>
+          <option value="22000">22,000 ft</option>
+          <option value="24000">24,000 ft</option>
+          <option value="26000" selected>26,000 ft</option>
+          <option value="28000">28,000 ft</option>
+          <option value="29000">29,000 ft</option>
+          <option value="31000">31,000 ft</option>
+          <option value="33000">33,000 ft</option>
+          <option value="35000">35,000 ft</option>
+        </select>
+      </div>
+      <div>
+        <label style="font-size:11px;color:var(--muted);display:block;margin-bottom:4px">ISA DEVIATION (°C)</label>
+        <select id="p-isa" style="width:100%;background:var(--surface2);border:1px solid var(--border);color:var(--text);padding:9px 10px;border-radius:6px;font-size:14px">
+          <option value="-30">ISA −30°C</option>
+          <option value="-20">ISA −20°C</option>
+          <option value="-10">ISA −10°C</option>
+          <option value="0" selected>ISA (Standard)</option>
+          <option value="10">ISA +10°C</option>
+          <option value="20">ISA +20°C</option>
+          <option value="30">ISA +30°C</option>
+          <option value="37">ISA +37°C</option>
+        </select>
+      </div>
+      <div>
+        <label style="font-size:11px;color:var(--muted);display:block;margin-bottom:4px">CRUISE WEIGHT (lb)</label>
+        <select id="p-wt" style="width:100%;background:var(--surface2);border:1px solid var(--border);color:var(--text);padding:9px 10px;border-radius:6px;font-size:14px">
+          <option value="12000">12,000 lb</option>
+          <option value="11000" selected>11,000 lb</option>
+          <option value="10000">10,000 lb</option>
+        </select>
+      </div>
+      <div>
+        <label style="font-size:11px;color:var(--muted);display:block;margin-bottom:4px">WIND (kts, + = headwind)</label>
+        <input type="number" id="p-wind" value="0" style="width:100%;background:var(--surface2);border:1px solid var(--border);color:var(--text);padding:9px 10px;border-radius:6px;font-size:14px">
+      </div>
+      <div>
+        <label style="font-size:11px;color:var(--muted);display:block;margin-bottom:4px">DISTANCE (nm, optional)</label>
+        <input type="number" id="p-dist" value="0" style="width:100%;background:var(--surface2);border:1px solid var(--border);color:var(--text);padding:9px 10px;border-radius:6px;font-size:14px">
+      </div>
+    </div>
+
+    <button onclick="calcPerf()" style="width:100%;background:var(--surface2);border:1px solid var(--purple);color:var(--purple);font-weight:700;font-size:13px;letter-spacing:1px;padding:12px;border-radius:8px;cursor:pointer">▶ CALCULATE CRUISE</button>
+
+    <div id="perf-results" style="margin-top:12px;display:none">
+      <div class="result-grid" id="perf-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:8px"></div>
+      <div id="perf-notes"></div>
+    </div>
+  </div>
+
+  <!-- TIME FUEL DISTANCE TO CLIMB -->
+  <div class="lim-section">
+    <div class="lim-title">Time · Fuel · Distance to Climb</div>
+    <div class="lim-note" style="margin-bottom:10px">From Sea Level · 1900 RPM · Max Continuous Power · Gear Up · ISA · 12,500 lb takeoff weight</div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px">
+      <div>
+        <label style="font-size:11px;color:var(--muted);display:block;margin-bottom:4px">CRUISE ALTITUDE</label>
+        <select id="clm-alt" style="width:100%;background:var(--surface2);border:1px solid var(--border);color:var(--text);padding:9px;border-radius:6px;font-size:14px">
+          <option value="10000">10,000 ft</option>
+          <option value="14000">14,000 ft</option>
+          <option value="18000">18,000 ft</option>
+          <option value="20000">20,000 ft</option>
+          <option value="24000">24,000 ft</option>
+          <option value="26000" selected>26,000 ft</option>
+          <option value="28000">28,000 ft</option>
+          <option value="29000">29,000 ft</option>
+          <option value="31000">31,000 ft</option>
+          <option value="33000">33,000 ft</option>
+          <option value="35000">35,000 ft</option>
+        </select>
+      </div>
+      <div>
+        <label style="font-size:11px;color:var(--muted);display:block;margin-bottom:4px">AIRPORT PRESSURE ALT</label>
+        <input type="number" id="clm-pa" value="0" step="500" style="width:100%;background:var(--surface2);border:1px solid var(--border);color:var(--text);padding:9px;border-radius:6px;font-size:14px">
+      </div>
+    </div>
+    <button onclick="calcClimb2()" style="width:100%;background:var(--surface2);border:1px solid var(--cyan);color:var(--cyan);font-weight:700;font-size:13px;letter-spacing:1px;padding:12px;border-radius:8px;cursor:pointer">▶ CALCULATE CLIMB</button>
+    <div id="climb2-results" style="margin-top:12px;display:none">
+      <div id="climb2-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:8px"></div>
+      <div id="climb2-notes"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ WEIGHT & BALANCE SECTION ══════════════ -->
+<div class="section" id="sec-wb">
+  <div class="page-header">
+    <h2 style="color:var(--cyan)">⚖️ Weight & Balance</h2>
+    <div class="source">POH Section VI · CG in inches aft of datum (F.S.)</div>
+  </div>
+
+  <div class="lim-note" style="margin-bottom:16px">Enter values for your aircraft. BEW and moment from your W&B form at delivery. Fuel at 6.7 lb/gal. Arm approximations from POH — verify with aircraft W&B form.</div>
+
+  <!-- INPUT GRID -->
+  <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px;margin-bottom:12px">
+    <div style="font-size:11px;font-weight:700;color:var(--cyan);letter-spacing:1.5px;margin-bottom:12px">AIRCRAFT</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+      <div>
+        <label style="font-size:11px;color:var(--muted);display:block;margin-bottom:4px">BASIC EMPTY WEIGHT (lb)</label>
+        <input type="number" id="wb-bew" value="7900" step="10" class="wb-input">
+      </div>
+      <div>
+        <label style="font-size:11px;color:var(--muted);display:block;margin-bottom:4px">BEW MOMENT / 100</label>
+        <input type="number" id="wb-bew-mom" value="14900" step="10" class="wb-input">
+      </div>
+    </div>
+  </div>
+
+  <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px;margin-bottom:12px">
+    <div style="font-size:11px;font-weight:700;color:var(--cyan);letter-spacing:1.5px;margin-bottom:12px">CREW &amp; PASSENGERS (F.S. stations)</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+      <div>
+        <label style="font-size:11px;color:var(--muted);display:block;margin-bottom:4px">PILOT (F.S. 129)</label>
+        <input type="number" id="wb-pilot" value="200" step="5" class="wb-input">
+      </div>
+      <div>
+        <label style="font-size:11px;color:var(--muted);display:block;margin-bottom:4px">COPILOT (F.S. 129)</label>
+        <input type="number" id="wb-copilot" value="200" step="5" class="wb-input">
+      </div>
+      <div>
+        <label style="font-size:11px;color:var(--muted);display:block;margin-bottom:4px">ROW I — 2 pax (F.S. 171)</label>
+        <input type="number" id="wb-row1" value="0" step="5" class="wb-input">
+      </div>
+      <div>
+        <label style="font-size:11px;color:var(--muted);display:block;margin-bottom:4px">ROW II — 2 pax (F.S. 214)</label>
+        <input type="number" id="wb-row2" value="0" step="5" class="wb-input">
+      </div>
+      <div>
+        <label style="font-size:11px;color:var(--muted);display:block;margin-bottom:4px">ROW III — 2 pax (F.S. 255)</label>
+        <input type="number" id="wb-row3" value="0" step="5" class="wb-input">
+      </div>
+      <div>
+        <label style="font-size:11px;color:var(--muted);display:block;margin-bottom:4px">AFT PAX/LAV (F.S. 335)</label>
+        <input type="number" id="wb-aft" value="0" step="5" class="wb-input">
+      </div>
+    </div>
+  </div>
+
+  <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px;margin-bottom:12px">
+    <div style="font-size:11px;font-weight:700;color:var(--cyan);letter-spacing:1.5px;margin-bottom:12px">BAGGAGE</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+      <div>
+        <label style="font-size:11px;color:var(--muted);display:block;margin-bottom:4px">AFT BAGGAGE (F.S. 325) lb</label>
+        <input type="number" id="wb-bag" value="0" step="5" class="wb-input">
+      </div>
+      <div>
+        <label style="font-size:11px;color:var(--muted);display:block;margin-bottom:4px">NOSE COMPARTMENT (F.S. 84) lb</label>
+        <input type="number" id="wb-nose" value="0" step="5" class="wb-input">
+      </div>
+    </div>
+  </div>
+
+  <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px;margin-bottom:12px">
+    <div style="font-size:11px;font-weight:700;color:var(--cyan);letter-spacing:1.5px;margin-bottom:12px">FUEL (6.7 lb/gal · arm approx. F.S. 177 main / F.S. 243 aux)</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+      <div>
+        <label style="font-size:11px;color:var(--muted);display:block;margin-bottom:4px">MAIN FUEL (max 386 gal)</label>
+        <input type="number" id="wb-fuel-main-gal" value="386" max="386" min="0" step="10" oninput="syncFuel()" class="wb-input">
+      </div>
+      <div>
+        <label style="font-size:11px;color:var(--muted);display:block;margin-bottom:4px">= lb</label>
+        <input type="number" id="wb-fuel-main-lb" value="2586" step="10" oninput="syncFuelLb()" class="wb-input">
+      </div>
+      <div>
+        <label style="font-size:11px;color:var(--muted);display:block;margin-bottom:4px">AUX FUEL (max 158 gal · only if main full)</label>
+        <input type="number" id="wb-fuel-aux-gal" value="0" max="158" min="0" step="10" oninput="syncAux()" class="wb-input">
+      </div>
+      <div>
+        <label style="font-size:11px;color:var(--muted);display:block;margin-bottom:4px">= lb</label>
+        <input type="number" id="wb-fuel-aux-lb" value="0" step="10" oninput="syncAuxLb()" class="wb-input">
+      </div>
+    </div>
+    <div style="font-size:11px;color:var(--muted);margin-top:8px">⚠️ Aux tanks may be used ONLY when main tanks are completely filled (POH)</div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px">
+    <div>
+      <label style="font-size:11px;color:var(--muted);display:block;margin-bottom:4px">FUEL FOR TRIP (lb — to subtract)</label>
+      <input type="number" id="wb-fuel-used" value="0" step="10" class="wb-input">
+    </div>
+    <div style="display:flex;align-items:flex-end">
+      <button onclick="calcWB()" style="width:100%;background:var(--surface2);border:1px solid var(--cyan);color:var(--cyan);font-weight:700;font-size:13px;letter-spacing:1px;padding:12px;border-radius:8px;cursor:pointer">⚖️ CALCULATE W&amp;B</button>
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div id="wb-result" style="display:none"></div>
+
+  <!-- CG ENVELOPE REFERENCE -->
+  <div class="lim-section" style="margin-top:16px">
+    <div class="lim-title">CG Envelope Reference (gear down)</div>
+    <div class="lim-row"><span class="lim-label">12,500 lb — Forward CG</span><span class="lim-value orange">F.S. 185.0</span></div>
+    <div class="lim-row"><span class="lim-label">12,500 lb — Aft CG</span><span class="lim-value orange">F.S. 196.4</span></div>
+    <div class="lim-row"><span class="lim-label">≤ 11,279 lb — Forward CG</span><span class="lim-value orange">F.S. 181.0</span></div>
+    <div class="lim-row"><span class="lim-label">≤ 11,279 lb — Aft CG</span><span class="lim-value orange">F.S. 196.4</span></div>
+    <div class="lim-row"><span class="lim-label">Max Zero Fuel Weight</span><span class="lim-value red">11,000 lb</span></div>
+    <div class="lim-row"><span class="lim-label">Max Takeoff Weight</span><span class="lim-value red">12,500 lb</span></div>
+  </div>
+</div>
+
+<style>
+.wb-input { width:100%;background:var(--surface2);border:1px solid var(--border);color:var(--text);padding:9px 10px;border-radius:6px;font-size:14px; }
+.result-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:8px; }
+.r-item { background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:10px;text-align:center; }
+.r-val { font-size:20px;font-weight:800;color:var(--text); }
+.r-lbl { font-size:10px;color:var(--muted);margin-top:2px;letter-spacing:0.5px; }
+.r-item.good { border-color:var(--green); }
+.r-item.good .r-val { color:var(--green); }
+.r-item.warn { border-color:var(--orange); }
+.r-item.warn .r-val { color:var(--orange); }
+.r-item.bad { border-color:var(--red); }
+.r-item.bad .r-val { color:var(--red); }
+.r-item.info { border-color:var(--cyan); }
+.r-item.info .r-val { color:var(--cyan); }
+</style>
+
+<script>
+// ══════════════════════════════════════════════
+// CRUISE PERFORMANCE DATA (POH Section V)
+// Normal Cruise 1700 RPM: [alt, torque, ff_total, tas_11k]
+// Max Cruise 1700 RPM: same structure but higher torque/ff at high altitudes
+// Format: alt → {ISA_offset → [torque, ff, ias, tas] at 11,000 lb}
+// ══════════════════════════════════════════════
+var NORM_ISA = {
+  0:     [2230,946,239,240],  2000: [2230,918,237,245],
+  4000:  [2230,892,235,250],  6000: [2230,866,232,254],
+  8000:  [2230,842,230,259],  10000:[2230,820,228,264],
+  12000: [2230,800,225,270],  14000:[2230,786,223,275],
+  16000: [2230,776,220,280],  18000:[2152,746,215,282],
+  20000: [2057,710,208,283],  22000:[1963,674,202,284],
+  24000: [1842,632,195,283],  26000:[1712,586,186,280],
+  28000: [1579,540,178,277],  29000:[1514,518,173,274],
+  31000: [1391,478,164,270],  33000:[1274,440,154,263],
+  35000: [1153,402,143,254]
+};
+var MAX_ISA = {
+  0:     [2230,946,239,240],  2000: [2230,918,237,245],
+  4000:  [2230,892,235,250],  6000: [2230,866,232,254],
+  8000:  [2230,842,230,259],  10000:[2230,820,228,264],
+  12000: [2230,800,225,270],  14000:[2230,786,223,275],
+  16000: [2230,776,220,280],  18000:[2230,770,217,286],
+  20000: [2143,736,212,287],  22000:[2043,700,205,288],
+  24000: [1920,656,198,287],  26000:[1789,610,190,285],
+  28000: [1654,562,181,282],  29000:[1588,540,177,280],
+  31000: [1460,498,167,275],  33000:[1334,458,158,269],
+  35000: [1204,418,146,260]
+};
+// ISA offset adjustments (TAS delta per 10°C dev)
+// Approximate: +10°C → TAS ≈ +2-3 kts at altitude, FF ≈ +10-20 lb/hr
+var ISA_OFFSET_TAS = {'-30':-8,'-20':-5,'-10':-3,'0':0,'10':3,'20':6,'30':9,'37':12};
+var ISA_OFFSET_FF =  {'-30':-40,'-20':-25,'-10':-12,'0':0,'10':12,'20':22,'30':30,'37':38};
+// Weight factors (table shows 11,000 lb; adjust for 12k and 10k)
+var WT_TAS_DELTA = {'12000':+3, '11000':0, '10000':-3}; // TAS approx
+
+function calcPerf() {
+  var mode = document.getElementById('p-mode').value;
+  var alt  = parseInt(document.getElementById('p-alt').value);
+  var isa  = document.getElementById('p-isa').value;
+  var wt   = document.getElementById('p-wt').value;
+  var wind = parseFloat(document.getElementById('p-wind').value);
+  var dist = parseFloat(document.getElementById('p-dist').value);
+  var tbl  = (mode === 'max') ? MAX_ISA : NORM_ISA;
+  var row  = tbl[alt];
+  if (!row) { alert('No data for this altitude'); return; }
+  var torque = row[0];
+  var ff = row[1] + (ISA_OFFSET_FF[isa] || 0);
+  var tas = row[3] + (ISA_OFFSET_TAS[isa] || 0) + (WT_TAS_DELTA[wt] || 0);
+  var ias = row[2] + Math.round((WT_TAS_DELTA[wt] || 0) * 0.5);
+  var gs = tas - wind;
+  var html = '';
+  html += '<div class="r-item info"><div class="r-val">' + Math.round(tas) + '</div><div class="r-lbl">TAS (kts)</div></div>';
+  html += '<div class="r-item info"><div class="r-val">' + Math.round(ias) + '</div><div class="r-lbl">IAS (kts)</div></div>';
+  html += '<div class="r-item"><div class="r-val">' + Math.round(gs) + '</div><div class="r-lbl">GS (kts)</div></div>';
+  html += '<div class="r-item warn"><div class="r-val">' + Math.round(ff) + '</div><div class="r-lbl">Total FF (lb/hr)</div></div>';
+  html += '<div class="r-item"><div class="r-val">' + torque + '</div><div class="r-lbl">Torque (ft-lb)</div></div>';
+  html += '<div class="r-item"><div class="r-val">' + Math.round(ff/2) + '</div><div class="r-lbl">FF per engine</div></div>';
+  if (dist > 0 && gs > 0) {
+    var mins = Math.round(dist / gs * 60);
+    var fuel = Math.round(ff * mins / 60);
+    var h = Math.floor(mins/60), m = mins%60;
+    html += '<div class="r-item good"><div class="r-val">' + h + ':' + (m<10?'0':'') + m + '</div><div class="r-lbl">Time ' + dist + ' nm</div></div>';
+    html += '<div class="r-item good"><div class="r-val">' + fuel.toLocaleString() + '</div><div class="r-lbl">Fuel ' + dist + ' nm (lb)</div></div>';
+  }
+  document.getElementById('perf-grid').innerHTML = html;
+  var modeLabel = mode === 'max' ? 'Max Cruise' : 'Normal Cruise';
+  var isaLabel = 'ISA' + (isa !== '0' ? (isa > 0 ? ' +' : ' ') + isa + '°C' : '');
+  document.getElementById('perf-notes').innerHTML = '<div class="result-note">' + modeLabel + ' · 1700 RPM · PA ' + alt.toLocaleString() + ' ft · ' + wt + ' lb · ' + isaLabel + ' · Wind ' + (wind>=0?'+':'') + wind + ' kts<br>Data from POH pp.5-46 to 5-65 · Interpolated from ISA tables</div>';
+  document.getElementById('perf-results').style.display = 'block';
+}
+
+// CLIMB DATA: [alt_cruise, alt_apt → [time_min, fuel_lb, dist_nm]]
+// From POH chart example at ISA, 12,500 lb, apt PA 5,433 ft, cruise FL260 → 18 min, 203 lb, 54 nm
+// Approximate table derived from chart readings (POH Section V)
+var CLM2_TBL = {
+  10000: {0:[5,65,15], 5000:[3,40,9]},
+  14000: {0:[7,88,20], 5000:[4,52,12]},
+  18000: {0:[11,130,31], 5000:[7,80,19]},
+  20000: {0:[13,152,37], 5000:[9,96,22]},
+  24000: {0:[15,175,46], 5000:[11,112,28]},
+  26000: {0:[18,203,54], 5433:[18,203,54]},
+  28000: {0:[21,228,61], 5000:[15,155,40]},
+  29000: {0:[22,237,64], 5000:[16,161,42]},
+  31000: {0:[25,260,71], 5000:[18,175,46]},
+  33000: {0:[30,302,83], 5000:[22,205,56]},
+  35000: {0:[38,370,103], 5000:[28,258,72]}
+};
+
+function calcClimb2() {
+  var alt = parseInt(document.getElementById('clm-alt').value);
+  var pa  = parseInt(document.getElementById('clm-pa').value) || 0;
+  var tbl = CLM2_TBL[alt];
+  if (!tbl) { alert('No data for altitude'); return; }
+  // Find closest airport PA
+  var keys = Object.keys(tbl).map(Number).sort(function(a,b){return a-b;});
+  var bestKey = keys[0];
+  var minDiff = Math.abs(pa - keys[0]);
+  for (var i = 1; i < keys.length; i++) {
+    var diff = Math.abs(pa - keys[i]);
+    if (diff < minDiff) { minDiff = diff; bestKey = keys[i]; }
+  }
+  var r = tbl[bestKey];
+  var html = '';
+  html += '<div class="r-item info"><div class="r-val">' + r[0] + '</div><div class="r-lbl">Time (min)</div></div>';
+  html += '<div class="r-item warn"><div class="r-val">' + r[1] + '</div><div class="r-lbl">Fuel (lb)</div></div>';
+  html += '<div class="r-item good"><div class="r-val">' + r[2] + '</div><div class="r-lbl">Distance (nm)</div></div>';
+  document.getElementById('climb2-grid').innerHTML = html;
+  document.getElementById('climb2-notes').innerHTML = '<div class="result-note">To FL' + Math.round(alt/100) + ' · Approx airport PA ' + pa.toLocaleString() + ' ft · ISA · 12,500 lb · Max Continuous · 1900 RPM<br>⚠️ Approximate from POH chart — use chart for accurate values</div>';
+  document.getElementById('climb2-results').style.display = 'block';
+}
+
+// ══════════════════════════════════════════════
+// WEIGHT & BALANCE
+// ══════════════════════════════════════════════
+function syncFuel() {
+  var gal = parseFloat(document.getElementById('wb-fuel-main-gal').value) || 0;
+  document.getElementById('wb-fuel-main-lb').value = Math.round(gal * 6.7);
+}
+function syncFuelLb() {
+  var lb = parseFloat(document.getElementById('wb-fuel-main-lb').value) || 0;
+  document.getElementById('wb-fuel-main-gal').value = Math.round(lb / 6.7);
+}
+function syncAux() {
+  var gal = parseFloat(document.getElementById('wb-fuel-aux-gal').value) || 0;
+  document.getElementById('wb-fuel-aux-lb').value = Math.round(gal * 6.7);
+}
+function syncAuxLb() {
+  var lb = parseFloat(document.getElementById('wb-fuel-aux-lb').value) || 0;
+  document.getElementById('wb-fuel-aux-gal').value = Math.round(lb / 6.7);
+}
+
+function getCG(weight, moment100) {
+  if (weight <= 0) return 0;
+  return (moment100 * 100) / weight;
+}
+
+function cgClass(wt, cg) {
+  if (wt <= 0) return '';
+  var fwd = (wt >= 11279) ? 185.0 : 181.0;
+  var aft = 196.4;
+  if (cg < fwd - 2 || cg > aft + 2) return 'bad';
+  if (cg < fwd || cg > aft) return 'warn';
+  return 'good';
+}
+
+function wtClass(wt, limit) {
+  if (wt > limit) return 'bad';
+  if (wt > limit * 0.98) return 'warn';
+  return 'good';
+}
+
+function calcWB() {
+  var bew = parseFloat(document.getElementById('wb-bew').value) || 0;
+  var bewMom = parseFloat(document.getElementById('wb-bew-mom').value) || 0;
+  var pilot = parseFloat(document.getElementById('wb-pilot').value) || 0;
+  var copilot = parseFloat(document.getElementById('wb-copilot').value) || 0;
+  var row1 = parseFloat(document.getElementById('wb-row1').value) || 0;
+  var row2 = parseFloat(document.getElementById('wb-row2').value) || 0;
+  var row3 = parseFloat(document.getElementById('wb-row3').value) || 0;
+  var aft = parseFloat(document.getElementById('wb-aft').value) || 0;
+  var bag = parseFloat(document.getElementById('wb-bag').value) || 0;
+  var nose = parseFloat(document.getElementById('wb-nose').value) || 0;
+  var fuelMainLb = parseFloat(document.getElementById('wb-fuel-main-lb').value) || 0;
+  var fuelAuxLb = parseFloat(document.getElementById('wb-fuel-aux-lb').value) || 0;
+  var fuelUsed = parseFloat(document.getElementById('wb-fuel-used').value) || 0;
+
+  // Moments (arm × weight / 100)
+  var items = [
+    {name:'Pilot',       wt:pilot,    arm:129.0},
+    {name:'Copilot',     wt:copilot,  arm:129.0},
+    {name:'Row I',       wt:row1,     arm:171.0},
+    {name:'Row II',      wt:row2,     arm:214.0},
+    {name:'Row III',     wt:row3,     arm:255.0},
+    {name:'Aft Pax',     wt:aft,      arm:335.0},
+    {name:'Aft Baggage', wt:bag,      arm:325.0},
+    {name:'Nose Comp',   wt:nose,     arm:84.0},
+  ];
+
+  // ZFW = BEW + all items (no fuel)
+  var zfwWt = bew;
+  var zfwMom = bewMom;
+  items.forEach(function(i) {
+    zfwWt += i.wt;
+    zfwMom += (i.wt * i.arm / 100);
+  });
+
+  // Add fuel (arm ≈ F.S. 177 main, F.S. 243 aux)
+  var fuelMainMom = fuelMainLb * 177.0 / 100;
+  var fuelAuxMom  = fuelAuxLb  * 243.0 / 100;
+  var towWt  = zfwWt + fuelMainLb + fuelAuxLb;
+  var towMom = zfwMom + fuelMainMom + fuelAuxMom;
+
+  // Landing = takeoff minus fuel used
+  var ldgWt  = towWt - fuelUsed;
+  var ldgMom = towMom - (fuelUsed * 185.0 / 100); // approx arm for used fuel
+
+  var zfwCG = getCG(zfwWt, zfwMom);
+  var towCG  = getCG(towWt, towMom);
+  var ldgCG  = getCG(ldgWt, ldgMom);
+
+  var html = '';
+
+  // TAKEOFF block
+  html += '<div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px;margin-bottom:10px">';
+  html += '<div style="font-size:11px;font-weight:700;color:var(--cyan);letter-spacing:1.5px;margin-bottom:10px">TAKEOFF</div>';
+  html += '<div class="result-grid">';
+  var towWtClass = wtClass(towWt, 12500);
+  html += '<div class="r-item ' + towWtClass + '"><div class="r-val">' + Math.round(towWt).toLocaleString() + '</div><div class="r-lbl">TOW (lb)</div></div>';
+  html += '<div class="r-item ' + cgClass(towWt,towCG) + '"><div class="r-val">F.S. ' + towCG.toFixed(1) + '</div><div class="r-lbl">CG</div></div>';
+  var macPct = ((towCG - 166.3) / 34.3 * 100);
+  html += '<div class="r-item info"><div class="r-val">' + macPct.toFixed(1) + '%</div><div class="r-lbl">% MAC</div></div>';
+  html += '</div>';
+  if (towWt > 12500) html += '<div class="warn-box" style="margin-top:8px"><strong>⛔ OVERWEIGHT</strong>TOW ' + Math.round(towWt).toLocaleString() + ' lb exceeds MTOW 12,500 lb by ' + (Math.round(towWt)-12500) + ' lb</div>';
+  html += '</div>';
+
+  // ZFW block
+  html += '<div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px;margin-bottom:10px">';
+  html += '<div style="font-size:11px;font-weight:700;color:var(--muted);letter-spacing:1.5px;margin-bottom:10px">ZERO FUEL</div>';
+  html += '<div class="result-grid">';
+  var zfwWtClass = wtClass(zfwWt, 11000);
+  html += '<div class="r-item ' + zfwWtClass + '"><div class="r-val">' + Math.round(zfwWt).toLocaleString() + '</div><div class="r-lbl">ZFW (lb)</div></div>';
+  html += '<div class="r-item ' + cgClass(zfwWt,zfwCG) + '"><div class="r-val">F.S. ' + zfwCG.toFixed(1) + '</div><div class="r-lbl">CG</div></div>';
+  html += '<div class="r-item"><div class="r-val">' + (11000 - Math.round(zfwWt)).toLocaleString() + '</div><div class="r-lbl">Margin to MZFW</div></div>';
+  html += '</div>';
+  if (zfwWt > 11000) html += '<div class="warn-box" style="margin-top:8px"><strong>⛔ EXCEEDS MZFW</strong>ZFW ' + Math.round(zfwWt).toLocaleString() + ' lb exceeds limit 11,000 lb by ' + (Math.round(zfwWt)-11000) + ' lb</div>';
+  html += '</div>';
+
+  // LANDING block
+  if (fuelUsed > 0) {
+    html += '<div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px;margin-bottom:10px">';
+    html += '<div style="font-size:11px;font-weight:700;color:var(--green);letter-spacing:1.5px;margin-bottom:10px">LANDING (after ' + fuelUsed.toLocaleString() + ' lb used)</div>';
+    html += '<div class="result-grid">';
+    html += '<div class="r-item ' + wtClass(ldgWt,12500) + '"><div class="r-val">' + Math.round(ldgWt).toLocaleString() + '</div><div class="r-lbl">LDG WT (lb)</div></div>';
+    html += '<div class="r-item ' + cgClass(ldgWt,ldgCG) + '"><div class="r-val">F.S. ' + ldgCG.toFixed(1) + '</div><div class="r-lbl">LDG CG</div></div>';
+    html += '<div class="r-item info"><div class="r-val">' + (fuelMainLb + fuelAuxLb - fuelUsed).toLocaleString() + '</div><div class="r-lbl">Fuel Remaining (lb)</div></div>';
+    html += '</div>';
+    html += '</div>';
+  }
+
+  // ITEM BREAKDOWN
+  html += '<div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px;margin-bottom:10px">';
+  html += '<div style="font-size:11px;font-weight:700;color:var(--muted);letter-spacing:1.5px;margin-bottom:8px">BREAKDOWN</div>';
+  var allItems = [
+    {n:'Basic Empty',    w:bew,          m:bewMom},
+    {n:'Pilot (129)',    w:pilot,        m:pilot*129/100},
+    {n:'Copilot (129)',  w:copilot,      m:copilot*129/100},
+    {n:'Row I (171)',    w:row1,         m:row1*171/100},
+    {n:'Row II (214)',   w:row2,         m:row2*214/100},
+    {n:'Row III (255)',  w:row3,         m:row3*255/100},
+    {n:'Aft Pax (335)',  w:aft,          m:aft*335/100},
+    {n:'Aft Bag (325)',  w:bag,          m:bag*325/100},
+    {n:'Nose (84)',      w:nose,         m:nose*84/100},
+    {n:'Main Fuel (177)',w:fuelMainLb,   m:fuelMainMom},
+    {n:'Aux Fuel (243)', w:fuelAuxLb,    m:fuelAuxMom},
+  ];
+  allItems.forEach(function(item) {
+    if (item.w <= 0) return;
+    html += '<div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid #1c2128;font-size:12px">';
+    html += '<span style="color:var(--muted)">' + item.n + '</span>';
+    html += '<span>' + Math.round(item.w).toLocaleString() + ' lb &nbsp; Mom/100: ' + Math.round(item.m).toLocaleString() + '</span>';
+    html += '</div>';
+  });
+  html += '<div style="display:flex;justify-content:space-between;padding:6px 0;font-weight:700;font-size:12px">';
+  html += '<span>TAKEOFF TOTAL</span><span>' + Math.round(towWt).toLocaleString() + ' lb &nbsp; Mom/100: ' + Math.round(towMom).toLocaleString() + '</span>';
+  html += '</div>';
+  html += '</div>';
+
+  html += '<div class="result-note" style="margin-top:4px">⚠️ Fuel arms are approximate (F.S. 177 main / F.S. 243 aux). Use actual arms from your aircraft W&B form for precise calculations. % MAC uses LEMAC F.S. 166.3, MAC = 34.3 in.</div>';
+
+  document.getElementById('wb-result').innerHTML = html;
+  document.getElementById('wb-result').style.display = 'block';
+  document.getElementById('wb-result').scrollIntoView({behavior:'smooth', block:'start'});
+}
+</script>

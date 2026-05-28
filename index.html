@@ -6,30 +6,36 @@
 <title>EasyPerf — Flight Training Tools</title>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#07090d;--panel:#0c1018;--border:#182030;--acc:#00c8ff;--a2:#ff6b35;--a3:#39ff6e;--text:#bccdd8;--muted:#47637a}
+:root{--bg:#07090d;--panel:#0c1018;--border:#182030;--acc:#00c8ff;--a2:#ff6b35;--a3:#39ff6e;--a4:#ff3b6b;--a5:#ffb547;--text:#bccdd8;--muted:#47637a}
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--bg);color:var(--text);font-family:'Exo 2',sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:30px 20px}
 .logo{font-family:'Orbitron',sans-serif;font-size:10px;letter-spacing:5px;color:var(--muted);margin-bottom:10px;text-align:center}
 h1{font-family:'Orbitron',sans-serif;font-size:24px;color:#fff;letter-spacing:3px;margin-bottom:6px;text-align:center}
 .sub{color:var(--muted);font-size:12px;margin-bottom:48px;text-align:center}
-.cards{display:flex;gap:20px;flex-wrap:wrap;justify-content:center;width:100%;max-width:960px}
+.cards{display:flex;gap:20px;flex-wrap:wrap;justify-content:center;width:100%;max-width:1240px}
 .card{background:var(--panel);border:2px solid var(--border);border-radius:10px;padding:32px 24px;cursor:pointer;transition:all .3s;flex:1;min-width:240px;max-width:280px;text-align:center;text-decoration:none;display:flex;flex-direction:column;align-items:center}
 .card:hover{transform:translateY(-6px)}
 .card.c90:hover{border-color:var(--a2);box-shadow:0 12px 40px rgba(255,107,53,.15)}
+.card.b200:hover{border-color:var(--a4);box-shadow:0 12px 40px rgba(255,59,107,.15)}
 .card.sov:hover{border-color:var(--acc);box-shadow:0 12px 40px rgba(0,200,255,.15)}
 .card.sovp:hover{border-color:var(--a3);box-shadow:0 12px 40px rgba(57,255,110,.15)}
+.card.rab:hover{border-color:var(--a5);box-shadow:0 12px 40px rgba(255,181,71,.15)}
 .card-icon{font-size:44px;margin-bottom:16px}
 .card-mfr{font-family:'Orbitron',sans-serif;font-size:9px;letter-spacing:2px;color:var(--muted);margin-bottom:6px}
 .card-model{font-family:'Orbitron',sans-serif;font-size:20px;font-weight:900;margin-bottom:8px}
 .card.c90 .card-model{color:var(--a2)}
+.card.b200 .card-model{color:var(--a4)}
 .card.sov .card-model{color:var(--acc)}
 .card.sovp .card-model{color:var(--a3)}
+.card.rab .card-model{color:var(--a5)}
 .card-desc{font-size:12px;color:var(--muted);line-height:1.8;margin-bottom:20px}
 .card-tags{display:flex;flex-wrap:wrap;gap:5px;justify-content:center}
 .tag{font-size:9px;padding:3px 8px;border-radius:3px;font-family:'Orbitron',sans-serif;letter-spacing:.4px}
 .tag.o{border:1px solid var(--a2);color:var(--a2)}
+.tag.r{border:1px solid var(--a4);color:var(--a4)}
 .tag.b{border:1px solid var(--acc);color:var(--acc)}
 .tag.g{border:1px solid var(--a3);color:var(--a3)}
+.tag.a{border:1px solid var(--a5);color:var(--a5)}
 .foot{margin-top:48px;font-size:11px;color:var(--muted);text-align:center;line-height:2}
 </style>
 </head>
@@ -47,6 +53,17 @@ h1{font-family:'Orbitron',sans-serif;font-size:24px;color:#fff;letter-spacing:3p
       <span class="tag o">SYSTEMS</span>
       <span class="tag o">QUIZ</span>
       <span class="tag o">ANNUNCIATORS</span>
+    </div>
+  </a>
+  <a href="b200_hub.html" class="card b200">
+    <div class="card-icon">🛫</div>
+    <div class="card-mfr">BEECHCRAFT</div>
+    <div class="card-model">KING AIR B200</div>
+    <div class="card-desc">Super King Air 200<br>Turboprop · PT6A-42<br>Systems Study Guide</div>
+    <div class="card-tags">
+      <span class="tag r">SYSTEMS</span>
+      <span class="tag r">QUIZ</span>
+      <span class="tag r">ANNUNCIATORS</span>
     </div>
   </a>
   <a href="sovereign_hub.html" class="card sov">
@@ -70,6 +87,17 @@ h1{font-family:'Orbitron',sans-serif;font-size:24px;color:#fff;letter-spacing:3p
       <span class="tag g">LANDING</span>
       <span class="tag g">CRUISE</span>
       <span class="tag g">MISSION</span>
+    </div>
+  </a>
+  <a href="consulta_rab.html" class="card rab">
+    <div class="card-icon">🔍</div>
+    <div class="card-mfr">ANAC</div>
+    <div class="card-model">CONSULTA RAB</div>
+    <div class="card-desc">Registro Aeronáutico Brasileiro<br>34.402 aeronaves<br>Busca e Filtros</div>
+    <div class="card-tags">
+      <span class="tag a">SEARCH</span>
+      <span class="tag a">FILTER</span>
+      <span class="tag a">DATABASE</span>
     </div>
   </a>
 </div>
